@@ -19,7 +19,7 @@ Manfred Lima Veiga
 
 -- Ambiente de desenvolvimento: Android Studio 
 
--- Base de dados: SQLite
+-- Base de dados: ?
 
 -- Hospedagem de código: Github 
 
