@@ -1,7 +1,9 @@
 # HelpStudy 📚
 
 ## Status ⏰
-## Visão de projeto 👀
+
+🚧 Em desenvolvimento inicial 🚧
+
 ## Autores 🤓
 
 André Kaled Duarte
@@ -19,7 +21,7 @@ Manfred Lima Veiga
 
 -- Ambiente de desenvolvimento: Android Studio 
 
--- Base de dados: ?
+-- Base de dados: **em decisão**
 
 -- Hospedagem de código: Github 
 
