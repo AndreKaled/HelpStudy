@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HelpStudy</string>
+    <string name="open">Abrir barra de navegação</string>
+    <string name="closed">Fechar barra de navegação</string>
 </resources>
