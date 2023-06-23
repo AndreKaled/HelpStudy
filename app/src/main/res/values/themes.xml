@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.HelpStudy" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.HelpStudy" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/toolbar</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -15,4 +15,13 @@
 
         <!-- Customize your theme here. -->
     </style>
+
+
+    <style name= "DialogAnimation">
+
+        <item name="android:windowEnterAnimation">@anim/slide_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_out</item>
+    </style>
+
+    
 </resources>
