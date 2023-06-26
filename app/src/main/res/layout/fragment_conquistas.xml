@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ConquistasFragment"
-    android:background="#7C771E">
+    android:background="@color/blackFundo">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -13,7 +13,6 @@
         android:text="Conquistas"
         android:gravity="center"
         android:textSize="30dp"
-        android:background="#161D4E"
         android:textColor="@color/white"/>
 
 </FrameLayout>

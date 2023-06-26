@@ -1,32 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CronometroFragment"
-    android:background="#605B0F">
+    android:background="@color/blackFundo">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Cronometro"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:background="#2AAA5D"
-        android:textColor="@color/white"/>
-    
-    
-    <Chronometer
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/chronometer"
-        android:format="00:00:00"
-        android:textSize="40sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:text="Cronômetro"
         android:textColor="@color/white"
-        android:textStyle="bold"
+        android:textSize="24sp" />
+
+    <LinearLayout
+    android:layout_width="250dp"
+    android:layout_height="250dp"
+    tools:context=".CronometroFragment"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@drawable/bg_round">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_round"
+        android:format="00:00:00"
         android:gravity="center"
-        android:background="@drawable/bg_round"/>
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
-
+</LinearLayout>
 </FrameLayout>
+

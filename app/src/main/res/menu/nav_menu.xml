@@ -8,17 +8,17 @@
         <item
             android:id="@+id/nav_config"
             android:title="configuracoes"
-            android:icon="@drawable/time"/>
+            android:icon="@drawable/icsettings"/>
 
         <item
             android:id="@+id/nav_backup"
             android:title="backup"
-            android:icon="@drawable/conquistas"/>
+            android:icon="@drawable/ic_backup"/>
 
         <item
             android:id="@+id/nav_sobrenos"
             android:title="Sobre nós"
-            android:icon="@drawable/card"/>
+            android:icon="@drawable/ic_groups"/>
 
     </group>
 
