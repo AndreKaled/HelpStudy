@@ -21,7 +21,7 @@ Manfred Lima Veiga
 
 -- Ambiente de desenvolvimento: Android Studio 
 
--- Base de dados: **em decisão**
+-- Base de dados: Firebase
 
 -- Hospedagem de código: Github 
 
