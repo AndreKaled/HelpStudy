@@ -12,6 +12,13 @@
         android:theme="@style/Theme.HelpStudy"
         tools:targetApi="33">
         <activity
+            android:name=".TelaCadastro"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".SobreNos"
             android:exported="false">
             <meta-data

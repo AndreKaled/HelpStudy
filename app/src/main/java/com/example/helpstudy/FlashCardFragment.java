@@ -1,6 +1,5 @@
 package com.example.helpstudy;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,13 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FlashCardFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FlashCardFragment extends Fragment {
 
 
@@ -26,24 +19,6 @@ public class FlashCardFragment extends Fragment {
     private View view;
     private ControllerFlashCard controleFlashCard = ControllerFlashCard.getInstancia();
 
-    public FlashCardFragment() {
-        // Required empty public constructor
-    }
-
-
-    // TODO: Rename and change types and number of parameters
-    public static FlashCardFragment newInstance(String param1, String param2) {
-        FlashCardFragment fragment = new FlashCardFragment();
-        Bundle args = new Bundle();
-
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
