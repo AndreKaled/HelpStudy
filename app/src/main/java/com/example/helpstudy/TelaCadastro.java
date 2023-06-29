@@ -34,8 +34,8 @@ public class TelaCadastro extends AppCompatActivity {
                 user.setEmail(viewEmail.getText().toString());
                 user.setSenha(viewSenha.getText().toString());
                 controllerUsuario.cadastrar(user);
-                System.out.println(user +"cadastrado! :)");
-                Toast.makeText(TelaCadastro.this, user.toString() +" cadastrado! :)",Toast.LENGTH_LONG).show();
+                System.out.println(user + "cadastrado! :)");
+                Toast.makeText(TelaCadastro.this, user +" cadastrado! :)",Toast.LENGTH_LONG).show();
 
             }
         });

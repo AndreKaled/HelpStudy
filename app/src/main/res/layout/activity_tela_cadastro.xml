@@ -16,7 +16,8 @@
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="@+id/tituloCadastro"
         app:srcCompat="@drawable/logo"
-        tools:layout_editor_absoluteY="64dp" />
+        tools:layout_editor_absoluteY="64dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/tituloCadastro"
