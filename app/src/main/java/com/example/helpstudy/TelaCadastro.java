@@ -2,6 +2,7 @@ package com.example.helpstudy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class TelaCadastro extends AppCompatActivity {
+
+
 
     private ControllerUsuario controllerUsuario = ControllerUsuario.getInstancia();
     @Override
@@ -18,11 +21,26 @@ public class TelaCadastro extends AppCompatActivity {
 
         TextView viewNome, viewEmail, viewDataNasc, viewSenha;
 
-        viewNome = findViewById(R.id.editTextNome);
-        viewEmail = findViewById(R.id.editTextEmail);
-        //viewDataNasc = findViewById(DATA_AQUI);
-        viewSenha = findViewById(R.id.editTextSenha);
-        Button btCadastrar = findViewById(R.id.btCadastrar);
+        TextView text;
+
+        text = findViewById(R.id.textoLogin);
+
+        viewNome = findViewById(R.id.editText_Nome);
+        viewEmail = findViewById(R.id.editText_Email);
+        viewDataNasc = findViewById(R.id.editTextNasc);
+        viewSenha = findViewById(R.id.editText_Senha);
+        Button btCadastrar = findViewById(R.id.btLogin);
+
+        text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(TelaCadastro.this, TelaLogin.class);
+                startActivity(intent);
+
+            }
+        });
+
 
         btCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,7 +48,8 @@ public class TelaCadastro extends AppCompatActivity {
                 Usuario user = new Usuario();
                 user.setNome(viewNome.getText().toString());
                 //DATA DE NASCIMENTO, FALTA INPUT
-                //user.setDataNasc(viewDataNasc.getText().toString());
+                //botei o edittext, mas bugou a instância aparentemente
+                user.setDataNasc(viewDataNasc.getText().toString());
                 user.setEmail(viewEmail.getText().toString());
                 user.setSenha(viewSenha.getText().toString());
                 controllerUsuario.cadastrar(user);

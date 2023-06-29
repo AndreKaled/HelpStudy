@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blackFundo"
-    tools:context=".TelaCadastro">
+    tools:context=".TelaLogin">
 
 
     <ImageView
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Cadastrar"
+        android:text="Login"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="323dp"
-        android:layout_height="180dp"
+        android:layout_height="140dp"
         android:layout_marginTop="85dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,18 +49,6 @@
             android:backgroundTint="#FFFFFF"
             android:hint="Nome:"
             android:inputType="text"
-            android:textColor="#FFFFFF"
-            android:textColorHighlight="#FFFFFF"
-            android:textColorHint="@color/white"
-            android:textColorLink="#FFFFFF" />
-
-        <EditText
-            android:id="@+id/editTextNasc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FFFFFF"
-            android:hint="Data de nascimento:"
-            android:inputType="datetime"
             android:textColor="#FFFFFF"
             android:textColorHighlight="#FFFFFF"
             android:textColorHint="@color/white"
@@ -91,10 +79,10 @@
         android:id="@+id/btLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="48dp"
         android:background="@color/white"
-        android:backgroundTint="#59DC6B"
-        android:text="Cadastrar"
+        android:backgroundTint="#FFFFFF"
+        android:text="Entrar"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
@@ -107,7 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="Já possui cadastro? Clique aqui"
+        android:text="Não possui cadastro? Clique aqui"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
