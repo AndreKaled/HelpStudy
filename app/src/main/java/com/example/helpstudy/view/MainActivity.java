@@ -1,4 +1,4 @@
-package com.example.helpstudy;
+package com.example.helpstudy.view;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -12,6 +12,12 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.example.helpstudy.ConquistasFragment;
+import com.example.helpstudy.CronometroFragment;
+import com.example.helpstudy.FlashCardFragment;
+import com.example.helpstudy.ListaFragment;
+import com.example.helpstudy.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;

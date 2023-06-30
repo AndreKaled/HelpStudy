@@ -1,5 +1,8 @@
 package com.example.helpstudy;
 
+import com.example.helpstudy.model.Usuario;
+import com.google.firebase.ktx.Firebase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,6 +68,14 @@ public class ControllerUsuario {
         for (Usuario usuario : lista){
             if (usuario.getId()==id)
                 return usuario;
+        }
+        return null;
+    }
+
+    public Usuario buscarPorEmail(String emailDeBusca){
+        for (Usuario user: lista) {
+            if(user.getEmail().equals(emailDeBusca))
+                return user;
         }
         return null;
     }

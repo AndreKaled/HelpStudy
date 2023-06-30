@@ -1,4 +1,4 @@
-package com.example.helpstudy;
+package com.example.helpstudy.model;
 
 public class FlashCard {
     String titulo, descricao;

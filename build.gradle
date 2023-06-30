@@ -3,5 +3,7 @@ plugins {
     id 'com.android.application' version '7.3.0' apply false
     id 'com.android.library' version '7.3.0' apply false
 
+    //dependencia nivel project do google
+    id 'com.google.gms.google-services' version '4.3.15' apply false
 
 }

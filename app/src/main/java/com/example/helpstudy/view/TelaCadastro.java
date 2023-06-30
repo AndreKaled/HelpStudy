@@ -1,4 +1,4 @@
-package com.example.helpstudy;
+package com.example.helpstudy.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,8 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.helpstudy.ControllerUsuario;
+import com.example.helpstudy.R;
+import com.example.helpstudy.model.Usuario;
 
 public class TelaCadastro extends AppCompatActivity {
 
@@ -19,17 +24,17 @@ public class TelaCadastro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_cadastro);
 
-        TextView viewNome, viewEmail, viewDataNasc, viewSenha;
+        EditText textNome, textEmail, textDataNasc, textSenha;
 
         TextView text;
 
         text = findViewById(R.id.textoLogin);
 
-        viewNome = findViewById(R.id.editText_Nome);
-        viewEmail = findViewById(R.id.editText_Email);
-        viewDataNasc = findViewById(R.id.editTextNasc);
-        viewSenha = findViewById(R.id.editText_Senha);
-        Button btCadastrar = findViewById(R.id.btLogin);
+        textNome = findViewById(R.id.cadastro_nome);
+        textEmail = findViewById(R.id.cadastro_email);
+        textDataNasc = findViewById(R.id.cadastro_dataNasc);
+        textSenha = findViewById(R.id.cadastro_senha);
+        Button btCadastrar = findViewById(R.id.btn_cadastro);
 
         text.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,12 +51,10 @@ public class TelaCadastro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Usuario user = new Usuario();
-                user.setNome(viewNome.getText().toString());
-                //DATA DE NASCIMENTO, FALTA INPUT
-                //botei o edittext, mas bugou a instância aparentemente
-                user.setDataNasc(viewDataNasc.getText().toString());
-                user.setEmail(viewEmail.getText().toString());
-                user.setSenha(viewSenha.getText().toString());
+                user.setNome(textNome.getText().toString());
+                user.setDataNasc(textDataNasc.getText().toString());
+                user.setEmail(textEmail.getText().toString());
+                user.setSenha(textSenha.getText().toString());
                 controllerUsuario.cadastrar(user);
                 System.out.println(user + "cadastrado! :)");
                 Toast.makeText(TelaCadastro.this, user +" cadastrado! :)",Toast.LENGTH_LONG).show();

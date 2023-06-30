@@ -1,4 +1,4 @@
-package com.example.helpstudy;
+package com.example.helpstudy.model;
 
 public class Usuario {
     private String nome, email, senha, dataNasc;
@@ -51,6 +51,7 @@ public class Usuario {
         return "Usuario{" +
                 "nome=" + nome +
                 ", email=" +email +
+                ", dataNasc=" +dataNasc +
                 ", senha=" +senha
                 +'}';
     }

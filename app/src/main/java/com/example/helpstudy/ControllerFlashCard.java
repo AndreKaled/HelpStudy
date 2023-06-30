@@ -1,5 +1,7 @@
 package com.example.helpstudy;
 
+import com.example.helpstudy.model.FlashCard;
+
 import java.util.ArrayList;
 import java.util.List;
 

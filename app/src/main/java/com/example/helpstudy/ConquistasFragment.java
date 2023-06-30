@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.helpstudy.view.TelaCadastro;
+
 public class ConquistasFragment extends Fragment {
 
     Button bt;

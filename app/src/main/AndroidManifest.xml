@@ -12,21 +12,21 @@
         android:theme="@style/Theme.HelpStudy"
         tools:targetApi="33">
         <activity
-            android:name=".TelaLogin"
+            android:name=".view.TelaLogin"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".TelaCadastro"
+            android:name=".view.TelaCadastro"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SobreNos"
+            android:name=".view.SobreNos"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -47,7 +47,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

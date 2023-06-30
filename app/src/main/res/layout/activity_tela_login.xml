@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blackFundo"
-    tools:context=".TelaLogin">
+    tools:context=".view.TelaLogin">
 
 
     <ImageView
@@ -43,7 +43,7 @@
         tools:ignore="MissingConstraints">
 
         <EditText
-            android:id="@+id/editText_Nome"
+            android:id="@+id/login_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#FFFFFF"
@@ -55,7 +55,7 @@
             android:textColorLink="#FFFFFF" />
 
         <EditText
-            android:id="@+id/editText_Email"
+            android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#FFFFFF"
@@ -65,7 +65,7 @@
             android:textColorHint="@color/white" />
 
         <EditText
-            android:id="@+id/editText_Senha"
+            android:id="@+id/login_senha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#FFFFFF"
@@ -76,7 +76,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btLogin"
+        android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -99,6 +99,6 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
