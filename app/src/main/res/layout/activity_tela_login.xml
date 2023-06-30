@@ -75,16 +75,17 @@
             android:textColorHint="@color/white" />
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:background="@color/white"
-        android:backgroundTint="#FFFFFF"
+        android:layout_width="116dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="40dp"
+        android:textSize="16dp"
+        android:background="@drawable/botao_confirma"
         android:text="Entrar"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textColorHint="#FFFFFF"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
