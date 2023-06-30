@@ -1,4 +1,4 @@
-package com.example.helpstudy;
+package com.example.helpstudy.controller;
 
 import com.example.helpstudy.model.FlashCard;
 

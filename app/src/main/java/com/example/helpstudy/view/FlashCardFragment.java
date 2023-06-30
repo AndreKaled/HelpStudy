@@ -1,4 +1,4 @@
-package com.example.helpstudy;
+package com.example.helpstudy.view;
 
 import android.os.Bundle;
 
@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.helpstudy.controller.ControllerFlashCard;
+import com.example.helpstudy.R;
 import com.example.helpstudy.model.FlashCard;
 
 public class FlashCardFragment extends Fragment {

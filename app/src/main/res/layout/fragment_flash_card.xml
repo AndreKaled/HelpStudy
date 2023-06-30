@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/blackFundo"
     android:outlineSpotShadowColor="#FFFFFF"
-    tools:context=".FlashCardFragment">
+    tools:context=".view.FlashCardFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

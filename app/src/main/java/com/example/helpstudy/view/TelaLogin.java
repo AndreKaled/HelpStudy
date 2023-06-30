@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.helpstudy.ControllerUsuario;
+import com.example.helpstudy.controller.ControllerUsuario;
 import com.example.helpstudy.R;
 import com.example.helpstudy.model.Usuario;
 

@@ -1,4 +1,4 @@
-package com.example.helpstudy;
+package com.example.helpstudy.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.helpstudy.controller.ControllerFlashCard;
+import com.example.helpstudy.R;
 import com.example.helpstudy.model.FlashCard;
 
 import java.util.List;

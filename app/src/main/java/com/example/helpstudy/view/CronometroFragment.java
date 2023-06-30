@@ -1,4 +1,4 @@
-package com.example.helpstudy;
+package com.example.helpstudy.view;
 
 import android.os.Bundle;
 
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
+
+import com.example.helpstudy.R;
 
 /**
  * A simple {@link Fragment} subclass.

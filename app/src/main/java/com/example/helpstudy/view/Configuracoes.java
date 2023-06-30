@@ -1,14 +1,16 @@
-package com.example.helpstudy;
+package com.example.helpstudy.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Backup extends AppCompatActivity {
+import com.example.helpstudy.R;
+
+public class Configuracoes extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_backup);
+        setContentView(R.layout.activity_configuracoes);
     }
 }
