@@ -44,11 +44,8 @@ public class FlashCardFragment extends Fragment {
                 viewResposta = view.findViewById(R.id.edit2);
                 resposta = viewResposta.getText().toString();
 
-                FlashCard flashCard = new FlashCard(titulo, resposta);
-                controleFlashCard.cadastrar(flashCard);
+                controleFlashCard.cadastrar(titulo, resposta);
 
-                System.out.println(titulo);
-                System.out.println(resposta);
                 atualizarLista();
             }
         });

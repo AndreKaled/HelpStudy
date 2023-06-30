@@ -1,5 +1,6 @@
 package com.example.helpstudy.controller;
 
+import com.example.helpstudy.datasource.DataSource;
 import com.example.helpstudy.model.FlashCard;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.List;
 public class ControllerFlashCard {
     private int proxCodigo;
     private final List<FlashCard> lista;
-
+    private static DataSource db = new DataSource();
     private static ControllerFlashCard instancia = null;
 
     private ControllerFlashCard(){
@@ -26,11 +27,8 @@ public class ControllerFlashCard {
         return instancia;
     }
 
-    public void cadastrar(FlashCard flashCard){
-        flashCard.setCodigo(proxCodigo);
-        boolean resultado = lista.add(flashCard);
-        if (resultado)
-            proxCodigo += 1;
+    public void cadastrar(String titulo, String resposta){
+        db.salvarFlashcard(titulo, resposta, proxCodigo);
 
     }
 
