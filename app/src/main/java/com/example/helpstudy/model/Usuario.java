@@ -2,9 +2,17 @@ package com.example.helpstudy.model;
 
 public class Usuario {
     private String nome, email, senha, dataNasc;
-    private int id;
+    private String id;
 
     public Usuario(){}
+
+    public Usuario(Usuario user){
+        setNome(user.getNome());
+        setEmail(user.getEmail());
+        setSenha(user.getSenha());
+        setDataNasc(user.getDataNasc());
+        setId(user.getId());
+    }
 
     public String getNome() {
         return nome;
@@ -38,11 +46,11 @@ public class Usuario {
         this.dataNasc = dataNasc;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

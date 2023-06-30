@@ -50,14 +50,15 @@ public class TelaCadastro extends AppCompatActivity {
         btCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Usuario user = new Usuario();
-                user.setNome(textNome.getText().toString());
-                user.setDataNasc(textDataNasc.getText().toString());
-                user.setEmail(textEmail.getText().toString());
-                user.setSenha(textSenha.getText().toString());
-                controllerUsuario.cadastrar(user);
-                System.out.println(user + "cadastrado! :)");
-                Toast.makeText(TelaCadastro.this, user +" cadastrado! :)",Toast.LENGTH_LONG).show();
+
+                String nome, email, dataNasc, senha;
+                nome = textNome.getText().toString();
+                email = textEmail.getText().toString();
+                dataNasc = textDataNasc.getText().toString();
+                senha = textSenha.getText().toString();
+
+                controllerUsuario.cadastrar(nome, email, dataNasc, senha);
+                Toast.makeText(TelaCadastro.this, "Cadastro realizado com sucesso!",Toast.LENGTH_LONG).show();
 
             }
         });

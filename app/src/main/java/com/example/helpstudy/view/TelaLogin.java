@@ -32,7 +32,12 @@ public class TelaLogin extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Usuario user = ControllerUsuario.getInstancia().buscarPorEmail(textEmail.getText().toString());
+                Usuario user = null;
+                try {
+                    //user = ControllerUsuario.getInstancia().buscarPorEmail(textEmail.getText().toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 validarUsuario(user);
             }
         });

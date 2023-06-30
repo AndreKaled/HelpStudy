@@ -1,5 +1,6 @@
 package com.example.helpstudy.controller;
 
+import com.example.helpstudy.datasource.DataSource;
 import com.example.helpstudy.model.Usuario;
 
 import java.util.ArrayList;
@@ -9,12 +10,11 @@ public class ControllerUsuario {
 
     private int proxId;
     private final List<Usuario> lista;
-
+    private DataSource db = new DataSource();
     private static ControllerUsuario instancia = null;
 
     private ControllerUsuario(){
         lista = new ArrayList<>();
-        proxId = 1;
     }
 
     public int getProxId(){
@@ -27,11 +27,8 @@ public class ControllerUsuario {
         return instancia;
     }
 
-    public void cadastrar(Usuario usuario){
-        usuario.setId(proxId);
-        boolean resultado = lista.add(usuario);
-        if (resultado)
-            proxId += 1;
+    public void cadastrar(String nome, String email, String dataNasc, String senha){
+        db.salvarUsuario(nome, email, dataNasc, senha);
     }
 
     public boolean alterar(Usuario usuario){
@@ -55,27 +52,27 @@ public class ControllerUsuario {
         return cont;
     }
 
-    public List<Usuario> buscarTodos(){
-        return new ArrayList<>(lista);
-    }
+    /*public List<Usuario> buscarTodos() throws Exception {
+        return db.consultaUsuarios();
+    }*/
 
     public Usuario buscarPorPosicao(int posicao){
         return lista.get(posicao);
     }
 
-    public Usuario buscarPorId(int id){
+    public Usuario buscarPorId(String id){
         for (Usuario usuario : lista){
-            if (usuario.getId()==id)
+            if (usuario.getId().equals(id))
                 return usuario;
         }
         return null;
     }
 
-    public Usuario buscarPorEmail(String emailDeBusca){
-        for (Usuario user: lista) {
+    /*public Usuario buscarPorEmail(String emailDeBusca) throws Exception {
+        for (Usuario user: db.consultaUsuarios()) {
             if(user.getEmail().equals(emailDeBusca))
                 return user;
         }
         return null;
-    }
+    }*/
 }

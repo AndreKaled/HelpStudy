@@ -6,12 +6,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
 
 import com.example.helpstudy.R;
+import com.example.helpstudy.datasource.DataSource;
+import com.example.helpstudy.model.Usuario;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        try {
+            System.out.println(new DataSource().consultaUsuarios().get(0));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
