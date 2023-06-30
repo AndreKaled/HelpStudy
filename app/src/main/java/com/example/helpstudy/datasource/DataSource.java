@@ -21,6 +21,7 @@ public class DataSource {
         flashCard.setTitulo(titulo);
         flashCard.setDescricao(descricao);
         flashCard.setCodigo(codigo);
+        //cidsanbcibds
 
         dataBase.collection("flashcards").document(titulo).set(flashCard).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
