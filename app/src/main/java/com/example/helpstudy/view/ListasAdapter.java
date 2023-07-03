@@ -7,17 +7,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.example.helpstudy.R;
-import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.controller.ControllerListas;
 import com.example.helpstudy.model.Listas;
-
 import java.util.List;
 
 public class ListasAdapter extends BaseAdapter {
 
     Context context;
     List<Listas> listas;
-    private static ControllerFlashCard instancia = null;
 
     public ListasAdapter(Context context){
         this.context = context;

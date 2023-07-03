@@ -16,7 +16,6 @@ public class ControllerFlashCard {
         lista = new ArrayList<>();
         proxCodigo = 1;
     }
-
     public int getProxCodigo(){
         return proxCodigo;
     }
@@ -26,12 +25,10 @@ public class ControllerFlashCard {
             instancia = new ControllerFlashCard();
         return instancia;
     }
-
     public void cadastrar(String titulo, String resposta){
         db.salvarFlashcard(titulo, resposta, proxCodigo);
 
     }
-
     public boolean alterar(FlashCard flashCard){
         for (int i = 0; i < lista.size(); i++) {
             if (flashCard.getCodigo()==lista.get(i).getCodigo()){
@@ -41,7 +38,6 @@ public class ControllerFlashCard {
         }
         return false;
     }
-
     public int remover(FlashCard flashCard){
         int cont = 0;
         for (int i = 0; i < lista.size(); i++) {
@@ -52,7 +48,6 @@ public class ControllerFlashCard {
         }
         return cont;
     }
-
     public List<FlashCard> buscarTodos(){
         return new ArrayList<>(lista);
     }
@@ -69,5 +64,4 @@ public class ControllerFlashCard {
         }
         return null;
     }
-
 }

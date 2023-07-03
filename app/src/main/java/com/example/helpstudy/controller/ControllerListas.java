@@ -5,12 +5,12 @@ import java.util.List;
 
 public class ControllerListas {
 
-    private final List<Listas> listy;
+    private final List<Listas> listas;
     private int proxid;
     private static ControllerListas instancia = null;
 
     private ControllerListas(){
-        listy = new ArrayList<>();
+        listas = new ArrayList<>();
         proxid = 1;
     }
     public int getProxId(){
@@ -27,15 +27,15 @@ public class ControllerListas {
 
     public void cadastrar(Listas list){
         list.setId(proxid);
-        boolean resultado = listy.add(list);
+        boolean resultado = listas.add(list);
         if (resultado)
             proxid += 1;
     }
 
     public boolean alterar(Listas list){
-        for (int i = 0; i < listy.size(); i++) {
-            if (list.getId()==listy.get(i).getId()){
-                listy.set(i, list);
+        for (int i = 0; i < listas.size(); i++) {
+            if (list.getId()== listas.get(i).getId()){
+                listas.set(i, list);
                 return true;
             }
         }
@@ -45,9 +45,9 @@ public class ControllerListas {
 
     public int remover(Listas list){
         int cont = 0;
-        for (int i = 0; i < listy.size(); i++) {
-            if (list.getId()==listy.get(i).getId()){
-                listy.remove(i);
+        for (int i = 0; i < listas.size(); i++) {
+            if (list.getId()== listas.get(i).getId()){
+                listas.remove(i);
                 cont += 1;
             }
         }
@@ -55,12 +55,12 @@ public class ControllerListas {
     }
 
     public List<Listas> buscarTodos(){
-        return new ArrayList<>(listy);
+        return new ArrayList<>(listas);
     }
 
 
     public Listas buscarPorId(int id){
-        for (Listas list : listy){
+        for (Listas list : listas){
             if (list.getId()==id)
                 return list;
         }

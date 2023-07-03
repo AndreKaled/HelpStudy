@@ -12,9 +12,6 @@ public class Listas {
         this.id = id;
     }
 
-
-
-
     public String getTitulo() {
         return titulo;
     }
