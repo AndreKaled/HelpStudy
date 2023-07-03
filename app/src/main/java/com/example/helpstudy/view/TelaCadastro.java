@@ -16,15 +16,15 @@ import com.example.helpstudy.model.Usuario;
 
 public class TelaCadastro extends AppCompatActivity {
 
-
+    EditText textNome, textEmail, textDataNasc, textSenha;
+    String nome, email, dataNasc, senha;
 
     private ControllerUsuario controllerUsuario = ControllerUsuario.getInstancia();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_cadastro);
-
-        EditText textNome, textEmail, textDataNasc, textSenha;
 
         TextView text;
 
@@ -51,17 +51,94 @@ public class TelaCadastro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String nome, email, dataNasc, senha;
-                nome = textNome.getText().toString();
-                email = textEmail.getText().toString();
-                dataNasc = textDataNasc.getText().toString();
-                senha = textSenha.getText().toString();
-
-                controllerUsuario.cadastrar(nome, email, dataNasc, senha);
-                Toast.makeText(TelaCadastro.this, "Cadastro realizado com sucesso!",Toast.LENGTH_LONG).show();
+                validarCampos();
 
             }
         });
 
+    }
+
+    private void validarCampos(){
+
+        nome = textNome.getText().toString();
+        email = textEmail.getText().toString();
+        dataNasc = textDataNasc.getText().toString();
+        senha = textSenha.getText().toString();
+
+        if(textNome.getText().toString().isEmpty() && textEmail.getText().toString().isEmpty() &&
+                textDataNasc.getText().toString().isEmpty() && textSenha.getText().toString().isEmpty()){
+            textNome.setError("Ei, você esqueceu de me preencher! 😓");
+            textEmail.setError("Ei, você esqueceu de me preencher! 😓");
+            textDataNasc.setError("Ei, você esqueceu de me preencher! 😓");
+            textSenha.setError("Ei, você esqueceu de me preencher! 😓");
+        }
+        else if(textNome.getText().toString().isEmpty() && textEmail.getText().toString().isEmpty() &&
+                textDataNasc.getText().toString().isEmpty()){
+            textNome.setError("Ei, você esqueceu de me preencher! 😓");
+            textEmail.setError("Ei, você esqueceu de me preencher! 😓");
+            textDataNasc.setError("Ei, você esqueceu de me preencher! 😓");
+        }
+        else if(textNome.getText().toString().isEmpty() && textEmail.getText().toString().isEmpty() &&
+                 textSenha.getText().toString().isEmpty()){
+            textNome.setError("Ei, você esqueceu de me preencher! 😓");
+            textEmail.setError("Ei, você esqueceu de me preencher! 😓");
+            textSenha.setError("Ei, você esqueceu de me preencher! 😓");
+        }
+        else if(textNome.getText().toString().isEmpty() &&
+                textDataNasc.getText().toString().isEmpty() && textSenha.getText().toString().isEmpty()){
+            textNome.setError("Ei, você esqueceu de me preencher! 😓");
+            textDataNasc.setError("Ei, você esqueceu de me preencher! 😓");
+            textSenha.setError("Ei, você esqueceu de me preencher! 😓");
+        }
+        else if(textEmail.getText().toString().isEmpty() && textDataNasc.getText().toString().isEmpty() &&
+                textSenha.getText().toString().isEmpty()){
+            textEmail.setError("Ei, você esqueceu de me preencher! 😓");
+            textDataNasc.setError("Ei, você esqueceu de me preencher! 😓");
+            textSenha.setError("Ei, você esqueceu de me preencher! 😓");
+        }
+        else if(textNome.getText().toString().isEmpty() && textEmail.getText().toString().isEmpty()){
+            textNome.setError("Ei, você esqueceu de me preencher! 😓");
+            textEmail.setError("Ei, você esqueceu de me preencher! 😓");
+        }
+        else if(textNome.getText().toString().isEmpty() && textSenha.getText().toString().isEmpty()){
+            textNome.setError("Ei, você esqueceu de me preencher! 😓");
+            textSenha.setError("Ei, você esqueceu de me preencher! 😓");
+        }
+        else if(textNome.getText().toString().isEmpty() && textDataNasc.getText().toString().isEmpty()){
+            textNome.setError("Ei, você esqueceu de me preencher! 😓");
+            textDataNasc.setError("Ei, você esqueceu de me preencher! 😓");
+        }
+        else if(textEmail.getText().toString().isEmpty() && textDataNasc.getText().toString().isEmpty()) {
+            textEmail.setError("Ei, você esqueceu de me preencher! 😓");
+            textDataNasc.setError("Ei, você esqueceu de me preencher! 😓");
+        }
+        else if(textEmail.getText().toString().isEmpty() && textSenha.getText().toString().isEmpty()){
+            textEmail.setError("Ei, você esqueceu de me preencher! 😓");
+            textSenha.setError("Ei, você esqueceu de me preencher! 😓");
+        }
+        else if(textDataNasc.getText().toString().isEmpty() && textSenha.getText().toString().isEmpty()){
+            textDataNasc.setError("Ei, você esqueceu de me preencher! 😓");
+            textSenha.setError("Ei, você esqueceu de me preencher! 😓");
+        }
+        else if(textNome.getText().toString().isEmpty())
+            textNome.setError("Ei, você esqueceu de me preencher! 😓");
+        else if (textDataNasc.getText().toString().isEmpty())
+            textDataNasc.setError("Ei, você esqueceu de me preencher! 😓");
+        else if (textEmail.getText().toString().isEmpty())
+            textEmail.setError("Ei, você esqueceu de me preencher! 😓");
+        else if(textSenha.getText().toString().isEmpty())
+            textSenha.setError("Ei, você esqueceu de me preencher! 😓");
+        else if(usuarioExiste())
+            Toast.makeText(TelaCadastro.this, "Já encontramos seu cadastro aqui, faça o login para entrar!", Toast.LENGTH_LONG).show();
+        else{
+            controllerUsuario.cadastrar(nome, email, dataNasc, senha);
+            Toast.makeText(TelaCadastro.this, "Cadastro realizado com sucesso!",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private boolean usuarioExiste(){
+        if(controllerUsuario.buscarPorEmail(email)==null)
+            return false;
+        return true;
     }
 }

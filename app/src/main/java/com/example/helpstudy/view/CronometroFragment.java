@@ -25,6 +25,7 @@ public class CronometroFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     Chronometer chronometer;
     ImageButton btStart, btStop;
+    View view;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -65,8 +66,9 @@ public class CronometroFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_cronometro, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cronometro, container, false);
+        return view;
 
 
     }
