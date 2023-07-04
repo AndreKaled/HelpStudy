@@ -37,11 +37,10 @@ public class FlashCardFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                //AddDialogFragment dialog = new AddDialogFragment();
-                //dialog.show(getActivity().getSupportFragmentManager(), "oi");
-                //inicio do modal
 
-                TextView viewTitulo, viewResposta;
+                abrirModal();
+
+                /*TextView viewTitulo, viewResposta;
 
                 String titulo = "AAA", resposta = "bb";
 
@@ -55,8 +54,7 @@ public class FlashCardFragment extends Fragment {
 
                 controleFlashCard.cadastrar(titulo, resposta);
 
-                atualizarLista();
-
+                atualizarLista();*/
             }
         });
 
@@ -64,9 +62,10 @@ public class FlashCardFragment extends Fragment {
         return view;
     }
 
-    private void atualizarLista() {
-        listaFlashCardAdapter = new ListaFlashCardAdapter(view.getContext());
-        listViewFlashCard.setAdapter(listaFlashCardAdapter);
+    private void abrirModal() {
+
+        AddDialogFragment dialog = new AddDialogFragment();
+        dialog.show(getActivity().getSupportFragmentManager(), "oi");
     }
 
 }

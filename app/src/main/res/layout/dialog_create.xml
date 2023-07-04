@@ -18,14 +18,18 @@
             android:textSize="20dp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/editTextNome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:hint="Nome"
-            android:inputType="text"
-            android:textColorHint="@color/white" />
+    <EditText
+        android:id="@+id/editTextNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:hint="Nome"
+        android:inputType="text"
+
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#03A9F4"
+        android:textColorHint="@color/white"
+        android:textColorLink="@color/confirmarAzul" />
 
         <EditText
             android:id="@+id/editTextresp"
@@ -34,7 +38,10 @@
             android:backgroundTint="@color/white"
             android:hint="Resposta"
             android:inputType="text"
-            android:textColorHint="@color/white" />
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#03A9F4"
+            android:textColorHint="@color/white"
+            android:textColorLink="@color/confirmarAzul"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/idDialog"
