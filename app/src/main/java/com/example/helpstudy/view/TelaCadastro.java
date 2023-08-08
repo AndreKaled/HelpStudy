@@ -50,9 +50,9 @@ public class TelaCadastro extends AppCompatActivity {
         btCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 validarCampos();
-
+                Intent it = new Intent(TelaCadastro.this, MainActivity.class);
+                startActivity(it);
             }
         });
 

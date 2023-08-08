@@ -35,7 +35,14 @@ public class TelaLogin extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validarUsuario();
+                try {
+                    validarUsuario();
+                    Intent intent = new Intent(TelaLogin.this, MainActivity.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(TelaLogin.this, "Desculpe, deu problema no nosso app, não se preocupe que a culpa não é sua", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -48,31 +55,27 @@ public class TelaLogin extends AppCompatActivity {
         });
     }
 
-    private void validarUsuario() {
+    private void validarUsuario() throws Exception {
         Usuario usuario;
-        try {
-            usuario = ControllerUsuario.getInstancia().buscarPorEmail(textEmail.getText().toString());
-            if (usuario == null) {
-                textEmail.setError("Email não encontrado!");
-            }
-            if(textEmail.getText().toString().isEmpty() && textSenha.getText().toString().isEmpty()) {
-                textEmail.setError("O email não pode ser vazio!");
-                textSenha.setError("A senha não pode ser vazia!");
-            } else if (usuario.getSenha().isEmpty()) {
-                textSenha.setError("A senha não pode ser vazia!");
-            } else if (usuario.getEmail().isEmpty()) {
-                textEmail.setError("Email de usuário inválido!");
-            } else if (usuario.getSenha().isEmpty()) {
-                //algm erro ai mano
-            } else if (!usuario.getSenha().equals(textSenha.getText().toString())) {
-                textSenha.setError("senha de usuário incorreta!");
-            } else if (usuario.getSenha().equals(textSenha.getText().toString())) {
-                Toast.makeText(this, "Bem vindo(a), " + usuario.getNome() +"!", Toast.LENGTH_LONG).show();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Desculpe, deu problema no nosso app, não se preocupe que a culpa não é sua", Toast.LENGTH_LONG).show();
+        usuario = ControllerUsuario.getInstancia().buscarPorEmail(textEmail.getText().toString());
+        if (usuario == null) {
+            textEmail.setError("Email não encontrado!");
         }
-
+        if (textEmail.getText().toString().isEmpty() && textSenha.getText().toString().isEmpty()) {
+            textEmail.setError("O email não pode ser vazio!");
+            textSenha.setError("A senha não pode ser vazia!");
+        } else if (usuario.getSenha().isEmpty()) {
+            textSenha.setError("A senha não pode ser vazia!");
+        } else if (usuario.getEmail().isEmpty()) {
+            textEmail.setError("Email de usuário inválido!");
+        } else if (usuario.getSenha().isEmpty()) {
+            //algm erro ai mano
+        } else if (!usuario.getSenha().equals(textSenha.getText().toString())) {
+            textSenha.setError("senha de usuário incorreta!");
+        } else if (usuario.getSenha().equals(textSenha.getText().toString())) {
+            Toast.makeText(this, "Bem vindo(a), " + usuario.getNome() + "!", Toast.LENGTH_LONG).show();
+        }
     }
+
 }
+
