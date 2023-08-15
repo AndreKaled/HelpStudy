@@ -13,7 +13,7 @@ public class ControllerFlashCard {
     private static ControllerFlashCard instancia = null;
 
     private ControllerFlashCard(){
-        lista = new ArrayList<>();
+        lista = db.consultarFlashcards();
         proxCodigo = 1;
     }
     public int getProxCodigo(){

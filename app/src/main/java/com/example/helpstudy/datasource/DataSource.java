@@ -1,19 +1,16 @@
 package com.example.helpstudy.datasource;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.helpstudy.model.FlashCard;
 import com.example.helpstudy.model.Usuario;
-import com.example.helpstudy.view.TelaLogin;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -25,18 +22,18 @@ public class DataSource {
     private FirebaseFirestore dataBase = FirebaseFirestore.getInstance();
     private final String TAG = "DataBase", COLECAO_USUARIOS = "usuarios", COLECAO_FLASHCARDS = "flashcards";
     private CollectionReference usuarioRef = dataBase.collection(COLECAO_USUARIOS);
-    /*private CollectionReference flashcardRef = dataBase.collection(COLECAO_FLASHCARDS);*/
-    private CollectionReference flashcardRef;
+    private CollectionReference flashcardRef = usuarioRef.document("Andre-2021333729@ifam.edu.br").collection(COLECAO_FLASHCARDS);
+    static FlashCard flashCard = new FlashCard();;
 
     //CRUD dos FLASHCARDS
     public void salvarFlashcard(String titulo, String descricao, int codigo) {
         FlashCard flashCard = new FlashCard();
         flashCard.setTitulo(titulo);
         flashCard.setDescricao(descricao);
-        flashcardRef = usuarioRef.document("andrezinho-um@gmail.com").collection(COLECAO_FLASHCARDS);
+        flashCard.setCodigo(codigo);
 
-
-            flashcardRef.document(titulo).set(flashCard).addOnCompleteListener(new OnCompleteListener<Void>() {
+        flashcardRef = usuarioRef.document("Andre-2021333729@ifam.edu.br").collection(COLECAO_FLASHCARDS);
+        flashcardRef.document(titulo).set(flashCard).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Log.i(TAG, COLECAO_FLASHCARDS + "-> registrado com sucesso!" + flashCard);
@@ -49,7 +46,6 @@ public class DataSource {
             }
         });
     }
-
     public List<FlashCard> consultarFlashcards(){
         List<FlashCard> flashCards = new ArrayList<>();
         flashcardRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -73,7 +69,6 @@ public class DataSource {
     }
 
     private void alterarFlashcard(String id, String titulo, String descricao){
-        FlashCard flashCard = new FlashCard();
         //flashCard.setCodigo(id);
         flashCard.setTitulo(titulo);
         flashCard.setDescricao(descricao);
@@ -115,25 +110,6 @@ public class DataSource {
         user.setDataNasc(dataNasc);
         user.setSenha(senha);
         user.setId(nome + "-" + email);
-
-
-         usuarioRef.document("VATAPA-AA@GMAIL.COM").collection("comida").add(user).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-             @Override
-             public void onComplete(@NonNull Task<DocumentReference> task) {
-
-             Log.i(TAG, "carta" + "-> registrado com sucesso! " + user);
-
-             }
-         }).addOnFailureListener(new OnFailureListener() {
-             @Override
-             public void onFailure(@NonNull Exception e) {
-
-                 Log.w(TAG, "VATAPA-AA@GMAIL.COM filho" + "-> não foi registrado com sucesso!");
-                 e.printStackTrace();
-
-             }
-         });
-
 
         usuarioRef.document(user.getId()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
