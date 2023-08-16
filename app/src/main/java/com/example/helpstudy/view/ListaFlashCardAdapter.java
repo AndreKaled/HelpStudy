@@ -49,6 +49,8 @@ public class ListaFlashCardAdapter extends BaseAdapter {
         textView_titulo.setText(flashCard.getTitulo());
         textViewDescricao.setText(flashCard.getDescricao());
 
+        System.out.println(flashCard);
+
         return v;
     }
 }

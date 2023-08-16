@@ -12,7 +12,7 @@ public class ControllerFlashCard {
     private static DataSource db = new DataSource();
     private static ControllerFlashCard instancia = null;
 
-    private ControllerFlashCard(){
+    public ControllerFlashCard(){
         lista = db.consultarFlashcards();
         proxCodigo = 1;
     }
@@ -48,7 +48,7 @@ public class ControllerFlashCard {
         }
         return cont;
     }
-    public List<FlashCard> buscarTodos(){
+    public ArrayList<FlashCard> buscarTodos(){
         return new ArrayList<>(lista);
     }
 

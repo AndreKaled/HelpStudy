@@ -35,4 +35,13 @@ public class FlashCard {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
+    @Override
+    public String toString() {
+        return "FlashCard{" +
+                "titulo='" + titulo + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", codigo=" + codigo +
+                '}';
+    }
 }

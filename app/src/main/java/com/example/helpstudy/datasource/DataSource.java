@@ -26,7 +26,7 @@ public class DataSource {
     static FlashCard flashCard = new FlashCard();;
 
     //CRUD dos FLASHCARDS
-    public void salvarFlashcard(String titulo, String descricao, int codigo) {
+    public void salvarFlashcard(String titulo, String descricao,  int codigo) {
         FlashCard flashCard = new FlashCard();
         flashCard.setTitulo(titulo);
         flashCard.setDescricao(descricao);
@@ -46,13 +46,14 @@ public class DataSource {
             }
         });
     }
-    public List<FlashCard> consultarFlashcards(){
-        List<FlashCard> flashCards = new ArrayList<>();
+    public ArrayList<FlashCard> consultarFlashcards(){
+        ArrayList<FlashCard> flashCards = new ArrayList<>();
         flashcardRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                     FlashCard flashCard = documentSnapshot.toObject(FlashCard.class);
+                    flashCard.setCodigo(Integer.parseInt(documentSnapshot.getId()));
                     flashCards.add(flashCard);
                 }
                 Log.i(TAG, COLECAO_FLASHCARDS +"-> Query realizada com sucesso!");

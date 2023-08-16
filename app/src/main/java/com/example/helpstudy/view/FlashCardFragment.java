@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -24,17 +25,9 @@ import java.util.List;
 
 public class FlashCardFragment extends Fragment {
 
-
-    private ListaFlashCardAdapter listaFlashCardAdapter;
-
-    private ListView listViewFlashCard;
+    private ListView listViewFlashCard, listView;
     private View view;
-
-//    List<FlashCard> listfla = (List<FlashCard>) ControllerFlashCard.getInstancia().buscarTodos();
-
-
-//    ArrayAdapter arrayAdapter = new ArrayAdapter<FlashCard>(getActivity(), android.R.layout.simple_list_item_1, listfla);
-
+    List<FlashCard> listfla = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,18 +38,29 @@ public class FlashCardFragment extends Fragment {
         listViewFlashCard = view.findViewById(R.id.lista_de_flashcards);
 
 
-//      System.out.println(listfla);
 
-//      listViewFlashCard.setAdapter(arrayAdapter);
-        //arrayListFlashCard = (ArrayList<FlashCard>) ControllerFlashCard.getInstancia().buscarTodos();
+        listfla.add(new FlashCard("texto", "oi"));
+        listfla.add(new FlashCard("texto", "oi"));
+        listfla.add(new FlashCard("texto", "oi"));
+        listfla.add(new FlashCard("texto", "oi"));
+        listfla.add(new FlashCard("texto", "oi"));
+
+
+        ArrayAdapter<FlashCard> adapter = new ArrayAdapter<>(
+                getContext(), android.R.layout.simple_list_item_1, listfla
+        );
+
+//        adapter.notifyDataSetChanged();
+        listViewFlashCard.setAdapter(adapter);
+
         btCriar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 abrirModal();
+
             }
         });
-        ListView listView = view.findViewById(R.id.lista_de_flashcards);
         return view;
     }
     private void abrirModal() {
