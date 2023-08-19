@@ -1,4 +1,5 @@
 package com.example.helpstudy.controller;
+import com.example.helpstudy.datasource.DataSource;
 import com.example.helpstudy.model.Listas;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,33 +10,41 @@ public class ControllerListas {
     private int proxid;
     private static ControllerListas instancia = null;
 
-    private ControllerListas(){
-        listas = new ArrayList<>();
-        proxid = 1;
+    private DataSource db = new DataSource();
+
+    private ControllerListas() throws Exception {
+        listas = db.consultarListas();
     }
-    public int getProxId(){
+
+    public int getProxId() {
         return proxid;
     }
 
-
-    public static ControllerListas getInstancia(){
-        if (instancia == null)
-            instancia = new ControllerListas();
+    public static ControllerListas getInstancia() {
+        if (instancia == null) {
+            try {
+                instancia = new ControllerListas();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         return instancia;
     }
 
 
-    public void cadastrar(Listas list){
-        list.setId(proxid);
-        boolean resultado = listas.add(list);
+
+    public void cadastrar(Listas lista_editText){
+        lista_editText.setId(proxid);
+        boolean resultado = listas.add(lista_editText);
         if (resultado)
             proxid += 1;
+        
     }
 
-    public boolean alterar(Listas list){
+    public boolean alterar(Listas lista_editText){
         for (int i = 0; i < listas.size(); i++) {
-            if (list.getId()== listas.get(i).getId()){
-                listas.set(i, list);
+            if (lista_editText.getId()== listas.get(i).getId()){
+                listas.set(i, lista_editText);
                 return true;
             }
         }
@@ -43,10 +52,10 @@ public class ControllerListas {
     }
 
 
-    public int remover(Listas list){
+    public int remover(Listas lista_editText){
         int cont = 0;
         for (int i = 0; i < listas.size(); i++) {
-            if (list.getId()== listas.get(i).getId()){
+            if (lista_editText.getId()== listas.get(i).getId()){
                 listas.remove(i);
                 cont += 1;
             }
@@ -57,7 +66,6 @@ public class ControllerListas {
     public List<Listas> buscarTodos(){
         return new ArrayList<>(listas);
     }
-
 
     public Listas buscarPorId(int id){
         for (Listas list : listas){

@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerListas;
+import com.example.helpstudy.datasource.DataSource;
 import com.example.helpstudy.model.Listas;
 import java.util.List;
 
@@ -47,7 +48,5 @@ public class ListasAdapter extends BaseAdapter {
         Listas list = listas.get(position);
         textView_titulo.setText(list.getTitulo());
         return v;
-
-
     }
 }

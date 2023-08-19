@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.helpstudy.model.FlashCard;
+import com.example.helpstudy.model.Listas;
 import com.example.helpstudy.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -20,10 +21,90 @@ import java.util.List;
 
 public class DataSource {
     private FirebaseFirestore dataBase = FirebaseFirestore.getInstance();
-    private final String TAG = "DataBase", COLECAO_USUARIOS = "usuarios", COLECAO_FLASHCARDS = "flashcards";
+    private final String TAG = "DataBase", COLECAO_USUARIOS = "usuarios", COLECAO_FLASHCARDS = "flashcards", COLECAO_LISTAS = "listas";
     private CollectionReference usuarioRef = dataBase.collection(COLECAO_USUARIOS);
     private CollectionReference flashcardRef = usuarioRef.document("Andre-2021333729@ifam.edu.br").collection(COLECAO_FLASHCARDS);
-    static FlashCard flashCard = new FlashCard();;
+
+    private CollectionReference listasRef = usuarioRef.document("Andre-2021333729@ifam.edu.br").collection(COLECAO_LISTAS);
+
+
+    //CRUD LISTAS
+
+    public void salvarListas(String titulo){
+
+        Listas listas = new Listas();
+        listas.setTitulo(titulo);
+        listasRef = usuarioRef.document("Andre-2021333729@ifam.edu.br").collection(COLECAO_LISTAS);
+        listasRef.document(titulo).set(listas).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Log.i(TAG, COLECAO_LISTAS + "-> registrado com sucesso!" + listas);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w(TAG, COLECAO_LISTAS + "-> não foi registrado com sucesso");
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public ArrayList<Listas> consultarListas(){
+        ArrayList<Listas> listas = new ArrayList<>();
+        listasRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                    Listas lista_interna = documentSnapshot.toObject(Listas.class);
+                    lista_interna.setId(Integer.parseInt(documentSnapshot.getId()));
+                    listas.add(lista_interna);
+                }
+                Log.i(TAG, COLECAO_LISTAS +"-> Query realizada com sucesso!");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e(TAG, "açargsed");
+                Log.e(TAG, COLECAO_LISTAS +"-> Erro ao executar Query no Banco");
+                e.printStackTrace();
+            }
+        });
+        return listas;
+    }
+
+    private void alterarListas(String titulo){
+        Listas listas = new Listas();
+        //flashCard.setCodigo(id);
+        listas.setTitulo(titulo);
+        Log.i(TAG, COLECAO_LISTAS +"-> alterando dados da lista " +listas);
+
+        listasRef.document("Andre-2021333729@ifam.edu.br").set(listas).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.i(TAG, COLECAO_LISTAS +"-> dados alterados com sucesso!");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e(TAG, COLECAO_LISTAS +"-> falha ao alterar dados!");
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public boolean excluirListas(String id){
+        Log.i(TAG,COLECAO_LISTAS +"-> excluindo lista " +id);
+        listasRef.document("Andre-2021333729@ifam.edu.br").delete();
+
+        try {
+            Log.i(TAG, COLECAO_LISTAS +"-> lista excluída com sucesso!");
+            return consultarListas().contains(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e(TAG, COLECAO_LISTAS +"-> falha ao excluir a lista");
+        }
+        return false;
+    }
 
     //CRUD dos FLASHCARDS
     public void salvarFlashcard(String titulo, String descricao,  int codigo) {
@@ -48,16 +129,17 @@ public class DataSource {
     }
     public ArrayList<FlashCard> consultarFlashcards(){
         ArrayList<FlashCard> flashCards = new ArrayList<>();
-        flashcardRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
+        flashcardRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {@Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                     FlashCard flashCard = documentSnapshot.toObject(FlashCard.class);
                     flashCard.setCodigo(Integer.parseInt(documentSnapshot.getId()));
                     flashCards.add(flashCard);
                 }
+
                 Log.i(TAG, COLECAO_FLASHCARDS +"-> Query realizada com sucesso!");
             }
+
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
@@ -67,40 +149,6 @@ public class DataSource {
             }
         });
         return flashCards;
-    }
-
-    private void alterarFlashcard(String id, String titulo, String descricao){
-        //flashCard.setCodigo(id);
-        flashCard.setTitulo(titulo);
-        flashCard.setDescricao(descricao);
-        Log.i(TAG, COLECAO_FLASHCARDS +"-> alterando dados do flashcard " +flashCard);
-
-        flashcardRef.document(id).set(flashCard).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Log.i(TAG, COLECAO_FLASHCARDS +"-> dados alterados com sucesso!");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e(TAG, COLECAO_FLASHCARDS +"-> falha ao alterar dados!");
-                e.printStackTrace();
-            }
-        });
-    }
-
-    public boolean excluirFlashcards(String id){
-        Log.i(TAG,COLECAO_FLASHCARDS +"-> excluindo flashcard " +id);
-        usuarioRef.document(id).delete();
-
-        try {
-            Log.i(TAG, COLECAO_FLASHCARDS +"-> flashcard excluído com sucesso!");
-            return consultarFlashcards().contains(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e(TAG, COLECAO_FLASHCARDS +"-> falha ao excluir flashcard");
-        }
-        return false;
     }
 
     //CRUD dos USUARIOS
