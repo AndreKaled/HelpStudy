@@ -38,12 +38,12 @@ public class FlashCardFragment extends Fragment {
         listViewFlashCard = view.findViewById(R.id.lista_de_flashcards);
 
 
-
-        listfla.add(new FlashCard("texto", "oi"));
-        listfla.add(new FlashCard("texto", "oi"));
-        listfla.add(new FlashCard("texto", "oi"));
-        listfla.add(new FlashCard("texto", "oi"));
-        listfla.add(new FlashCard("texto", "oi"));
+        listfla = ControllerFlashCard.getInstancia().buscarTodos();
+//        listfla.add(new FlashCard("texto", "oi"));
+//        listfla.add(new FlashCard("texto", "oi"));
+//        listfla.add(new FlashCard("texto", "oi"));
+//        listfla.add(new FlashCard("texto", "oi"));
+//        listfla.add(new FlashCard("texto", "oi"));
 
 
         ArrayAdapter<FlashCard> adapter = new ArrayAdapter<>(

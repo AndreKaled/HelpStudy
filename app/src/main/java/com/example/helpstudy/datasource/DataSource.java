@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.model.FlashCard;
 import com.example.helpstudy.model.Listas;
 import com.example.helpstudy.model.Usuario;
@@ -19,7 +20,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -132,49 +132,48 @@ public class DataSource {
             }
         });
     }
-    public ArrayList<FlashCard> consultarFlashcards(){
-        class RetornarFlashcards implements Callable<ArrayList<FlashCard>> {
-            @Override
-            public ArrayList<FlashCard> call() throws Exception {
-                ArrayList<FlashCard> flashCards = new ArrayList<>();
-                flashcardRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {@Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                        FlashCard flashCard = documentSnapshot.toObject(FlashCard.class);
-                        flashCard.setCodigo(Integer.parseInt(documentSnapshot.getId()));
-                        flashCards.add(flashCard);
-                    }
+    public void consultarFlashcards(){
+        final ExecutorService threadpool = Executors.newFixedThreadPool(3);
 
-                    Log.i(TAG, COLECAO_FLASHCARDS +"-> Query realizada com sucesso!");
-                }
+        class Result implements Callable<ArrayList>{
+
+            @Override
+            public ArrayList call() throws Exception {
+
+                ArrayList<FlashCard> list = new ArrayList<>();
+                flashcardRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            FlashCard flashCard = documentSnapshot.toObject(FlashCard.class);
+                            //flashCard.setCodigo(Integer.parseInt(documentSnapshot.getId()));
+                            ControllerFlashCard.add(flashCard);
+                        }
+                        Log.i(TAG, COLECAO_FLASHCARDS + "-> Query realizada com sucesso!");
+                    }
 
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e(TAG, "açargsed");
-                        Log.e(TAG, COLECAO_FLASHCARDS +"-> Erro ao executar Query no Banco");
+                        Log.e(TAG, COLECAO_FLASHCARDS + "-> Erro ao executar Query no Banco");
                         e.printStackTrace();
                     }
                 });
-
-                return flashCards;
+                return null;
             }
         }
-        ArrayList<FlashCard> flashCards = null;
-        try {
-            final ExecutorService threadpool = Executors.newFixedThreadPool(3);
-            RetornarFlashcards task = new RetornarFlashcards();
-            Future<ArrayList<FlashCard>> futureTask = threadpool.submit(task);
-            while(!futureTask.isDone()){
-                Log.i(TAG, COLECAO_FLASHCARDS +" -> Buscando do BD...");
-                Thread.sleep(10);
+
+        try{
+            Result task = new Result();
+            Future<ArrayList> future = threadpool.submit(task);
+            while(!future.isDone()){
+                Log.i(TAG, COLECAO_FLASHCARDS +" -> Buscando no BD...");
+                Thread.sleep(1);
             }
-            flashCards = futureTask.get();
         }catch(Exception e){
-            Log.e(TAG, COLECAO_FLASHCARDS +" -> Falha ao buscar no BD... 😒");
             e.printStackTrace();
         }
-        return flashCards;
     }
 
     //CRUD dos USUARIOS

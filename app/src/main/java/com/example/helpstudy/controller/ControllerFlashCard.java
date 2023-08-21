@@ -8,12 +8,12 @@ import java.util.List;
 
 public class ControllerFlashCard {
     private int proxCodigo;
-    private final List<FlashCard> lista;
+    private static ArrayList<FlashCard> lista = new ArrayList<>();
     private static DataSource db = new DataSource();
     private static ControllerFlashCard instancia = null;
 
     public ControllerFlashCard(){
-        lista = db.consultarFlashcards();
+        db.consultarFlashcards();
         proxCodigo = 1;
     }
     public int getProxCodigo(){
@@ -49,7 +49,7 @@ public class ControllerFlashCard {
         return cont;
     }
     public ArrayList<FlashCard> buscarTodos(){
-        return new ArrayList<>(lista);
+        return lista;
     }
 
     public FlashCard buscarPorPosicao(int posicao){
@@ -63,5 +63,14 @@ public class ControllerFlashCard {
                 return flashCard;
         }
         return null;
+    }
+
+    public static void add(FlashCard flashCard){
+        lista.add(flashCard);
+        System.out.println("AA " +lista);
+    }
+
+    public static void passarLista(ArrayList<FlashCard> arrayList){
+        lista = arrayList;
     }
 }
