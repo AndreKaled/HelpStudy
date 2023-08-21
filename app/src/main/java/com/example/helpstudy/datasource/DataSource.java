@@ -18,6 +18,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class DataSource {
     private FirebaseFirestore dataBase = FirebaseFirestore.getInstance();
@@ -128,26 +133,47 @@ public class DataSource {
         });
     }
     public ArrayList<FlashCard> consultarFlashcards(){
-        ArrayList<FlashCard> flashCards = new ArrayList<>();
-        flashcardRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {@Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                    FlashCard flashCard = documentSnapshot.toObject(FlashCard.class);
-                    flashCard.setCodigo(Integer.parseInt(documentSnapshot.getId()));
-                    flashCards.add(flashCard);
+        class RetornarFlashcards implements Callable<ArrayList<FlashCard>> {
+            @Override
+            public ArrayList<FlashCard> call() throws Exception {
+                ArrayList<FlashCard> flashCards = new ArrayList<>();
+                flashcardRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {@Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        FlashCard flashCard = documentSnapshot.toObject(FlashCard.class);
+                        flashCard.setCodigo(Integer.parseInt(documentSnapshot.getId()));
+                        flashCards.add(flashCard);
+                    }
+
+                    Log.i(TAG, COLECAO_FLASHCARDS +"-> Query realizada com sucesso!");
                 }
 
-                Log.i(TAG, COLECAO_FLASHCARDS +"-> Query realizada com sucesso!");
-            }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "açargsed");
+                        Log.e(TAG, COLECAO_FLASHCARDS +"-> Erro ao executar Query no Banco");
+                        e.printStackTrace();
+                    }
+                });
 
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e(TAG, "açargsed");
-                Log.e(TAG, COLECAO_FLASHCARDS +"-> Erro ao executar Query no Banco");
-                e.printStackTrace();
+                return flashCards;
             }
-        });
+        }
+        ArrayList<FlashCard> flashCards = null;
+        try {
+            final ExecutorService threadpool = Executors.newFixedThreadPool(3);
+            RetornarFlashcards task = new RetornarFlashcards();
+            Future<ArrayList<FlashCard>> futureTask = threadpool.submit(task);
+            while(!futureTask.isDone()){
+                Log.i(TAG, COLECAO_FLASHCARDS +" -> Buscando do BD...");
+                Thread.sleep(10);
+            }
+            flashCards = futureTask.get();
+        }catch(Exception e){
+            Log.e(TAG, COLECAO_FLASHCARDS +" -> Falha ao buscar no BD... 😒");
+            e.printStackTrace();
+        }
         return flashCards;
     }
 

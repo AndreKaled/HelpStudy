@@ -8,8 +8,6 @@
 
 André Kaled Duarte
 
-Kauan Ferreira dos Santos 
-
 Manfred Lima Veiga
 ## Técnicas e tecnologias 🔬
 
