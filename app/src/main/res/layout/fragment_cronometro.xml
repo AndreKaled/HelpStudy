@@ -1,45 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.CronometroFragment"
     android:background="@color/blackFundo">
 
-
     <TextView
+        android:id="@+id/text_view_countdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp"
-        android:text="Cronômetro"
+        android:layout_centerInParent="true"
+        android:text="00:00"
         android:textColor="@color/white"
-        android:textSize="24sp" />
+        android:textSize="60sp" />
 
-    <LinearLayout
-    android:layout_width="250dp"
-    android:layout_height="250dp"
-    tools:context=".view.CronometroFragment"
-    android:orientation="vertical"
-    android:layout_gravity="center"
-    android:gravity="center"
-    android:background="@drawable/bg_round">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <Chronometer
-        android:id="@+id/chronometer"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_start_pause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_round"
-        android:format="00:00:00"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="40sp"
-        android:textStyle="bold" />
+        android:layout_below="@+id/text_view_countdown"
+        android:layout_centerHorizontal="true"
+        android:background="@color/blackDialog"
+        android:text="start"
+        android:textColor="#F3E7E7"
+        android:textColorHint="#EF2727"
+        app:iconTint="#FA0303"
+        app:rippleColor="#D62727" />
 
-</LinearLayout>
-</FrameLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_view_countdown"
+        android:layout_marginStart="11dp"
+        android:layout_toEndOf="@+id/button_start_pause"
+        android:background="@color/blackDialog"
+        android:text="reset"
+        android:textColor="#DAD5D5"
+        android:textColorHint="#F3F3F3"
+        android:visibility="invisible"
+        app:rippleColor="#911313"
+        tools:visibility="visible" />
 
+
+</RelativeLayout>

@@ -51,7 +51,7 @@ public class FlashCardFragment extends Fragment {
         );
 
 //        adapter.notifyDataSetChanged();
-        listViewFlashCard.setAdapter(adapter);
+        listViewFlashCard.setAdapter(new ListaFlashCardAdapter(getContext()));
 
         btCriar.setOnClickListener(new View.OnClickListener() {
             @Override

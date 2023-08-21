@@ -38,10 +38,6 @@ public class FlashCard {
 
     @Override
     public String toString() {
-        return "FlashCard{" +
-                "titulo='" + titulo + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", codigo=" + codigo +
-                '}';
+        return "Titulo: " + titulo + '\'' + "Descrição: " + descricao + '\'' + "Código:" + codigo;
     }
 }
