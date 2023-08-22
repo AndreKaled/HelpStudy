@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.helpstudy.controller.ControllerFlashCard;
+import com.example.helpstudy.controller.ControllerUsuario;
 import com.example.helpstudy.model.FlashCard;
 import com.example.helpstudy.model.Listas;
 import com.example.helpstudy.model.Usuario;
@@ -28,7 +29,7 @@ public class DataSource {
     private FirebaseFirestore dataBase = FirebaseFirestore.getInstance();
     private final String TAG = "DataBase", COLECAO_USUARIOS = "usuarios", COLECAO_FLASHCARDS = "flashcards", COLECAO_LISTAS = "listas";
     private CollectionReference usuarioRef = dataBase.collection(COLECAO_USUARIOS);
-    private CollectionReference flashcardRef = usuarioRef.document("Andre-2021333729@ifam.edu.br").collection(COLECAO_FLASHCARDS);
+    private CollectionReference flashcardRef;
 
     private CollectionReference listasRef = usuarioRef.document("Andre-2021333729@ifam.edu.br").collection(COLECAO_LISTAS);
 
@@ -118,7 +119,7 @@ public class DataSource {
         flashCard.setDescricao(descricao);
         flashCard.setCodigo(codigo);
 
-        flashcardRef = usuarioRef.document("Andre-2021333729@ifam.edu.br").collection(COLECAO_FLASHCARDS);
+        flashcardRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_FLASHCARDS);
         flashcardRef.document(titulo).set(flashCard).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -141,6 +142,7 @@ public class DataSource {
             public ArrayList call() throws Exception {
 
                 ArrayList<FlashCard> list = new ArrayList<>();
+                flashcardRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_FLASHCARDS);
                 flashcardRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

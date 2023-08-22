@@ -10,17 +10,13 @@ import java.util.List;
 
 public class ControllerUsuario {
 
-    private int proxId;
+    private static String idUsuario;
     private final List<Usuario> lista;
     private DataSource db = new DataSource();
     private static ControllerUsuario instancia = null;
 
     private ControllerUsuario() throws Exception {
         lista = db.consultaUsuarios();
-    }
-
-    public int getProxId() {
-        return proxId;
     }
 
     public static ControllerUsuario getInstancia() {
@@ -80,6 +76,7 @@ public class ControllerUsuario {
             for (Usuario user : lista) {
                 if (user.getEmail().equals(emailDeBusca)) {
                     Log.i("TAG", "achei vc, otario: "+user.getEmail());
+                    idUsuario = user.getId();
                     return user;
                 }
             }
@@ -87,5 +84,9 @@ public class ControllerUsuario {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static String getIdUsuario(){
+        return idUsuario;
     }
 }

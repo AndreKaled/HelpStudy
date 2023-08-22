@@ -37,8 +37,6 @@ public class TelaLogin extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     validarUsuario();
-                    Intent intent = new Intent(TelaLogin.this, MainActivity.class);
-                    startActivity(intent);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(TelaLogin.this, "Desculpe, deu problema no nosso app, não se preocupe que a culpa não é sua", Toast.LENGTH_LONG).show();
@@ -74,6 +72,8 @@ public class TelaLogin extends AppCompatActivity {
             textSenha.setError("senha de usuário incorreta!");
         } else if (usuario.getSenha().equals(textSenha.getText().toString())) {
             Toast.makeText(this, "Bem vindo(a), " + usuario.getNome() + "!", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(TelaLogin.this, MainActivity.class);
+            startActivity(intent);
         }
     }
 
