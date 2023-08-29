@@ -44,9 +44,11 @@ public class ListasAdapter extends BaseAdapter {
         View v = LayoutInflater.from(context).inflate(R.layout.itens_listas, parent, false);
 
         TextView textView_titulo = v.findViewById(R.id.tituloLista);
+        TextView textView_descricao = v.findViewById(R.id.descricaoLista);
 
         Listas list = listas.get(position);
         textView_titulo.setText(list.getTitulo());
+        textView_descricao.setText(list.getId());
         return v;
     }
 }

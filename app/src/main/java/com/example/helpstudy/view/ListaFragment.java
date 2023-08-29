@@ -7,23 +7,50 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.helpstudy.R;
+import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.controller.ControllerListas;
+import com.example.helpstudy.model.FlashCard;
+import com.example.helpstudy.model.Listas;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListaFragment extends Fragment {
 
     private View view;
-    private ListView listView;
-    private ListasAdapter listasAdapter;
-    private ControllerListas controllerListas;
+    private ListView listViewListas, listView;
+
+    List<Listas> listasList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_lista, container, false);
+
+        Button btCriar = view.findViewById(R.id.btn_criar_listas);
+        listView = view.findViewById(R.id.listview_listas);
+
+//        adapter.notifyDataSetChanged();
+        btCriar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                abrirModal();
+
+            }
+        });
         return view;
+    }
+
+    private void abrirModal() {
+
+        AddListFragment dialog = new AddListFragment();
+        dialog.show(getActivity().getSupportFragmentManager(), "oi2");
     }
 }

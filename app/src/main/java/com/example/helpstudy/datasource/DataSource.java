@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.helpstudy.controller.ControllerFlashCard;
+import com.example.helpstudy.controller.ControllerListas;
 import com.example.helpstudy.controller.ControllerUsuario;
 import com.example.helpstudy.model.FlashCard;
 import com.example.helpstudy.model.Listas;
@@ -30,8 +31,7 @@ public class DataSource {
     private final String TAG = "DataBase", COLECAO_USUARIOS = "usuarios", COLECAO_FLASHCARDS = "flashcards", COLECAO_LISTAS = "listas";
     private CollectionReference usuarioRef = dataBase.collection(COLECAO_USUARIOS);
     private CollectionReference flashcardRef;
-
-    private CollectionReference listasRef = usuarioRef.document("Andre-2021333729@ifam.edu.br").collection(COLECAO_LISTAS);
+    private CollectionReference listasRef;
 
 
     //CRUD LISTAS
@@ -40,7 +40,7 @@ public class DataSource {
 
         Listas listas = new Listas();
         listas.setTitulo(titulo);
-        listasRef = usuarioRef.document("Andre-2021333729@ifam.edu.br").collection(COLECAO_LISTAS);
+        listasRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS);
         listasRef.document(titulo).set(listas).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -84,7 +84,7 @@ public class DataSource {
         listas.setTitulo(titulo);
         Log.i(TAG, COLECAO_LISTAS +"-> alterando dados da lista " +listas);
 
-        listasRef.document("Andre-2021333729@ifam.edu.br").set(listas).addOnSuccessListener(new OnSuccessListener<Void>() {
+        listasRef.document(ControllerUsuario.getIdUsuario()).set(listas).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Log.i(TAG, COLECAO_LISTAS +"-> dados alterados com sucesso!");
@@ -100,7 +100,7 @@ public class DataSource {
 
     public boolean excluirListas(String id){
         Log.i(TAG,COLECAO_LISTAS +"-> excluindo lista " +id);
-        listasRef.document("Andre-2021333729@ifam.edu.br").delete();
+        listasRef.document(ControllerUsuario.getIdUsuario()).delete();
 
         try {
             Log.i(TAG, COLECAO_LISTAS +"-> lista excluída com sucesso!");
