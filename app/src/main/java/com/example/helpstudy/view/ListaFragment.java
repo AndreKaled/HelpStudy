@@ -25,7 +25,8 @@ public class ListaFragment extends Fragment {
     private View view;
     private ListView listViewListas, listView;
 
-    List<Listas> listasList = new ArrayList<>();
+    private List<Listas> list = new ArrayList<>();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +37,16 @@ public class ListaFragment extends Fragment {
         Button btCriar = view.findViewById(R.id.btn_criar_listas);
         listView = view.findViewById(R.id.listview_listas);
 
-//        adapter.notifyDataSetChanged();
+        list = ControllerListas.getInstancia().buscarTodos();
+
+
+        ArrayAdapter<Listas> adapter = new ArrayAdapter<>(
+
+                getContext(), android.R.layout.simple_list_item_1, list
+        );
+
+
+        listView.setAdapter(new ListasAdapter(getContext()));
         btCriar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

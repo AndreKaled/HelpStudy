@@ -38,13 +38,15 @@ public class DataSource {
 
     public void salvarListas(String titulo){
 
-        Listas listas = new Listas();
-        listas.setTitulo(titulo);
+        Listas listasarray = new Listas();
+        listasarray.setTitulo(titulo);
+
         listasRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS);
-        listasRef.document(titulo).set(listas).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+        listasRef.document(titulo).set(listasarray).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Log.i(TAG, COLECAO_LISTAS + "-> registrado com sucesso!" + listas);
+                Log.i(TAG, COLECAO_LISTAS + "-> registrado com sucesso!" + listasarray);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -55,62 +57,53 @@ public class DataSource {
         });
     }
 
-    public ArrayList<Listas> consultarListas(){
-        ArrayList<Listas> listas = new ArrayList<>();
-        listasRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                    Listas lista_interna = documentSnapshot.toObject(Listas.class);
-                    lista_interna.setId(Integer.parseInt(documentSnapshot.getId()));
-                    listas.add(lista_interna);
+
+    public void consultarListas(){
+            final ExecutorService threadpool = Executors.newFixedThreadPool(3);
+
+            class Result implements Callable<ArrayList>{
+
+                @Override
+                public ArrayList call() throws Exception {
+
+                    ArrayList<Listas> list = new ArrayList<>();
+                    listasRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS);
+                    listasRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                Listas listas = documentSnapshot.toObject(Listas.class);
+                                //flashCard.setCodigo(Integer.parseInt(documentSnapshot.getId()));
+                                ControllerListas.add(listas);
+                            }
+                            Log.i(TAG, COLECAO_LISTAS + "-> Query realizada com sucesso!");
+                        }
+
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e(TAG, "açargsed");
+                            Log.e(TAG, COLECAO_LISTAS + "-> Erro ao executar Query no Banco");
+                            e.printStackTrace();
+                        }
+                    });
+                    return null;
                 }
-                Log.i(TAG, COLECAO_LISTAS +"-> Query realizada com sucesso!");
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e(TAG, "açargsed");
-                Log.e(TAG, COLECAO_LISTAS +"-> Erro ao executar Query no Banco");
+
+            try{
+                Result task = new Result();
+                Future<ArrayList> future = threadpool.submit(task);
+                while(!future.isDone()){
+                    Log.i(TAG, COLECAO_LISTAS +" -> Buscando no BD...");
+                    Thread.sleep(1);
+                }
+            }catch(Exception e){
                 e.printStackTrace();
             }
-        });
-        return listas;
-    }
-
-    private void alterarListas(String titulo){
-        Listas listas = new Listas();
-        //flashCard.setCodigo(id);
-        listas.setTitulo(titulo);
-        Log.i(TAG, COLECAO_LISTAS +"-> alterando dados da lista " +listas);
-
-        listasRef.document(ControllerUsuario.getIdUsuario()).set(listas).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Log.i(TAG, COLECAO_LISTAS +"-> dados alterados com sucesso!");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e(TAG, COLECAO_LISTAS +"-> falha ao alterar dados!");
-                e.printStackTrace();
-            }
-        });
-    }
-
-    public boolean excluirListas(String id){
-        Log.i(TAG,COLECAO_LISTAS +"-> excluindo lista " +id);
-        listasRef.document(ControllerUsuario.getIdUsuario()).delete();
-
-        try {
-            Log.i(TAG, COLECAO_LISTAS +"-> lista excluída com sucesso!");
-            return consultarListas().contains(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e(TAG, COLECAO_LISTAS +"-> falha ao excluir a lista");
         }
-        return false;
-    }
+
+
 
     //CRUD dos FLASHCARDS
     public void salvarFlashcard(String titulo, String descricao,  int codigo) {

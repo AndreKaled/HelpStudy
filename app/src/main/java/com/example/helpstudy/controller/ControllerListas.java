@@ -26,8 +26,8 @@ public class ControllerListas {
             instancia = new ControllerListas();
         return instancia;
     }
-    public void cadastrar(String titulo, String resposta){
-        db.salvarFlashcard(titulo, resposta, proxid);
+    public void cadastrar(String titulo){
+        db.salvarListas(titulo);
 
     }
     public boolean alterar(Listas listas){

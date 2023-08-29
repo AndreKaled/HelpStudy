@@ -51,7 +51,7 @@ public class AddListFragment extends DialogFragment {
 
                 descricao = viewDescricao.getText().toString();
 
-                controlerLista.cadastrar(titulo, descricao);
+                controlerLista.cadastrar(titulo);
                 System.out.println("lista cadastrada");
 
                 dismiss();
