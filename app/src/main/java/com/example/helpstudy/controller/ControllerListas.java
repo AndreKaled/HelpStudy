@@ -70,8 +70,4 @@ public class ControllerListas {
         lista.add(listas);
         System.out.println("AA " +lista);
     }
-
-    public static void passarLista(ArrayList<Listas> arrayList){
-        lista = arrayList;
-    }
 }

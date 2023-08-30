@@ -1,20 +1,21 @@
 package com.example.helpstudy.view;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.helpstudy.R;
-import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.controller.ControllerListas;
-import com.example.helpstudy.model.FlashCard;
 import com.example.helpstudy.model.Listas;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import java.util.List;
 public class ListaFragment extends Fragment {
 
     private View view;
-    private ListView listViewListas, listView;
+    private ListView listView;
 
     private List<Listas> list = new ArrayList<>();
 
@@ -40,10 +41,6 @@ public class ListaFragment extends Fragment {
         list = ControllerListas.getInstancia().buscarTodos();
 
 
-        ArrayAdapter<Listas> adapter = new ArrayAdapter<>(
-
-                getContext(), android.R.layout.simple_list_item_1, list
-        );
 
 
         listView.setAdapter(new ListasAdapter(getContext()));
@@ -55,6 +52,15 @@ public class ListaFragment extends Fragment {
 
             }
         });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                replaceFragment(new TarefasFragment());
+
+            }
+        });
+
         return view;
     }
 
@@ -62,5 +68,12 @@ public class ListaFragment extends Fragment {
 
         AddListFragment dialog = new AddListFragment();
         dialog.show(getActivity().getSupportFragmentManager(), "oi2");
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
     }
 }
