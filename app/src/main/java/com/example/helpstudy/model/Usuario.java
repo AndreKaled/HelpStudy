@@ -6,14 +6,6 @@ public class Usuario {
 
     public Usuario(){}
 
-    public Usuario(Usuario user){
-        setNome(user.getNome());
-        setEmail(user.getEmail());
-        setSenha(user.getSenha());
-        setDataNasc(user.getDataNasc());
-        setId(user.getId());
-    }
-
     public String getNome() {
         return nome;
     }

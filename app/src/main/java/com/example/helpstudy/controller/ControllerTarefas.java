@@ -13,14 +13,20 @@ public class ControllerTarefas {
     private static ControllerTarefas instancia = null;
 
     private DataSource db = new DataSource();
+    private static String listaSelecionada;
 
     public static ControllerTarefas getInstancia(){
         if (instancia == null)
             instancia = new ControllerTarefas();
         return instancia;
     }
-    public void cadastrar(String titulo){
-        db.salvarListas(titulo);
+    public void cadastrar(String nome, String descricao, String dataEntrega, boolean concluida){
+        Tarefa tarefa = new Tarefa();
+        tarefa.setId(nome);
+        tarefa.setNome(nome);
+        tarefa.setDataEntrega(dataEntrega);
+        tarefa.setConcluida(concluida);
+        db.salvarTarefa(tarefa);
     }
 //    public boolean alterar(Listas listas){
 //        for (int i = 0; i < lista.size(); i++) {
@@ -60,6 +66,13 @@ public class ControllerTarefas {
 
     public static void add(Tarefa tarefa){
         lista.add(tarefa);
-        System.out.println("AA " +lista);
+    }
+
+    public static String getListaSelecionada() {
+        return listaSelecionada;
+    }
+
+    public static void setListaSelecionada(String id) {
+        listaSelecionada = id;
     }
 }

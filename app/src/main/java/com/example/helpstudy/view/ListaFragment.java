@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerListas;
+import com.example.helpstudy.controller.ControllerTarefas;
 import com.example.helpstudy.model.Listas;
 
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ public class ListaFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 replaceFragment(new TarefasFragment());
-
+                ControllerTarefas.setListaSelecionada(ControllerListas.buscarPorPosicao(i).getId());
             }
         });
 

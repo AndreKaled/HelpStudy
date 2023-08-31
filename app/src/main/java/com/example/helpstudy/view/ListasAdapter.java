@@ -32,7 +32,7 @@ public class ListasAdapter extends BaseAdapter {
     public Listas getItem(int i) {
         return listas.get(i);
     }
-
+ //ERRO AQUI AAA
     @Override
     public long getItemId(int i) {
         return getItem(i).getId();

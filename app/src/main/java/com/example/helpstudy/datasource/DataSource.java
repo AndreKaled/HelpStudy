@@ -6,9 +6,11 @@ import androidx.annotation.NonNull;
 
 import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.controller.ControllerListas;
+import com.example.helpstudy.controller.ControllerTarefas;
 import com.example.helpstudy.controller.ControllerUsuario;
 import com.example.helpstudy.model.FlashCard;
 import com.example.helpstudy.model.Listas;
+import com.example.helpstudy.model.Tarefa;
 import com.example.helpstudy.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,10 +30,10 @@ import java.util.concurrent.Future;
 
 public class DataSource {
     private FirebaseFirestore dataBase = FirebaseFirestore.getInstance();
-    private final String TAG = "DataBase", COLECAO_USUARIOS = "usuarios", COLECAO_FLASHCARDS = "flashcards", COLECAO_LISTAS = "listas";
+    private final String TAG = "DataBase", COLECAO_USUARIOS = "usuarios", COLECAO_FLASHCARDS = "flashcards", COLECAO_LISTAS = "listas", COLECAO_TAREFAS = "tarefas";
     private CollectionReference usuarioRef = dataBase.collection(COLECAO_USUARIOS);
     private CollectionReference flashcardRef;
-    private CollectionReference listasRef;
+    private CollectionReference listasRef, tarefaRef;
 
 
     //CRUD LISTAS
@@ -255,7 +257,20 @@ public class DataSource {
         });
     }
 
-    private void salvarTarefa(String args){
-        //fazer
+    public void salvarTarefa(Tarefa tarefa){
+        tarefaRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS).document(ControllerTarefas.getListaSelecionada()).collection(COLECAO_TAREFAS);
+
+        tarefaRef.document(tarefa.getId()).set(tarefa).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.i(TAG, COLECAO_TAREFAS + "-> registrado com sucesso! " + tarefa);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e(TAG, COLECAO_TAREFAS + "-> tarefa não registrada");
+                e.printStackTrace();
+            }
+        });
     }
 }

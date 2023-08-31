@@ -6,12 +6,6 @@ public class FlashCard {
 
     public FlashCard(){}
 
-    public FlashCard(String titulo, String descricao){
-
-        setTitulo(titulo);
-        setDescricao(descricao);
-    }
-
     public void setTitulo(String titulo){
         this.titulo = titulo;
     }

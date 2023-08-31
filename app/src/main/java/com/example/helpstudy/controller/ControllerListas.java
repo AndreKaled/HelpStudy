@@ -10,6 +10,7 @@ public class ControllerListas {
     private static ArrayList<Listas> lista = new ArrayList<>();
     private int proxid;
     private static ControllerListas instancia = null;
+    private String selecaoId;
 
     private DataSource db = new DataSource();
 
@@ -53,17 +54,8 @@ public class ControllerListas {
         return lista;
     }
 
-    public Listas buscarPorPosicao(int posicao){
+    public static Listas buscarPorPosicao(int posicao){
         return lista.get(posicao);
-    }
-
-    public Listas buscarPorcodigo(int codigo){
-
-        for ( Listas flashCard : lista){
-            if (flashCard.getId()==codigo)
-                return flashCard;
-        }
-        return null;
     }
 
     public static void add(Listas listas){
