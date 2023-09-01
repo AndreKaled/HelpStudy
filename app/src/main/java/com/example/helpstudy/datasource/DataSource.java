@@ -75,7 +75,6 @@ public class DataSource {
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                                 Listas listas = documentSnapshot.toObject(Listas.class);
-                                //flashCard.setCodigo(Integer.parseInt(documentSnapshot.getId()));
                                 ControllerListas.add(listas);
                             }
                             Log.i(TAG, COLECAO_LISTAS + "-> Query realizada com sucesso!");

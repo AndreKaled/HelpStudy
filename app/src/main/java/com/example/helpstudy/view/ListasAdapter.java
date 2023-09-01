@@ -35,7 +35,7 @@ public class ListasAdapter extends BaseAdapter {
  //ERRO AQUI AAA
     @Override
     public long getItemId(int i) {
-        return getItem(i).getId();
+        return 1;//getItem(i).getId();
     }
 
     @Override

@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.HelpStudy"
-        tools:targetApi="30">
+        tools:targetApi="34">
         <activity
             android:name=".view.TelaLogin"
             android:exported="true">

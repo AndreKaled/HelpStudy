@@ -32,6 +32,8 @@ public class ControllerUsuario {
 
     public void cadastrar(String nome, String email, String dataNasc, String senha) {
         db.salvarUsuario(nome, email, dataNasc, senha);
+        idUsuario = nome +"-" +email;
+
     }
 
     public boolean alterar(Usuario usuario) {
