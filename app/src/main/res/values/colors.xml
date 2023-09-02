@@ -7,10 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name= "blackFundo">#101010</color>
+    <color name= "blackFundo">#0E0E0E</color>
     <color name= "blackDialog">#333333</color>
     <color name="lateralBar">#202020</color>
     <color name="topbar">#191919</color>
+    <color name= "painel_color_dark">#242424</color>
     <color name="confirmarAzul">#4ECAFF</color>
     <color name="verdeBt">#77DB12</color>
 </resources>

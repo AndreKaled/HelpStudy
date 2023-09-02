@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background= "@color/blackFundo"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="15dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginVertical="10dp"
+    android:layout_marginHorizontal="10dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="8dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background= "@color/blackFundo">
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background= "@color/painel_color_dark"
+        android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tituloCard"
@@ -14,21 +26,74 @@
         android:layout_marginTop="24dp"
         android:text="titulo"
         android:textColor="@color/white"
+        android:layout_marginBottom="20dp"
         android:textFontWeight="@integer/material_motion_duration_medium_1"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerCrop"/>
 
-    <TextView
-        android:id="@+id/descricaoCard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="16dp"
-        android:text="descricao"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloCard" />
+        <TextView
+            android:id="@+id/descricaoCard"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="53dp"
+            android:layout_marginTop="24dp"
+            android:layout_toEndOf="@id/tituloCard"
+            android:scaleType="centerCrop"
+            android:text="descricao"
+            android:textSize="20sp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+
+
+
+<!--<androidx.cardview.widget.CardView-->
+<!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--android:layout_marginStart="12dp"-->
+<!--android:layout_marginEnd="12dp"-->
+<!--android:layout_marginVertical="10dp"-->
+<!--android:layout_marginHorizontal="10dp"-->
+<!--app:cardCornerRadius="20dp"-->
+<!--app:cardElevation="8dp"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content">-->
+<!--<RelativeLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content">-->
+<!--    <com.google.android.material.imageview.ShapeableImageView-->
+<!--        android:layout_width="60dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:id="@+id/listImage"-->
+<!--        android:src="@drawable/maggi"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"/>-->
+<!--    <TextView-->
+<!--        android:layout_width="120dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:id="@+id/listName"-->
+<!--        android:text="Name"-->
+<!--        android:textColor="@color/lavender"-->
+<!--        android:textSize="20sp"-->
+<!--        android:layout_marginTop="25dp"-->
+<!--        android:layout_marginStart="30dp"-->
+<!--        android:layout_toEndOf="@id/listImage"/>-->
+<!--    <TextView-->
+<!--        android:layout_width="80dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:id="@+id/listTime"-->
+<!--        android:text="time"-->
+<!--        android:textSize="16sp"-->
+<!--        android:layout_toEndOf="@id/listName"-->
+<!--        android:layout_marginTop="25dp"-->
+<!--        android:layout_marginStart="100dp"-->
+<!--        android:textColor="@color/lavender"/>-->
+<!--</androidx.cardview.widget.CardView>-->
+<!--    </RelativeLayout>-->

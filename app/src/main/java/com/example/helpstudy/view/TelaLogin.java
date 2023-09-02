@@ -18,7 +18,7 @@ import com.example.helpstudy.model.Usuario;
 
 public class TelaLogin extends AppCompatActivity {
 
-    private EditText textNome, textEmail, textSenha;
+    private EditText textEmail, textSenha;
     private View textCadastro;
 
     @Override
@@ -27,7 +27,6 @@ public class TelaLogin extends AppCompatActivity {
         setContentView(R.layout.activity_tela_login);
 
         textCadastro = findViewById(R.id.textoLogin);
-        textNome = findViewById(R.id.login_nome);
         textEmail = findViewById(R.id.login_email);
         textSenha = findViewById(R.id.login_senha);
         Button btnLogin = findViewById(R.id.btn_login);

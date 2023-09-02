@@ -29,6 +29,8 @@
         android:layout_height="350dp"
         android:layout_marginTop="24dp"
         android:backgroundTint="#FFFFFF"
+        android:dividerHeight="20.0sp"
+        android:divider="@android:color/transparent"
         android:cacheColorHint="#000000"
         android:outlineAmbientShadowColor="#000000"
         android:outlineSpotShadowColor="#FFFFFF"

@@ -35,13 +35,9 @@ public class ListaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_lista, container, false);
-
         Button btCriar = view.findViewById(R.id.btn_criar_listas);
         listView = view.findViewById(R.id.listview_listas);
-
         list = ControllerListas.getInstancia().buscarTodos();
-
-
 
 
         listView.setAdapter(new ListasAdapter(getContext()));
