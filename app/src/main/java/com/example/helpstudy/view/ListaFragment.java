@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerListas;
 import com.example.helpstudy.controller.ControllerTarefas;
+import com.example.helpstudy.model.FlashCard;
 import com.example.helpstudy.model.Listas;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class ListaFragment extends Fragment {
     private View view;
     private ListView listView;
 
-    private List<Listas> list = new ArrayList<>();
+    List<Listas> listfla = new ArrayList<>();
 
 
     @Override
@@ -37,24 +38,33 @@ public class ListaFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_lista, container, false);
         Button btCriar = view.findViewById(R.id.btn_criar_listas);
         listView = view.findViewById(R.id.listview_listas);
-        list = ControllerListas.getInstancia().buscarTodos();
+        listfla = ControllerListas.getInstancia().buscarTodos();
 
+        ArrayAdapter<Listas> adapter = new ArrayAdapter<>(
+                getContext(), android.R.layout.simple_list_item_1, listfla
+        );
+
+
+//        ListaFlashCardAdapter adapter = new ListaFlashCardAdapter(getContext());
+//        listView.setAdapter(adapter);
 
         listView.setAdapter(new ListasAdapter(getContext()));
+
+
+
         btCriar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 abrirModal();
-
             }
         });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                replaceFragment(new TarefasFragment());
                 ControllerTarefas.setListaSelecionada(ControllerListas.buscarPorPosicao(i).getId());
+                replaceFragment(new TarefasFragment());
             }
         });
 

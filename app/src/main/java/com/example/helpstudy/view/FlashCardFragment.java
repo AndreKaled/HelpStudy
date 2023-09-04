@@ -25,7 +25,7 @@ import java.util.List;
 
 public class FlashCardFragment extends Fragment {
 
-    private ListView listViewFlashCard, listView;
+    private ListView listViewFlashCard;
     private View view;
     List<FlashCard> listfla = new ArrayList<>();
 
@@ -51,14 +51,14 @@ public class FlashCardFragment extends Fragment {
         );
 
 //        adapter.notifyDataSetChanged();
-        listViewFlashCard.setAdapter(new ListaFlashCardAdapter(getContext()));
+        listViewFlashCard.setAdapter(adapter);
 
         btCriar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 abrirModal();
-
+                adapter.notifyDataSetChanged();
             }
         });
         return view;

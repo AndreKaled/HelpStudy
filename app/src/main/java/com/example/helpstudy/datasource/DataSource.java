@@ -257,7 +257,7 @@ public class DataSource {
     }
 
     public void salvarTarefa(Tarefa tarefa){
-        tarefaRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS).document(ControllerTarefas.getListaSelecionada()).collection(COLECAO_TAREFAS);
+        tarefaRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS).document(ControllerTarefas.getInstancia().buscarPorPosicao(Integer.parseInt(tarefa.getId()))).collection(COLECAO_TAREFAS);
 
         tarefaRef.document(tarefa.getId()).set(tarefa).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

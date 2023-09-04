@@ -8,6 +8,14 @@ public class Listas {
     public Listas(){}
 
 
+    @Override
+    public String toString() {
+        return "Listas{" +
+                "titulo='" + titulo + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
+
     public String getTitulo() {
         return titulo;
     }

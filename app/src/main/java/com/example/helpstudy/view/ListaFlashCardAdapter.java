@@ -35,7 +35,7 @@ public class ListaFlashCardAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return getItem(i).getCodigo();
+        return i;
     }
 
     @Override
