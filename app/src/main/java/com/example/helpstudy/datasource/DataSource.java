@@ -42,6 +42,7 @@ public class DataSource {
 
         Listas listasarray = new Listas();
         listasarray.setTitulo(titulo);
+        listasarray.setId(titulo);
 
         listasRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS);
 
@@ -256,8 +257,14 @@ public class DataSource {
         });
     }
 
-    public void salvarTarefa(Tarefa tarefa){
-        tarefaRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS).document(ControllerTarefas.getInstancia().buscarPorPosicao(Integer.parseInt(tarefa.getId()))).collection(COLECAO_TAREFAS);
+    public void salvarTarefa(String nome, String desc, String dataEntrega, boolean concluida){
+        Tarefa tarefa = new Tarefa();
+        tarefa.setNome(nome);
+        tarefa.setDescricao(desc);
+        tarefa.setDataEntrega(dataEntrega);
+        tarefa.setConcluida(concluida);
+        tarefa.setId(nome);
+        tarefaRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS).document(ControllerTarefas.getListaSelecionada()).collection(COLECAO_TAREFAS);
 
         tarefaRef.document(tarefa.getId()).set(tarefa).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

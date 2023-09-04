@@ -26,6 +26,8 @@ public class TelaLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_login);
 
+        ControllerUsuario.getInstancia();
+
         textCadastro = findViewById(R.id.textoLogin);
         textEmail = findViewById(R.id.login_email);
         textSenha = findViewById(R.id.login_senha);

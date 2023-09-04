@@ -26,7 +26,7 @@ public class ControllerTarefas {
         tarefa.setNome(nome);
         tarefa.setDataEntrega(dataEntrega);
         tarefa.setConcluida(concluida);
-        db.salvarTarefa(tarefa);
+        db.salvarTarefa(nome, descricao, dataEntrega, concluida);
     }
 //    public boolean alterar(Listas listas){
 //        for (int i = 0; i < lista.size(); i++) {
