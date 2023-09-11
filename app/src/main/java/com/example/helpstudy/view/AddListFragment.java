@@ -13,6 +13,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerListas;
+import com.example.helpstudy.utils.ROOT;
 
 public class AddListFragment extends DialogFragment {
 
@@ -56,13 +57,7 @@ public class AddListFragment extends DialogFragment {
 
                 controlerLista.atualizarLista();
 
-                //te odeio
-                try {
-                    Thread.sleep(500);
-                    new ListasAdapter(getContext()).notifyDataSetChanged();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                new ROOT(getContext()).sincListas();
 
                 dismiss();
             }

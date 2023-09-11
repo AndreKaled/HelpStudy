@@ -5,6 +5,7 @@ import com.example.helpstudy.model.Listas;
 import com.example.helpstudy.model.Tarefa;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ControllerTarefas {
 
@@ -14,6 +15,10 @@ public class ControllerTarefas {
 
     private DataSource db = new DataSource();
     private static String listaSelecionada;
+
+    private ControllerTarefas(){
+        db.consultarTarefas();
+    }
 
     public static ControllerTarefas getInstancia(){
         if (instancia == null)
@@ -47,7 +52,7 @@ public class ControllerTarefas {
 //        }
 //        return cont;
 //    }
-    public ArrayList<Tarefa> buscarTodos(){
+    public List<Tarefa> buscarTodos(){
         return lista;
     }
 
@@ -63,6 +68,11 @@ public class ControllerTarefas {
 //        }
 //        return null;
 //    }
+
+    public void atualizarTarefas(){
+        lista.clear();
+        db.consultarTarefas();
+    }
 
     public static void add(Tarefa tarefa){
         lista.add(tarefa);

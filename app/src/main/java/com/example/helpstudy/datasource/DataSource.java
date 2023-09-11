@@ -279,4 +279,25 @@ public class DataSource {
             }
         });
     }
+
+    public void consultarTarefas(){
+        tarefaRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS).document(ControllerTarefas.getListaSelecionada()).collection(COLECAO_TAREFAS);
+
+        tarefaRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                    Tarefa tarefa = documentSnapshot.toObject(Tarefa.class);
+                    ControllerTarefas.add(tarefa);
+                }
+                Log.i(TAG, COLECAO_USUARIOS +"-> Query realizada com sucesso!");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e(TAG, COLECAO_TAREFAS +"-> Erro ao executar Query no Banco");
+                e.printStackTrace();
+            }
+        });
+    }
 }

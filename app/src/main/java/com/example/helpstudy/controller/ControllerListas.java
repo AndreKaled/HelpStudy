@@ -8,7 +8,6 @@ import java.util.List;
 public class ControllerListas {
 
     private static ArrayList<Listas> lista = new ArrayList<>();
-    private int proxid;
     private static ControllerListas instancia = null;
     private String selecaoId;
 
@@ -16,7 +15,6 @@ public class ControllerListas {
 
     public ControllerListas(){
         db.consultarListas();
-        proxid = 1;
     }
 
     public static ControllerListas getInstancia(){

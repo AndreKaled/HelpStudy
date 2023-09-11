@@ -40,11 +40,8 @@ public class ListaFragment extends Fragment {
         listView = view.findViewById(R.id.listview_listas);
 
         adapter = new ListasAdapter(getContext());
-        adapter = new ListasAdapter(getContext());
 
         listView.setAdapter(adapter);
-
-
 
         btCriar.setOnClickListener(new View.OnClickListener() {
             @Override

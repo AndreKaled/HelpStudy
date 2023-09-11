@@ -8,10 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.helpstudy.R;
+import com.example.helpstudy.controller.ControllerTarefas;
+import com.example.helpstudy.model.Tarefa;
+import com.example.helpstudy.utils.ROOT;
 
 public class TarefasFragment extends Fragment {
 //    fazer
@@ -24,6 +28,13 @@ public class TarefasFragment extends Fragment {
 
         Button btnCriar = view.findViewById(R.id.btn_criar_tarefas);
         ListView listView = view.findViewById(R.id.listview_tarefas);
+
+        ControllerTarefas.getInstancia().atualizarTarefas();
+        new ROOT(getContext()).sincTarefas();
+
+        ArrayAdapter<Tarefa> adapter = new ArrayAdapter<Tarefa>(getContext(), android.R.layout.simple_list_item_1, ControllerTarefas.getInstancia().buscarTodos());
+
+        listView.setAdapter(adapter);
 
         btnCriar.setOnClickListener(new View.OnClickListener() {
             @Override

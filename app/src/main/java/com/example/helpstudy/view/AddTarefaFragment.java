@@ -13,6 +13,7 @@ import androidx.fragment.app.DialogFragment;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerListas;
 import com.example.helpstudy.controller.ControllerTarefas;
+import com.example.helpstudy.utils.ROOT;
 
 public class AddTarefaFragment extends DialogFragment {
 
@@ -53,6 +54,8 @@ public class AddTarefaFragment extends DialogFragment {
                 descricao = viewDescricao.getText().toString();
 
                 controlerTarefas.cadastrar(titulo,descricao, null, false);
+
+                new ROOT(getContext()).sincTarefas();
 
                 dismiss();
             }
