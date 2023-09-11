@@ -18,9 +18,6 @@ public class ControllerListas {
         db.consultarListas();
         proxid = 1;
     }
-    public int getProxCodigo(){
-        return proxid;
-    }
 
     public static ControllerListas getInstancia(){
         if (instancia == null)
@@ -52,6 +49,11 @@ public class ControllerListas {
     }
     public ArrayList<Listas> buscarTodos(){
         return lista;
+    }
+
+    public void atualizarLista(){
+        lista.clear();
+        db.consultarListas();
     }
 
     public static Listas buscarPorPosicao(int posicao){

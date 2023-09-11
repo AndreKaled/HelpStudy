@@ -1,5 +1,7 @@
 package com.example.helpstudy.view;
 
+import static java.util.Locale.ROOT;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -15,6 +17,7 @@ import com.example.helpstudy.controller.ControllerUsuario;
 import com.example.helpstudy.R;
 import com.example.helpstudy.datasource.DataSource;
 import com.example.helpstudy.model.Usuario;
+import com.example.helpstudy.utils.ROOT;
 
 public class TelaLogin extends AppCompatActivity {
 
@@ -73,6 +76,7 @@ public class TelaLogin extends AppCompatActivity {
             textSenha.setError("senha de usuário incorreta!");
         } else if (usuario.getSenha().equals(textSenha.getText().toString())) {
             Toast.makeText(this, "Bem vindo(a), " + usuario.getNome() + "!", Toast.LENGTH_LONG).show();
+            new com.example.helpstudy.utils.ROOT().buscarTudo();
             Intent intent = new Intent(TelaLogin.this, MainActivity.class);
             startActivity(intent);
         }

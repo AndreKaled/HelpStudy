@@ -14,8 +14,8 @@ import java.util.List;
 
 public class ListasAdapter extends BaseAdapter {
 
-    Context context;
-    List<Listas> listas;
+    static Context context;
+    static List<Listas> listas;
 
     public ListasAdapter(Context context){
         this.context = context;

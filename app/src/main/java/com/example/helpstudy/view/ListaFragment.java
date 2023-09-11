@@ -28,7 +28,7 @@ public class ListaFragment extends Fragment {
     private View view;
     private ListView listView;
 
-    List<Listas> listfla = new ArrayList<>();
+    ListasAdapter adapter;
 
 
     @Override
@@ -38,17 +38,11 @@ public class ListaFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_lista, container, false);
         Button btCriar = view.findViewById(R.id.btn_criar_listas);
         listView = view.findViewById(R.id.listview_listas);
-        listfla = ControllerListas.getInstancia().buscarTodos();
 
-        ArrayAdapter<Listas> adapter = new ArrayAdapter<>(
-                getContext(), android.R.layout.simple_list_item_1, listfla
-        );
+        adapter = new ListasAdapter(getContext());
+        adapter = new ListasAdapter(getContext());
 
-
-//        ListaFlashCardAdapter adapter = new ListaFlashCardAdapter(getContext());
-//        listView.setAdapter(adapter);
-
-        listView.setAdapter(new ListasAdapter(getContext()));
+        listView.setAdapter(adapter);
 
 
 
@@ -57,6 +51,7 @@ public class ListaFragment extends Fragment {
             public void onClick(View v) {
 
                 abrirModal();
+
             }
         });
 

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
@@ -52,7 +53,16 @@ public class AddListFragment extends DialogFragment {
                 descricao = viewDescricao.getText().toString();
 
                 controlerLista.cadastrar(titulo);
-                System.out.println("lista cadastrada");
+
+                controlerLista.atualizarLista();
+
+                //te odeio
+                try {
+                    Thread.sleep(500);
+                    new ListasAdapter(getContext()).notifyDataSetChanged();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
 
                 dismiss();
             }
