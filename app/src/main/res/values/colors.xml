@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name= "blackFundo">#0E0E0E</color>
+    <color name= "blackFundo">#1D1D1D</color>
     <color name= "blackDialog">#333333</color>
     <color name="lateralBar">#202020</color>
     <color name="painelCartoes">#2b2b2b</color>
@@ -15,4 +15,11 @@
     <color name= "painel_color_dark">#242424</color>
     <color name="confirmarAzul">#4ECAFF</color>
     <color name="verdeBt">#77DB12</color>
+    <color name="primary">#4FC3F7</color>
+    <color name="primaryVariant">#B3E5FC</color>
+    <color name="secondaryPrimary">#E0F2F1</color>
+    <color name="secondaryVariant">#80CBC4</color>
+
+
+
 </resources>

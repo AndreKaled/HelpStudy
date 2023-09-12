@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.R;
 import com.example.helpstudy.model.FlashCard;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class FlashCardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_flash_card, container, false);
-        Button btCriar = view.findViewById(R.id.btn_criar_flashcard);
+        FloatingActionButton btCriar = view.findViewById(R.id.btn_criar_flashcard);
         listViewFlashCard = view.findViewById(R.id.lista_de_flashcards);
 
 
