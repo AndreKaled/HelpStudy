@@ -16,6 +16,7 @@ import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerTarefas;
 import com.example.helpstudy.model.Tarefa;
 import com.example.helpstudy.utils.ROOT;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class TarefasFragment extends Fragment {
 //    fazer
@@ -26,7 +27,7 @@ public class TarefasFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tarefas, container, false);
 
-        Button btnCriar = view.findViewById(R.id.btn_criar_tarefas);
+        FloatingActionButton btnCriar = view.findViewById(R.id.btn_criar_tarefas);
         listView = view.findViewById(R.id.listview_tarefas);
 
         TarefaAdapter adapter = new TarefaAdapter(getContext());

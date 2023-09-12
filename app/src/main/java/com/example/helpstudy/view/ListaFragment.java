@@ -20,6 +20,7 @@ import com.example.helpstudy.controller.ControllerTarefas;
 import com.example.helpstudy.model.FlashCard;
 import com.example.helpstudy.model.Listas;
 import com.example.helpstudy.utils.ROOT;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class ListaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_lista, container, false);
-        Button btCriar = view.findViewById(R.id.btn_criar_listas);
+        FloatingActionButton btCriar = view.findViewById(R.id.btn_criar_listas);
         listView = view.findViewById(R.id.listview_listas);
 
         adapter = new ListasAdapter(getContext());
