@@ -19,6 +19,7 @@ import com.example.helpstudy.controller.ControllerListas;
 import com.example.helpstudy.controller.ControllerTarefas;
 import com.example.helpstudy.model.FlashCard;
 import com.example.helpstudy.model.Listas;
+import com.example.helpstudy.utils.ROOT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,8 @@ public class ListaFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ControllerTarefas.setListaSelecionada(ControllerListas.buscarPorPosicao(i).getId());
+                ControllerTarefas.getInstancia();
+                new ROOT(getContext()).sincTarefas();
                 replaceFragment(new TarefasFragment());
             }
         });

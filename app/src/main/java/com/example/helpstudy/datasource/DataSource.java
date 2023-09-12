@@ -289,8 +289,9 @@ public class DataSource {
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                     Tarefa tarefa = documentSnapshot.toObject(Tarefa.class);
                     ControllerTarefas.add(tarefa);
+                    Log.i(TAG, COLECAO_TAREFAS +"-> Query realizada com sucesso!" +tarefa);
                 }
-                Log.i(TAG, COLECAO_USUARIOS +"-> Query realizada com sucesso!");
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

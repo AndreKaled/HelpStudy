@@ -47,4 +47,15 @@ public class Tarefa {
     public void setDataEntrega(String dataEntrega) {
         this.dataEntrega = dataEntrega;
     }
+
+    @Override
+    public String toString() {
+        return "Tarefa{" +
+                "nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", dataEntrega='" + dataEntrega + '\'' +
+                ", id='" + id + '\'' +
+                ", concluida=" + concluida +
+                '}';
+    }
 }

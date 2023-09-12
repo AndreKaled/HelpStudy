@@ -13,7 +13,11 @@ import androidx.fragment.app.DialogFragment;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerListas;
 import com.example.helpstudy.controller.ControllerTarefas;
+import com.example.helpstudy.model.Tarefa;
 import com.example.helpstudy.utils.ROOT;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddTarefaFragment extends DialogFragment {
 
@@ -54,14 +58,19 @@ public class AddTarefaFragment extends DialogFragment {
                 descricao = viewDescricao.getText().toString();
 
                 controlerTarefas.cadastrar(titulo,descricao, null, false);
-
-                new ROOT(getContext()).sincTarefas();
+                ControllerTarefas.getInstancia().atualizarTarefas();
+                // ERRO: NAO ATUALIZANDO VIEW, APARENTENMENTE NAO ESTA NOTIFICANDO O ADAPTER
+                // update();
 
                 dismiss();
             }
         });
 
 
+    }
+
+    private void update(){
+        new ROOT(getContext()).sincTarefas();
     }
 
 }

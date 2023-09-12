@@ -19,7 +19,7 @@ import com.example.helpstudy.utils.ROOT;
 
 public class TarefasFragment extends Fragment {
 //    fazer
-
+    static ListView listView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -27,12 +27,9 @@ public class TarefasFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tarefas, container, false);
 
         Button btnCriar = view.findViewById(R.id.btn_criar_tarefas);
-        ListView listView = view.findViewById(R.id.listview_tarefas);
+        listView = view.findViewById(R.id.listview_tarefas);
 
-        ControllerTarefas.getInstancia().atualizarTarefas();
-        new ROOT(getContext()).sincTarefas();
-
-        ArrayAdapter<Tarefa> adapter = new ArrayAdapter<Tarefa>(getContext(), android.R.layout.simple_list_item_1, ControllerTarefas.getInstancia().buscarTodos());
+        TarefaAdapter adapter = new TarefaAdapter(getContext());
 
         listView.setAdapter(adapter);
 
@@ -58,4 +55,5 @@ public class TarefasFragment extends Fragment {
         AddTarefaFragment dialog = new AddTarefaFragment();
         dialog.show(getActivity().getSupportFragmentManager(), "oi2");
     }
+
 }

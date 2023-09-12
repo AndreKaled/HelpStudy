@@ -10,7 +10,7 @@ import java.util.List;
 public class ControllerTarefas {
 
     //fazer
-    private static ArrayList<Tarefa> lista = new ArrayList<>();
+    private static List<Tarefa> lista = new ArrayList<>();
     private static ControllerTarefas instancia = null;
 
     private DataSource db = new DataSource();
@@ -26,13 +26,9 @@ public class ControllerTarefas {
         return instancia;
     }
     public void cadastrar(String nome, String descricao, String dataEntrega, boolean concluida){
-        Tarefa tarefa = new Tarefa();
-        tarefa.setId(nome);
-        tarefa.setNome(nome);
-        tarefa.setDataEntrega(dataEntrega);
-        tarefa.setConcluida(concluida);
         db.salvarTarefa(nome, descricao, dataEntrega, concluida);
     }
+
 //    public boolean alterar(Listas listas){
 //        for (int i = 0; i < lista.size(); i++) {
 //            if (listas.getId()==lista.get(i).getId()){

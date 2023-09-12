@@ -1,11 +1,13 @@
 package com.example.helpstudy.utils;
 
 import android.content.Context;
+import android.widget.ArrayAdapter;
 
 import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.controller.ControllerListas;
 import com.example.helpstudy.controller.ControllerTarefas;
 import com.example.helpstudy.view.ListasAdapter;
+import com.example.helpstudy.view.TarefaAdapter;
 
 public class ROOT {
     private Context context;
@@ -30,8 +32,8 @@ public class ROOT {
     public void sincTarefas(){
         //te odeio
         try {
-            Thread.sleep(500);
-            //new TarefasAdapter(context).notifyDataSetChanged();
+            Thread.sleep(1000);
+            new TarefaAdapter(context).notifyDataSetChanged();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
