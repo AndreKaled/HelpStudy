@@ -46,21 +46,21 @@
             android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#FFFFFF"
+            android:backgroundTint="@color/textColorLight"
             android:hint="E-mail:"
             android:inputType="text"
-            android:textColor="#FFFFFF"
-            android:textColorHint="@color/white" />
+            android:textColor="@color/textColorLight"
+            android:textColorHint="@color/textColorLight" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/login_senha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#FFFFFF"
+            android:backgroundTint="@color/textColorLight"
             android:hint="Senha:"
             android:inputType="numberPassword"
-            android:textColor="#FFFFFF"
-            android:textColorHint="@color/white" />
+            android:textColor="@color/textColorLight"
+            android:textColorHint="@color/textColorLight" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
