@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.graphics.Color;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -13,6 +14,7 @@ import android.view.MenuInflater;
 import com.example.helpstudy.R;
 import com.example.helpstudy.datasource.DataSource;
 import com.example.helpstudy.model.Usuario;
+import com.example.helpstudy.utils.Atencao;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import androidx.appcompat.widget.Toolbar;
@@ -89,6 +91,12 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
+    }
+
+
+    public void detectarMovimento(){
+        SensorManager sensor = (SensorManager) getSystemService(SENSOR_SERVICE);
+        new Atencao(sensor);
     }
 
 }
