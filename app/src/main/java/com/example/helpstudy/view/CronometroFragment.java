@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.helpstudy.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
 
@@ -23,10 +22,8 @@ public class CronometroFragment extends Fragment {
     private static final long START_TIME_IN_MILLIS = 600000;
 
     private TextView mTextViewCountDown;
-    private FloatingActionButton mButtonStartPause;
-    private FloatingActionButton mButtonReset;
-
-    private FloatingActionButton mMusic;
+    private Button mButtonStartPause;
+    private Button mButtonReset;
 
     private CountDownTimer mCountDownTimer;
 
@@ -53,7 +50,6 @@ public class CronometroFragment extends Fragment {
 
         mButtonStartPause = view.findViewById(R.id.button_start_pause);
         mButtonReset = view.findViewById(R.id.button_reset);
-        mMusic = view.findViewById(R.id.button_music);
 
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +106,6 @@ public class CronometroFragment extends Fragment {
         updateButtons();
     }
 
-
     private void updateCountDownText() {
         int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
         int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
@@ -122,41 +117,21 @@ public class CronometroFragment extends Fragment {
 
     private void updateButtons() {
         if (mTimerRunning) {
-            //mButtonReset.setVisibility(View.INVISIBLE);
-            //mButtonStartPause.setText("Pause");
-            mButtonStartPause.setImageResource(R.drawable.stop);
-            mMusic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    if(mMusic.isEnabled()==true){
-
-                        mMusic.setEnabled(false);
-                        mMusic.setImageResource(R.drawable.music_off);
-
-                    }else{
-
-                        mMusic.setEnabled(true);
-                        mMusic.setImageResource(R.drawable.music);
-                    }
-                }
-            });
-
+            mButtonReset.setVisibility(View.INVISIBLE);
+            mButtonStartPause.setText("Pause");
         } else {
-            //mButtonStartPause.setText("Start");
-            mButtonStartPause.setImageResource(R.drawable.play);
-            mButtonReset.setEnabled(false);
-            mMusic.setEnabled(false);
-//            if (mTimeLeftInMillis < 1000) {
-//                mButtonStartPause.setVisibility(View.INVISIBLE);
-//            } else {
-//                mButtonStartPause.setVisibility(View.VISIBLE);
-//            }
-//
-            if (mTimeLeftInMillis < START_TIME_IN_MILLIS) {
-                mButtonReset.setEnabled(true);
+            mButtonStartPause.setText("Start");
+
+            if (mTimeLeftInMillis < 1000) {
+                mButtonStartPause.setVisibility(View.INVISIBLE);
             } else {
-                mButtonReset.setEnabled(false);
+                mButtonStartPause.setVisibility(View.VISIBLE);
+            }
+
+            if (mTimeLeftInMillis < START_TIME_IN_MILLIS) {
+                mButtonReset.setVisibility(View.VISIBLE);
+            } else {
+                mButtonReset.setVisibility(View.INVISIBLE);
             }
         }
     }

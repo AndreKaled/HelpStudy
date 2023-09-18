@@ -6,24 +6,25 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
 
-public class Atencao implements Runnable{
+public class Atencao{
 
     private SensorManager sensor;
     private SensorEventListener listener;
+    private boolean condicao = false;
     public Atencao(SensorManager sensor) {
         this.sensor = sensor;
+        iniciar();
     }
 
-    public void finalizar(){
-        try {
-            this.finalize();
-        } catch (Throwable e) {
-            throw new RuntimeException(e);
-        }
+    public void naoDetectar(){
+        condicao = false;
     }
 
-    @Override
-    public void run() {
+    public void detectar(){
+        condicao = true;
+    }
+
+    public void iniciar(){
         Sensor giroscopio = sensor.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
         if(giroscopio == null){
             Log.i("SENSORES", "Não há giroscópio no dispositivo!");
@@ -32,17 +33,17 @@ public class Atencao implements Runnable{
             listener = new SensorEventListener() {
                 @Override
                 public void onSensorChanged(SensorEvent sensorEvent) {
-                    float[] val = sensorEvent.values.clone();
-                    if(val[0] != 0.00||val[1] != 0.00||val[2] != 0.00){
-                        //pop up aqui
-                    }
+                        if(sensorEvent.values[0] != 0.00||sensorEvent.values[1] != 0.00||sensorEvent.values[2] != 0.00){
+                            Log.i("SENSORES", "MOVIMENTOU!");
+                        }
                 }
-
                 @Override
                 public void onAccuracyChanged(Sensor sensor, int i) {
 
                 }
             };
+            sensor.registerListener(listener, giroscopio, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
+
 }
