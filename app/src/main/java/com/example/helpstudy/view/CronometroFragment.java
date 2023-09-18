@@ -28,6 +28,8 @@ public class CronometroFragment extends Fragment {
 
     private FloatingActionButton mMusic;
 
+    private Boolean teste = true;
+
     private CountDownTimer mCountDownTimer;
 
     private boolean mTimerRunning;
@@ -125,28 +127,15 @@ public class CronometroFragment extends Fragment {
             //mButtonReset.setVisibility(View.INVISIBLE);
             //mButtonStartPause.setText("Pause");
             mButtonStartPause.setImageResource(R.drawable.stop);
-            mMusic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    if(mMusic.isEnabled()==true){
-
-                        mMusic.setEnabled(false);
-                        mMusic.setImageResource(R.drawable.music_off);
-
-                    }else{
-
-                        mMusic.setEnabled(true);
-                        mMusic.setImageResource(R.drawable.music);
-                    }
-                }
-            });
+            mMusic.setEnabled(true);
+            musicUpdate();
 
         } else {
             //mButtonStartPause.setText("Start");
             mButtonStartPause.setImageResource(R.drawable.play);
             mButtonReset.setEnabled(false);
             mMusic.setEnabled(false);
+
 //            if (mTimeLeftInMillis < 1000) {
 //                mButtonStartPause.setVisibility(View.INVISIBLE);
 //            } else {
@@ -159,6 +148,25 @@ public class CronometroFragment extends Fragment {
                 mButtonReset.setEnabled(false);
             }
         }
+    }
+
+    private void musicUpdate() {
+
+        mMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(teste){
+
+                    mMusic.setImageResource(R.drawable.music_off);
+                    teste = false;
+                }else{
+
+                    mMusic.setImageResource(R.drawable.music);
+                    teste = true;
+                }
+            }
+        });
     }
 
     @Override

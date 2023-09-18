@@ -22,14 +22,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_view_countdown"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="2dp"
         android:background="@color/blackDialog"
+        android:enabled="true"
         android:src="@drawable/play"
         android:textColor="#F3E7E7"
         android:textColorHint="#EF2727"
         app:iconTint="#FA0303"
-        app:rippleColor="#D62727"
-        android:enabled="true"/>
+        app:rippleColor="#D62727" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_reset"
@@ -60,6 +62,7 @@
         android:textColor="#DAD5D5"
         android:textColorHint="#F3F3F3"
         android:enabled="true"
+        android:clickable="true"
         app:rippleColor="#911313"
         tools:visibility="visible" />
 
