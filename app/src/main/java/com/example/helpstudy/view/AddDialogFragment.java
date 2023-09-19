@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerFlashCard;
+import com.example.helpstudy.utils.ROOT;
 
 public class AddDialogFragment extends DialogFragment {
 
@@ -53,8 +54,6 @@ public class AddDialogFragment extends DialogFragment {
                 resposta = viewResposta.getText().toString();
 
                 controleFlashCard.cadastrar(titulo, resposta);
-                controleFlashCard.atualizarFlashcards();
-                System.out.println("cadastrado");
 
                 dismiss();
             }

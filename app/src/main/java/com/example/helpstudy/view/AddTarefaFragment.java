@@ -59,6 +59,7 @@ public class AddTarefaFragment extends DialogFragment {
 
                 controlerTarefas.cadastrar(titulo,descricao, null, false);
                 controlerTarefas.atualizarTarefas();
+                update();
 
                 dismiss();
             }
