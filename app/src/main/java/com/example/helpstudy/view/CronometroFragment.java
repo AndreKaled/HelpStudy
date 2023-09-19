@@ -29,6 +29,10 @@ public class CronometroFragment extends Fragment {
     private FloatingActionButton mButtonStartPause;
     private FloatingActionButton mButtonReset;
 
+    private FloatingActionButton mMusic;
+
+    private static Boolean testar = true;
+
     private CountDownTimer mCountDownTimer;
 
     private boolean mTimerRunning;
@@ -56,6 +60,7 @@ public class CronometroFragment extends Fragment {
 
         mButtonStartPause = view.findViewById(R.id.button_start_pause);
         mButtonReset = view.findViewById(R.id.button_reset);
+        mMusic = view.findViewById(R.id.button_music);
 
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,22 +130,42 @@ public class CronometroFragment extends Fragment {
 
     private void updateButtons() {
         if (mTimerRunning) {
-            mButtonReset.setEnabled(true);
+            //mButtonReset.setVisibility(View.INVISIBLE);
+            //mButtonStartPause.setText("Pause");
+            mButtonStartPause.setImageResource(R.drawable.stop);
+            mMusic.setEnabled(true);
+            mMusic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+                    if(testar == true){
+
+                        mMusic.setImageResource(R.drawable.music_off);
+                        testar = false;
+
+                    }else{
+
+                        mMusic.setImageResource(R.drawable.music);
+                        testar = true;
+
+                    }
+                }
+            });
+
         } else {
-
-            if (mTimeLeftInMillis < 1000) {
-                mButtonStartPause.setVisibility(View.INVISIBLE);
+            //mButtonStartPause.setText("Start");
+            mButtonStartPause.setImageResource(R.drawable.play);
+            mButtonReset.setEnabled(false);
+            mMusic.setEnabled(false);
+            if (mTimeLeftInMillis < START_TIME_IN_MILLIS) {
+                mButtonReset.setEnabled(true);
             } else {
-                mButtonStartPause.setVisibility(View.VISIBLE);
+                mButtonReset.setEnabled(false);
             }
-
-//            if (mTimeLeftInMillis < START_TIME_IN_MILLIS) {
-//                mButtonReset.setVisibility(View.VISIBLE);
-//            } else {
-//                mButtonReset.setVisibility(View.INVISIBLE);
-//            }
         }
     }
+
 
     @Override
     public void onStop() {
