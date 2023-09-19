@@ -26,10 +26,6 @@ public class CronometroFragment extends Fragment {
     private FloatingActionButton mButtonStartPause;
     private FloatingActionButton mButtonReset;
 
-    private FloatingActionButton mMusic;
-
-    private Boolean teste = true;
-
     private CountDownTimer mCountDownTimer;
 
     private boolean mTimerRunning;
@@ -55,7 +51,6 @@ public class CronometroFragment extends Fragment {
 
         mButtonStartPause = view.findViewById(R.id.button_start_pause);
         mButtonReset = view.findViewById(R.id.button_reset);
-        mMusic = view.findViewById(R.id.button_music);
 
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +107,6 @@ public class CronometroFragment extends Fragment {
         updateButtons();
     }
 
-
     private void updateCountDownText() {
         int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
         int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
@@ -124,49 +118,21 @@ public class CronometroFragment extends Fragment {
 
     private void updateButtons() {
         if (mTimerRunning) {
-            //mButtonReset.setVisibility(View.INVISIBLE);
-            //mButtonStartPause.setText("Pause");
-            mButtonStartPause.setImageResource(R.drawable.stop);
-            mMusic.setEnabled(true);
-            musicUpdate();
-
+            mButtonReset.setEnabled(true);
         } else {
-            //mButtonStartPause.setText("Start");
-            mButtonStartPause.setImageResource(R.drawable.play);
-            mButtonReset.setEnabled(false);
-            mMusic.setEnabled(false);
 
-//            if (mTimeLeftInMillis < 1000) {
-//                mButtonStartPause.setVisibility(View.INVISIBLE);
-//            } else {
-//                mButtonStartPause.setVisibility(View.VISIBLE);
-//            }
-//
-            if (mTimeLeftInMillis < START_TIME_IN_MILLIS) {
-                mButtonReset.setEnabled(true);
+            if (mTimeLeftInMillis < 1000) {
+                mButtonStartPause.setVisibility(View.INVISIBLE);
             } else {
-                mButtonReset.setEnabled(false);
+                mButtonStartPause.setVisibility(View.VISIBLE);
             }
+
+//            if (mTimeLeftInMillis < START_TIME_IN_MILLIS) {
+//                mButtonReset.setVisibility(View.VISIBLE);
+//            } else {
+//                mButtonReset.setVisibility(View.INVISIBLE);
+//            }
         }
-    }
-
-    private void musicUpdate() {
-
-        mMusic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if(teste){
-
-                    mMusic.setImageResource(R.drawable.music_off);
-                    teste = false;
-                }else{
-
-                    mMusic.setImageResource(R.drawable.music);
-                    teste = true;
-                }
-            }
-        });
     }
 
     @Override
