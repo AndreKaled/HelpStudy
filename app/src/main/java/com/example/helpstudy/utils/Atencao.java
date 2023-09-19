@@ -1,21 +1,26 @@
 package com.example.helpstudy.utils;
 
 import static android.content.Context.SENSOR_SERVICE;
+import static android.content.Context.VIBRATOR_SERVICE;
 
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 
 public class Atencao{
 
     private SensorManager sensor;
+    private Vibrator vibrador;
     private SensorEventListener listener;
     private boolean condicao = false;
     public Atencao(Context context) {
         sensor = (SensorManager) context.getSystemService(SENSOR_SERVICE);
+        vibrador = (Vibrator) context.getSystemService(VIBRATOR_SERVICE);
         this.sensor = sensor;
         iniciar();
     }
@@ -34,11 +39,13 @@ public class Atencao{
             Log.i("SENSORES", "Não há giroscópio no dispositivo!");
         }else{
             Log.i("SENSORES", "Giroscópio detectado no dispositivo!");
+            VibrationEffect efeito = VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE);
             listener = new SensorEventListener() {
                 @Override
                 public void onSensorChanged(SensorEvent sensorEvent) {
                         if(condicao&&(sensorEvent.values[0] != 0.00||sensorEvent.values[1] != 0.00||sensorEvent.values[2] != 0.00)){
                             Log.i("SENSORES", "MOVEU!");
+                            vibrador.vibrate(efeito);
                         }
                 }
                 @Override
