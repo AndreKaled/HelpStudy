@@ -94,9 +94,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void detectarMovimento(){
-        SensorManager sensor = (SensorManager) getSystemService(SENSOR_SERVICE);
-        new Atencao(sensor);
-    }
-
 }

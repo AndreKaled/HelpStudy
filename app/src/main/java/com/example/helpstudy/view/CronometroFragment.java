@@ -1,6 +1,8 @@
 package com.example.helpstudy.view;
 
 import static android.content.Context.MODE_PRIVATE;
+import static android.content.Context.SENSOR_SERVICE;
+
 import android.content.SharedPreferences;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.helpstudy.R;
+import com.example.helpstudy.utils.Atencao;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -34,6 +37,8 @@ public class CronometroFragment extends Fragment {
     private long mEndTime;
     View view;
 
+    Atencao atencao;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +50,7 @@ public class CronometroFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_cronometro, container, false);
-
+        atencao = new Atencao(getContext());
 
         mTextViewCountDown = view.findViewById(R.id.text_view_countdown);
 
@@ -93,12 +98,14 @@ public class CronometroFragment extends Fragment {
 
         mTimerRunning = true;
         updateButtons();
+        atencao.detectar();
     }
 
     private void pauseTimer() {
         mCountDownTimer.cancel();
         mTimerRunning = false;
         updateButtons();
+        atencao.naoDetectar();
     }
 
     private void resetTimer() {

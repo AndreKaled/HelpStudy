@@ -2,19 +2,15 @@
 
 ## Status ⏰
 
-🚧 Em desenvolvimento inicial 🚧
+🚧 Em desenvolvimento 🚧
 
 ## Autores 🤓
 
 André Kaled Duarte
 
 Manfred Lima Veiga
+
 ## Técnicas e tecnologias 🔬
-
-
-
-
-
 
 -- Paradigma Orientada a Objetos 
 
@@ -27,5 +23,3 @@ Manfred Lima Veiga
 -- Base de dados: **em decisão**
 
 -- Hospedagem de código: Github 
-
-## Acesso ao projeto

@@ -1,5 +1,8 @@
 package com.example.helpstudy.utils;
 
+import static android.content.Context.SENSOR_SERVICE;
+
+import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -11,7 +14,8 @@ public class Atencao{
     private SensorManager sensor;
     private SensorEventListener listener;
     private boolean condicao = false;
-    public Atencao(SensorManager sensor) {
+    public Atencao(Context context) {
+        sensor = (SensorManager) context.getSystemService(SENSOR_SERVICE);
         this.sensor = sensor;
         iniciar();
     }
@@ -33,8 +37,8 @@ public class Atencao{
             listener = new SensorEventListener() {
                 @Override
                 public void onSensorChanged(SensorEvent sensorEvent) {
-                        if(sensorEvent.values[0] != 0.00||sensorEvent.values[1] != 0.00||sensorEvent.values[2] != 0.00){
-                            Log.i("SENSORES", "MOVIMENTOU!");
+                        if(condicao&&(sensorEvent.values[0] != 0.00||sensorEvent.values[1] != 0.00||sensorEvent.values[2] != 0.00)){
+                            Log.i("SENSORES", "MOVEU!");
                         }
                 }
                 @Override
