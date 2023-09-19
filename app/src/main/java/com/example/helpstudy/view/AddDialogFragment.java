@@ -53,6 +53,7 @@ public class AddDialogFragment extends DialogFragment {
                 resposta = viewResposta.getText().toString();
 
                 controleFlashCard.cadastrar(titulo, resposta);
+                controleFlashCard.atualizarFlashcards();
                 System.out.println("cadastrado");
 
                 dismiss();

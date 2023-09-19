@@ -58,9 +58,7 @@ public class AddTarefaFragment extends DialogFragment {
                 descricao = viewDescricao.getText().toString();
 
                 controlerTarefas.cadastrar(titulo,descricao, null, false);
-                ControllerTarefas.getInstancia().atualizarTarefas();
-                // ERRO: NAO ATUALIZANDO VIEW, APARENTENMENTE NAO ESTA NOTIFICANDO O ADAPTER
-                // update();
+                controlerTarefas.atualizarTarefas();
 
                 dismiss();
             }

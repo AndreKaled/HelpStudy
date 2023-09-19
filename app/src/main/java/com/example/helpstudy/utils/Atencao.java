@@ -18,6 +18,7 @@ public class Atencao{
     private Vibrator vibrador;
     private SensorEventListener listener;
     private boolean condicao = false;
+    public static final int TEMPO = 3000;
     public Atencao(Context context) {
         sensor = (SensorManager) context.getSystemService(SENSOR_SERVICE);
         vibrador = (Vibrator) context.getSystemService(VIBRATOR_SERVICE);
@@ -39,11 +40,11 @@ public class Atencao{
             Log.i("SENSORES", "Não há giroscópio no dispositivo!");
         }else{
             Log.i("SENSORES", "Giroscópio detectado no dispositivo!");
-            VibrationEffect efeito = VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE);
+            VibrationEffect efeito = VibrationEffect.createOneShot(TEMPO, VibrationEffect.EFFECT_HEAVY_CLICK);
             listener = new SensorEventListener() {
                 @Override
                 public void onSensorChanged(SensorEvent sensorEvent) {
-                        if(condicao&&(sensorEvent.values[0] != 0.00||sensorEvent.values[1] != 0.00||sensorEvent.values[2] != 0.00)){
+                        if(condicao&&(sensorEvent.values[0] >= 0.30||sensorEvent.values[1] >= 0.30||sensorEvent.values[2] >= 0.30)){
                             Log.i("SENSORES", "MOVEU!");
                             vibrador.vibrate(efeito);
                         }

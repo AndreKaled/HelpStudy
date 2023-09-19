@@ -27,7 +27,6 @@ public class ControllerFlashCard {
     }
     public void cadastrar(String titulo, String resposta){
         db.salvarFlashcard(titulo, resposta, proxCodigo);
-
     }
     public boolean alterar(FlashCard flashCard){
         for (int i = 0; i < lista.size(); i++) {
@@ -63,6 +62,11 @@ public class ControllerFlashCard {
                 return flashCard;
         }
         return null;
+    }
+
+    public void atualizarFlashcards(){
+        lista.clear();
+        db.consultarFlashcards();
     }
 
     public static void add(FlashCard flashCard){
