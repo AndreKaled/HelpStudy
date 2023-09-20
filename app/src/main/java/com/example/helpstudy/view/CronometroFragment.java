@@ -5,6 +5,7 @@ import static android.content.Context.SENSOR_SERVICE;
 
 import android.content.SharedPreferences;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.example.helpstudy.R;
 import com.example.helpstudy.utils.Atencao;
+import com.example.helpstudy.utils.Musica;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -34,6 +36,8 @@ public class CronometroFragment extends Fragment {
     private static Boolean testar = true;
 
     private CountDownTimer mCountDownTimer;
+
+    public Musica musica;
 
     private boolean mTimerRunning;
 
@@ -61,7 +65,7 @@ public class CronometroFragment extends Fragment {
         mButtonStartPause = view.findViewById(R.id.button_start_pause);
         mButtonReset = view.findViewById(R.id.button_reset);
         mMusic = view.findViewById(R.id.button_music);
-
+        musica = new Musica(getContext());
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,21 +138,21 @@ public class CronometroFragment extends Fragment {
             //mButtonStartPause.setText("Pause");
             mButtonStartPause.setImageResource(R.drawable.stop);
             mMusic.setEnabled(true);
+            musica.startMusic();
             mMusic.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
 
-                    if(testar == true){
+                    if(musica.startPause() == true){
 
                         mMusic.setImageResource(R.drawable.music_off);
-                        testar = false;
+                        //musica.pauseMusic();
 
                     }else{
 
                         mMusic.setImageResource(R.drawable.music);
-                        testar = true;
-
+                        //musica.startMusic();
                     }
                 }
             });
@@ -158,6 +162,7 @@ public class CronometroFragment extends Fragment {
             mButtonStartPause.setImageResource(R.drawable.play);
             mButtonReset.setEnabled(false);
             mMusic.setEnabled(false);
+            musica.pauseMusic();
             if (mTimeLeftInMillis < START_TIME_IN_MILLIS) {
                 mButtonReset.setEnabled(true);
             } else {
