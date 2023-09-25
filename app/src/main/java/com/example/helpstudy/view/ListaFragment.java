@@ -3,17 +3,19 @@ package com.example.helpstudy.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerListas;
 import com.example.helpstudy.controller.ControllerTarefas;
@@ -62,7 +64,33 @@ public class ListaFragment extends Fragment {
                 new ROOT(getContext()).sincTarefas();
                 replaceFragment(new TarefasFragment());
             }
+
         });
+
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                PopupMenu popupMenu = new PopupMenu(getContext(), listView);
+
+                popupMenu.getMenuInflater().inflate(R.menu.menu_popup, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+
+                        return true;
+                    }
+                });
+
+                popupMenu.show();
+
+                Toast.makeText(getContext(), "oi", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
 
         return view;
     }

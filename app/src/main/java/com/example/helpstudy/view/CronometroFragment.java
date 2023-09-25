@@ -162,6 +162,10 @@ public class CronometroFragment extends Fragment {
             mButtonStartPause.setImageResource(R.drawable.play);
             mButtonReset.setEnabled(false);
             mMusic.setEnabled(false);
+
+
+            mButtonReset.setBackgroundColor(getResources().getColor(R.color.secondaryVariant));
+            mMusic.setBackgroundColor(getResources().getColor(R.color.secondaryVariant));
             musica.pauseMusic();
             if (mTimeLeftInMillis < START_TIME_IN_MILLIS) {
                 mButtonReset.setEnabled(true);

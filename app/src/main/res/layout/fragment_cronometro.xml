@@ -7,66 +7,88 @@
     tools:context=".view.CronometroFragment"
     android:background="@color/blackFundo">
 
-    <TextView
-        android:id="@+id/text_view_countdown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="00:00"
-        android:textColor="@color/textColorLight"
-        android:textSize="60sp" />
+    <androidx.cardview.widget.CardView
+        app:cardElevation = "16dp"
+        app:cardCornerRadius = "160dp"
+        android:layout_margin = "16dp"
+        android:foregroundGravity = "center"
+        android:layout_centerInParent = "true"
+        android:layout_width = "300dp"
+        android:layout_height = "300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <!-- simple image view -->
+        <ImageView
+            android:scaleType = "centerCrop"
+            android:src = "@drawable/componente_cronometro"
+            android:layout_width = "match_parent"
+            android:layout_height = "match_parent"
+            />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_start_pause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text_view_countdown"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="114dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="-2dp"
-        android:background="@color/blackDialog"
-        android:enabled="true"
-        android:src="@drawable/play"
-        android:textColor="#F3E7E7"
-        android:textColorHint="#EF2727"
-        app:iconTint="#FA0303"
-        app:rippleColor="#D62727" />
+            <TextView
+                android:id="@+id/text_view_countdown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:layout_centerVertical="true"
+                android:text="00:00"
+                android:textAlignment="center"
+                android:textColor="@color/textColorLight"
+                android:textSize="60sp" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text_view_countdown"
-        android:layout_marginStart="11dp"
-        android:layout_toEndOf="@+id/button_start_pause"
-        android:background="@color/blackDialog"
-        android:text="reset"
-        android:src="@drawable/restart"
-        android:textColor="#DAD5D5"
-        android:textColorHint="#F3F3F3"
-        android:enabled="false"
-        app:rippleColor="#911313"
-        tools:visibility="visible" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/button_start_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_countdown"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="-2dp"
+                android:enabled="true"
+                android:src="@drawable/play"
+                android:background="@drawable/button_background"
+                android:textColor="#F3E7E7"
+                android:textColorHint="#EF2727"
+                app:iconTint="#FA0303"
+                app:rippleColor="#D62727" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_music"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text_view_countdown"
-        android:layout_marginStart="11dp"
-        android:layout_toEndOf="@+id/button_reset"
-        android:background="@color/blackDialog"
-        android:text="reset"
-        android:src="@drawable/music"
-        android:textColor="#DAD5D5"
-        android:textColorHint="#F3F3F3"
-        android:enabled="true"
-        app:rippleColor="#911313"
-        tools:visibility="visible" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/button_reset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_countdown"
+                android:layout_marginStart="11dp"
+                android:layout_toEndOf="@+id/button_start_pause"
+                android:background="@drawable/button_background"
+                android:src="@drawable/restart"
+                android:textColor="#DAD5D5"
+                android:textColorHint="#F3F3F3"
+                android:enabled="false"
+                app:rippleColor="#911313"
+                tools:visibility="visible" />
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/button_music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_countdown"
+                android:layout_marginStart="11dp"
+                android:layout_toEndOf="@+id/button_reset"
+                android:background="@drawable/button_background"
+                android:src="@drawable/music"
+                android:textColor="#DAD5D5"
+                android:textColorHint="#F3F3F3"
+                android:enabled="true"
+                app:rippleColor="#911313"
+                tools:visibility="visible" />
 
+        </RelativeLayout>
 
-
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>

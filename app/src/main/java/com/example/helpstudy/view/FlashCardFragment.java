@@ -37,14 +37,12 @@ public class FlashCardFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_flash_card, container, false);
         FloatingActionButton btCriar = view.findViewById(R.id.btn_criar_flashcard);
         listViewFlashCard = view.findViewById(R.id.lista_de_flashcards);
-
-
-        listfla = ControllerFlashCard.getInstancia().buscarTodos();
         ArrayAdapter<FlashCard> adapter = new ArrayAdapter<>(
                 getContext(), android.R.layout.simple_list_item_1, listfla
         );
-        listViewFlashCard.setAdapter(new ListaFlashCardAdapter(getContext()));
 
+        listfla = ControllerFlashCard.getInstancia().buscarTodos();
+        listViewFlashCard.setAdapter(new ListaFlashCardAdapter(getContext()));
         btCriar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

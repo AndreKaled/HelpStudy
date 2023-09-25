@@ -10,7 +10,7 @@
     <color name= "blackFundo">#eee6ff</color>
     <color name= "blackDialog">#333333</color>
     <color name="lateralBar">#202020</color>
-    <color name="painelCartoes">#2b2b2b</color>
+    <color name="painelCartoes">#474747</color>
     <color name="topbar">#191919</color>
     <color name = "textColorLight">#35404b</color>
     <color name= "painel_color_dark">#242424</color>
@@ -18,8 +18,11 @@
     <color name="verdeBt">@color/secondaryPrimary</color>
     <color name="primary">#01579B</color>
     <color name="primaryVariant">#0277BD</color>
-    <color name="secondaryPrimary">#F67805</color>
-    <color name="secondaryVariant">#B85A02</color>
+    <color name="secondaryPrimary">#E8BF1A</color>
+    <color name="secondaryVariant">#9C7F09</color>
+
+    <color name = "my_button_enabled_state_color">@color/secondaryPrimary</color>
+    <color name = "my_button_disabled_state_color">@color/secondaryVariant</color>
 
 
 
