@@ -104,6 +104,11 @@ public class DataSource {
                 e.printStackTrace();
             }
         }
+        public void excluirLista(String id){
+
+            Log.i(TAG,COLECAO_LISTAS +"-> excluindo lista " +id);
+            listasRef.document(id).delete();
+        }
 
 
 

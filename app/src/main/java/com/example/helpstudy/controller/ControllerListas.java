@@ -35,15 +35,10 @@ public class ControllerListas {
         }
         return false;
     }
-    public int remover(Listas listas){
-        int cont = 0;
-        for (int i = 0; i < lista.size(); i++) {
-            if (listas.getId()==lista.get(i).getId()){
-                lista.remove(i);
-                cont += 1;
-            }
-        }
-        return cont;
+    public void remover(Listas listas){
+
+                db.excluirLista(listas.getId());
+
     }
     public ArrayList<Listas> buscarTodos(){
         return lista;

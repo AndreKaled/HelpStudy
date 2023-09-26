@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/java"
-        android:title="Java" />
+        android:id="@+id/editar"
+        android:title="Editar" />
 
     <item
-        android:id="@+id/kotlin"
-        android:title="Kotlin" />
+        android:id="@+id/deletar"
+        android:title="Deletar" />
 
-    <item
-        android:id="@+id/android"
-        android:title="Android" />
-
-    <item
-        android:id="@+id/react_native"
-        android:title="React Native" />
 </menu>

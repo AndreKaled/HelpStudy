@@ -68,30 +68,6 @@ public class ListaFragment extends Fragment {
         });
 
 
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-                PopupMenu popupMenu = new PopupMenu(getContext(), listView);
-
-                popupMenu.getMenuInflater().inflate(R.menu.menu_popup, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-
-                        return true;
-                    }
-                });
-
-                popupMenu.show();
-
-                Toast.makeText(getContext(), "oi", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
-
-
         return view;
     }
 
