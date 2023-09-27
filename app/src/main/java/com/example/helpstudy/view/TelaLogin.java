@@ -17,44 +17,54 @@ import com.example.helpstudy.controller.ControllerUsuario;
 import com.example.helpstudy.R;
 import com.example.helpstudy.datasource.DataSource;
 import com.example.helpstudy.model.Usuario;
+import com.example.helpstudy.utils.Preferencias;
 import com.example.helpstudy.utils.ROOT;
 
 public class TelaLogin extends AppCompatActivity {
 
     private EditText textEmail, textSenha;
     private View textCadastro;
+    private Preferencias pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_login);
 
-        ControllerUsuario.getInstancia();
+        pref = new Preferencias(getApplicationContext());
+        if(pref.getEmailUsuario() != null){
+            ControllerUsuario.setIdUsuario(pref.getIdUsuario());
+            com.example.helpstudy.utils.ROOT.buscarTudo();
+            Intent intent = new Intent(TelaLogin.this, MainActivity.class);
+            startActivity(intent);
+        }else{
+            ControllerUsuario.getInstancia();
 
-        textCadastro = findViewById(R.id.textoLogin);
-        textEmail = findViewById(R.id.login_email);
-        textSenha = findViewById(R.id.login_senha);
-        Button btnLogin = findViewById(R.id.btn_login);
+            textCadastro = findViewById(R.id.textoLogin);
+            textEmail = findViewById(R.id.login_email);
+            textSenha = findViewById(R.id.login_senha);
+            Button btnLogin = findViewById(R.id.btn_login);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    validarUsuario();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(TelaLogin.this, "Desculpe, deu problema no nosso app, não se preocupe que a culpa não é sua", Toast.LENGTH_LONG).show();
+            btnLogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        validarUsuario();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(TelaLogin.this, "Desculpe, deu problema no nosso app, não se preocupe que a culpa não é sua", Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
-        });
+            });
 
-        textCadastro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TelaLogin.this, TelaCadastro.class);
-                startActivity(intent);
-            }
-        });
+            textCadastro.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(TelaLogin.this, TelaCadastro.class);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     private void validarUsuario() throws Exception {
@@ -70,13 +80,14 @@ public class TelaLogin extends AppCompatActivity {
             textSenha.setError("A senha não pode ser vazia!");
         } else if (usuario.getEmail().isEmpty()) {
             textEmail.setError("Email de usuário inválido!");
-        } else if (usuario.getSenha().isEmpty()) {
-            //algm erro ai mano
         } else if (!usuario.getSenha().equals(textSenha.getText().toString())) {
             textSenha.setError("senha de usuário incorreta!");
         } else if (usuario.getSenha().equals(textSenha.getText().toString())) {
             Toast.makeText(this, "Bem vindo(a), " + usuario.getNome() + "!", Toast.LENGTH_LONG).show();
 
+            pref.editEmailUsuario(textEmail.getText().toString());
+            pref.editSenhaUsuario(textSenha.getText().toString());
+            pref.editIdUsuario(usuario.getId());
             com.example.helpstudy.utils.ROOT.buscarTudo();
 
             Intent intent = new Intent(TelaLogin.this, MainActivity.class);

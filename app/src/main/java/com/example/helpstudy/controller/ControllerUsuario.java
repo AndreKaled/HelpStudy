@@ -91,4 +91,8 @@ public class ControllerUsuario {
     public static String getIdUsuario(){
         return idUsuario;
     }
+
+    public static void setIdUsuario(String idUsuario1){
+        idUsuario = idUsuario1;
+    }
 }
