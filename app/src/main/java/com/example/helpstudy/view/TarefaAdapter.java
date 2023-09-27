@@ -60,7 +60,6 @@ public class TarefaAdapter extends BaseAdapter {
             public void onClick(View view) {
 
                 PopupMenu popupMenu = new PopupMenu(bt.getContext(), bt);
-
                 popupMenu.getMenuInflater().inflate(R.menu.menu_popup, popupMenu.getMenu());
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -82,7 +81,6 @@ public class TarefaAdapter extends BaseAdapter {
                         return true;
                     }
                 });
-
                 popupMenu.show();
             }
         });

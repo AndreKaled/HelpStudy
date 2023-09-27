@@ -3,6 +3,8 @@ package com.example.helpstudy.view;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +47,12 @@ public class TarefasFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+//                Bundle bundle = new Bundle();
+//                bundle.putString("key", "titulomtlegal");
+//                LeituraTarefa fragmento = new LeituraTarefa();
+//                fragmento.setArguments(bundle);
+                replaceFragment(new LeituraTarefa());
+
             }
         });
 
@@ -55,6 +63,13 @@ public class TarefasFragment extends Fragment {
 
         AddTarefaFragment dialog = new AddTarefaFragment();
         dialog.show(getActivity().getSupportFragmentManager(), "oi2");
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
     }
 
 }
