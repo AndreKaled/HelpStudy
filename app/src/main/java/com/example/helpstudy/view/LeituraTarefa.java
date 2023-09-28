@@ -20,21 +20,29 @@ public class LeituraTarefa extends Fragment {
     private TextView tituloTarefa, descricaoTarefa, descricaoTexto, tituloData;
 
     private EditText data;
-    private String myStr;
+    private String tituloBundle, descricaoBundle, dataBundle;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_leitura_tarefa, container, false);
+        Bundle bundle = getArguments();
         tituloTarefa = view.findViewById(R.id.tituloTarefa);
         descricaoTarefa = view.findViewById(R.id.descricaoTarefa);
         descricaoTexto = view.findViewById(R.id.descricaoTexto);
         tituloData = view.findViewById(R.id.dataTarefa);
         data = view.findViewById(R.id.editTextDate);
-        myStr = getArguments().getString("my_key");
 
-        tituloTarefa.setText(myStr);
+       if(bundle != null){
 
+           tituloBundle = getArguments().getString("tituloTarefa");
+           descricaoBundle = getArguments().getString("descricaoTarefa");
+           dataBundle = getArguments().getString("dataTarefa");
+
+           tituloTarefa.setText(tituloBundle);
+           descricaoTexto.setText(descricaoBundle);
+           data.setText(dataBundle);
+       }
         return view;
     }
 }

@@ -20,6 +20,8 @@ import com.example.helpstudy.model.Tarefa;
 import com.example.helpstudy.utils.ROOT;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.checkerframework.checker.units.qual.A;
+
 public class TarefasFragment extends Fragment {
 //    fazer
     static ListView listView;
@@ -47,12 +49,14 @@ public class TarefasFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-//                Bundle bundle = new Bundle();
-//                bundle.putString("key", "titulomtlegal");
-//                LeituraTarefa fragmento = new LeituraTarefa();
-//                fragmento.setArguments(bundle);
-                replaceFragment(new LeituraTarefa());
-
+                Bundle bundle = new Bundle();
+                Tarefa tarefa = ControllerTarefas.getInstancia().buscarPorPosicao(i);
+                bundle.putString("tituloTarefa", tarefa.getNome());
+                bundle.putString("descricaoTarefa", tarefa.getDescricao());
+                bundle.putString("dataTarefa", tarefa.getDataEntrega());
+                LeituraTarefa fragmento = new LeituraTarefa();
+                fragmento.setArguments(bundle);
+                replaceFragment(fragmento);
             }
         });
 

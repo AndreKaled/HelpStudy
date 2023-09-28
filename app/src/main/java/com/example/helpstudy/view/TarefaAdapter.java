@@ -66,15 +66,15 @@ public class TarefaAdapter extends BaseAdapter {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
 
-                        if(menuItem.getItemId() == R.id.editar){
+                        if (menuItem.getItemId() == R.id.editar) {
 
                             Toast.makeText(bt.getContext(), "Editar", Toast.LENGTH_SHORT).show();
 
-                        } else if (menuItem.getItemId() == R.id.deletar){
+                        } else if (menuItem.getItemId() == R.id.deletar) {
 
                             Toast.makeText(bt.getContext(), "Deletar", Toast.LENGTH_SHORT).show();
 
-                        } else{
+                        } else {
 
                             Toast.makeText(bt.getContext(), "Erro", Toast.LENGTH_SHORT).show();
                         }
