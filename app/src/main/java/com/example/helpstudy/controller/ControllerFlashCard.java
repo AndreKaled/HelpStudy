@@ -1,72 +1,47 @@
 package com.example.helpstudy.controller;
 
-import com.example.helpstudy.datasource.DataSource;
+import android.content.Context;
+
+import com.example.helpstudy.datasource.Repository;
 import com.example.helpstudy.model.FlashCard;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ControllerFlashCard {
-    private int proxCodigo;
+    private Repository repository;
     private static ArrayList<FlashCard> lista = new ArrayList<>();
-    private static DataSource db = new DataSource();
     private static ControllerFlashCard instancia = null;
 
-    public ControllerFlashCard(){
-        db.consultarFlashcards();
-        proxCodigo = 1;
-    }
-    public int getProxCodigo(){
-        return proxCodigo;
+    public ControllerFlashCard(Context context){
+        repository = new Repository(context);
+        consultarFlashcards();
     }
 
-    public static ControllerFlashCard getInstancia(){
-        if (instancia == null)
-            instancia = new ControllerFlashCard();
-        return instancia;
+    public boolean cadastrar(String titulo, String resposta){
+        FlashCard f = new FlashCard();
+        f.setTitulo(titulo);
+        f.setDescricao(resposta);
+        boolean retorno = repository.adicionarFlashcard(f);
+        consultarFlashcards();
+        return retorno;
     }
-    public void cadastrar(String titulo, String resposta){
-        db.salvarFlashcard(titulo, resposta, proxCodigo);
+    public boolean atualizar(FlashCard flashCard){
+        boolean retorno = repository.atualizarFlashcard(flashCard);
+        consultarFlashcards();
+        return retorno;
     }
-    public boolean alterar(FlashCard flashCard){
-        for (int i = 0; i < lista.size(); i++) {
-            if (flashCard.getCodigo()==lista.get(i).getCodigo()){
-                lista.set(i, flashCard);
-                return true;
-            }
-        }
-        return false;
-    }
-    public int remover(FlashCard flashCard){
-        int cont = 0;
-        for (int i = 0; i < lista.size(); i++) {
-            if (flashCard.getCodigo()==lista.get(i).getCodigo()){
-                lista.remove(i);
-                cont += 1;
-            }
-        }
-        return cont;
+    public boolean remover(FlashCard flashCard){
+        boolean retorno = repository.deletarFlashcard(flashCard.getCodigo());
+        consultarFlashcards();
+        return retorno;
     }
     public ArrayList<FlashCard> buscarTodos(){
         return lista;
     }
 
-    public FlashCard buscarPorPosicao(int posicao){
-        return lista.get(posicao);
-    }
-
-    public FlashCard buscarPorcodigo(int codigo){
-
-        for (FlashCard flashCard : lista){
-            if (flashCard.getCodigo()==codigo)
-                return flashCard;
-        }
-        return null;
-    }
-
-    public void atualizarFlashcards(){
+    private void consultarFlashcards(){
         lista.clear();
-        db.consultarFlashcards();
+        repository.buscarFlashcards();
     }
 
     public static void add(FlashCard flashCard){
@@ -74,7 +49,4 @@ public class ControllerFlashCard {
         System.out.println("AA " +lista);
     }
 
-    public static void passarLista(ArrayList<FlashCard> arrayList){
-        lista = arrayList;
-    }
 }

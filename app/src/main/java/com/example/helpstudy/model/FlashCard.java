@@ -2,7 +2,7 @@ package com.example.helpstudy.model;
 
 public class FlashCard {
     String titulo, descricao;
-    int codigo;
+    long codigo;
 
     public FlashCard(){}
 
@@ -22,11 +22,11 @@ public class FlashCard {
         return descricao;
     }
 
-    public int getCodigo() {
+    public long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
 
@@ -34,4 +34,5 @@ public class FlashCard {
     public String toString() {
         return "Titulo: " + titulo + '\'' + "Descrição: " + descricao + '\'' + "Código:" + codigo;
     }
+
 }

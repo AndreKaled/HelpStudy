@@ -14,9 +14,9 @@ public class ROOT {
     public ROOT(Context context){
         this.context = context;
     }
-    public static void buscarTudo(){
+    public void buscarTudo(){
         ControllerListas.getInstancia();
-        ControllerFlashCard.getInstancia();
+        new ControllerFlashCard(context);
     }
 
     public void sincListas(){

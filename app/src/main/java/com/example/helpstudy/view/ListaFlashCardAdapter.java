@@ -24,7 +24,7 @@ public class ListaFlashCardAdapter extends BaseAdapter {
 
     public ListaFlashCardAdapter(Context context){
         this.context = context;
-        ControllerFlashCard controllerFlashCard = ControllerFlashCard.getInstancia();
+        ControllerFlashCard controllerFlashCard = new ControllerFlashCard(context);
         this.flashCards = controllerFlashCard.buscarTodos();
     }
 
@@ -47,7 +47,6 @@ public class ListaFlashCardAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup parent) {
         View v = LayoutInflater.from(context).inflate(R.layout.item_lista_flashcards, parent, false);
 
-        ControllerFlashCard controllerFlashCard = ControllerFlashCard.getInstancia();
         TextView textView_titulo = v.findViewById(R.id.tituloCard);
         TextView textViewDescricao = v.findViewById(R.id.descricaoCard);
         Button bt = v.findViewById(R.id.menu_kebad);

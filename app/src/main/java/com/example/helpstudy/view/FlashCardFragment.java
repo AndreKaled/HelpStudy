@@ -41,7 +41,7 @@ public class FlashCardFragment extends Fragment {
                 getContext(), android.R.layout.simple_list_item_1, listfla
         );
 
-        listfla = ControllerFlashCard.getInstancia().buscarTodos();
+        listfla = new ControllerFlashCard(getContext()).buscarTodos();
         listViewFlashCard.setAdapter(new ListaFlashCardAdapter(getContext()));
         btCriar.setOnClickListener(new View.OnClickListener() {
             @Override

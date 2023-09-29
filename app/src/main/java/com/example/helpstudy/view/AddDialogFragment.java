@@ -18,13 +18,13 @@ import com.example.helpstudy.utils.ROOT;
 public class AddDialogFragment extends DialogFragment {
 
     private View view;
-    private ControllerFlashCard controleFlashCard = ControllerFlashCard.getInstancia();
+    private ControllerFlashCard controllerFlashCard;
     private Button bt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        controllerFlashCard = new ControllerFlashCard(getContext());
         return inflater.inflate(R.layout.dialog_create, container, false);
 
     }
@@ -53,7 +53,7 @@ public class AddDialogFragment extends DialogFragment {
 
                 resposta = viewResposta.getText().toString();
 
-                controleFlashCard.cadastrar(titulo, resposta);
+                controllerFlashCard.cadastrar(titulo, resposta);
 
                 dismiss();
             }

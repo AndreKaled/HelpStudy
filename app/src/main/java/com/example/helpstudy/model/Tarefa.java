@@ -3,7 +3,8 @@ package com.example.helpstudy.model;
 public class Tarefa {
     //fazer
 
-    private String nome, descricao, dataEntrega, id;
+    private String nome, descricao, dataEntrega;
+    private long id;
     private boolean concluida;
     public Tarefa() {
     }
@@ -32,11 +33,11 @@ public class Tarefa {
         this.concluida = concluida;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -58,4 +59,5 @@ public class Tarefa {
                 ", concluida=" + concluida +
                 '}';
     }
+
 }

@@ -8,12 +8,12 @@ public class DataLocal extends SQLiteOpenHelper {
 
     private static final String NAME_DATA_LOCAL = "HelpStudy";
     private static final int VERSION = 1;
-    public static final String TABELA_FLASHCARDS = "Flashcards";
-    public static final String TITULO_FLASHCARD = "tituloFlashcard", DESCRICAO_FLASHCARD = "descricaoFlashcard", ID_FLASHCARD = "idFlashcard";
-    public static final String TABELA_LISTAS ="Listas";
-    public static final String TITULO_LISTA = "tituloLista", ID_LISTA = "idLista";
-    public static final String TABELA_TAREFAS = "Tarefas";
-    public static final String ID_TAREFA = "idTarefa", NOME_TAREFA = "tituloTarefa", DESCRICAO_TAREFA = "descricaoTarefa", CHAVE_ESTRANGEIRA_TAREFA = "lista",
+    public final String TABELA_FLASHCARDS = "Flashcards";
+    public final String TITULO_FLASHCARD = "tituloFlashcard", DESCRICAO_FLASHCARD = "descricaoFlashcard", ID_FLASHCARD = "idFlashcard";
+    public final String TABELA_LISTAS ="Listas";
+    public final String TITULO_LISTA = "tituloLista", ID_LISTA = "idLista";
+    public final String TABELA_TAREFAS = "Tarefas";
+    public final String ID_TAREFA = "idTarefa", NOME_TAREFA = "tituloTarefa", DESCRICAO_TAREFA = "descricaoTarefa", CHAVE_ESTRANGEIRA_TAREFA = "lista",
     DATA_ENTREGA_TAREFA = "dataEntrega", CONCLUIDA_TAREFA = "concluida";
 
 

@@ -268,10 +268,10 @@ public class DataSource {
         tarefa.setDescricao(desc);
         tarefa.setDataEntrega(dataEntrega);
         tarefa.setConcluida(concluida);
-        tarefa.setId(nome);
+        tarefa.setId(Long.parseLong(nome));
         tarefaRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS).document(ControllerTarefas.getListaSelecionada()).collection(COLECAO_TAREFAS);
 
-        tarefaRef.document(tarefa.getId()).set(tarefa).addOnSuccessListener(new OnSuccessListener<Void>() {
+        tarefaRef.document(String.valueOf(tarefa.getId())).set(tarefa).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Log.i(TAG, COLECAO_TAREFAS + "-> registrado com sucesso! " + tarefa);

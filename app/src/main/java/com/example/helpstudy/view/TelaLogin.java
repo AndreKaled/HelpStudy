@@ -34,7 +34,7 @@ public class TelaLogin extends AppCompatActivity {
         pref = new Preferencias(getApplicationContext());
         if(pref.getEmailUsuario() != null){
             ControllerUsuario.setIdUsuario(pref.getIdUsuario());
-            com.example.helpstudy.utils.ROOT.buscarTudo();
+            new ROOT(getApplicationContext()).buscarTudo();
             Intent intent = new Intent(TelaLogin.this, MainActivity.class);
             startActivity(intent);
         }else{
@@ -88,7 +88,7 @@ public class TelaLogin extends AppCompatActivity {
             pref.editEmailUsuario(textEmail.getText().toString());
             pref.editSenhaUsuario(textSenha.getText().toString());
             pref.editIdUsuario(usuario.getId());
-            com.example.helpstudy.utils.ROOT.buscarTudo();
+            new ROOT(getApplicationContext()).buscarTudo();
 
             Intent intent = new Intent(TelaLogin.this, MainActivity.class);
             startActivity(intent);
