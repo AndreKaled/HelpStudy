@@ -54,6 +54,8 @@ public class ListaFlashCardAdapter extends BaseAdapter {
         textView_titulo.setText(flashCard.getTitulo());
         textViewDescricao.setText(flashCard.getDescricao());
 
+        ControllerFlashCard controllerFlashCard = new ControllerFlashCard(context);
+
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,6 +63,7 @@ public class ListaFlashCardAdapter extends BaseAdapter {
                 PopupMenu popupMenu = new PopupMenu(bt.getContext(), bt);
 
                 popupMenu.getMenuInflater().inflate(R.menu.menu_popup, popupMenu.getMenu());
+
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
@@ -71,6 +74,12 @@ public class ListaFlashCardAdapter extends BaseAdapter {
                             Toast.makeText(bt.getContext(), "Editar", Toast.LENGTH_SHORT).show();
 
                         } else if (menuItem.getItemId() == R.id.deletar){
+
+
+
+                            controllerFlashCard.remover(flashCard);
+                            controllerFlashCard.atualizarFlash();
+
 
                             Toast.makeText(bt.getContext(), "Deletar", Toast.LENGTH_SHORT).show();
 

@@ -2,13 +2,17 @@ package com.example.helpstudy.controller;
 
 import android.content.Context;
 
+import com.example.helpstudy.datasource.DataSource;
 import com.example.helpstudy.datasource.Repository;
 import com.example.helpstudy.model.FlashCard;
+import com.example.helpstudy.utils.ROOT;
 
 import java.util.ArrayList;
 
 public class ControllerFlashCard {
     private Repository repository;
+
+    private DataSource db = new DataSource();
     private static ArrayList<FlashCard> lista = new ArrayList<>();
     private static ControllerFlashCard instancia = null;
 
@@ -30,6 +34,12 @@ public class ControllerFlashCard {
         consultarFlashcards();
         return retorno;
     }
+
+    public void atualizarFlash(){
+        lista.clear();
+        db.consultarFlashcards();
+    }
+
     public boolean remover(FlashCard flashCard){
         boolean retorno = repository.deletarFlashcard(flashCard.getCodigo());
         consultarFlashcards();

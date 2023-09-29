@@ -25,7 +25,6 @@ public class TelaLogin extends AppCompatActivity {
     private EditText textEmail, textSenha;
     private View textCadastro;
     private Preferencias pref;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -3,7 +3,11 @@ package com.example.helpstudy.view;
 import static android.content.Context.MODE_PRIVATE;
 import static android.content.Context.SENSOR_SERVICE;
 
+import static java.lang.System.in;
+
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -66,6 +70,7 @@ public class CronometroFragment extends Fragment {
         mButtonReset = view.findViewById(R.id.button_reset);
         mMusic = view.findViewById(R.id.button_music);
         musica = new Musica(getContext());
+
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +85,8 @@ public class CronometroFragment extends Fragment {
         mButtonReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 resetTimer();
             }
         });
@@ -138,6 +145,9 @@ public class CronometroFragment extends Fragment {
             //mButtonStartPause.setText("Pause");
             mButtonStartPause.setImageResource(R.drawable.stop);
             mMusic.setEnabled(true);
+            mButtonReset.setEnabled(false);
+            mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryVariant)));
+            mMusic.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
             musica.startMusic();
             mMusic.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -147,11 +157,16 @@ public class CronometroFragment extends Fragment {
                     if(musica.startPause() == true){
 
                         mMusic.setImageResource(R.drawable.music_off);
+                        mMusic.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
+                        mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryVariant)));
+
                         //musica.pauseMusic();
 
                     }else{
 
                         mMusic.setImageResource(R.drawable.music);
+                        mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryVariant)));
+                        mMusic.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
                         //musica.startMusic();
                     }
                 }
@@ -160,17 +175,18 @@ public class CronometroFragment extends Fragment {
         } else {
             //mButtonStartPause.setText("Start");
             mButtonStartPause.setImageResource(R.drawable.play);
-            mButtonReset.setEnabled(false);
+            mButtonReset.setEnabled(true);
+            mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
+            mMusic.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryVariant)));
             mMusic.setEnabled(false);
 
-
-            mButtonReset.setBackgroundColor(getResources().getColor(R.color.secondaryVariant));
-            mMusic.setBackgroundColor(getResources().getColor(R.color.secondaryVariant));
             musica.pauseMusic();
             if (mTimeLeftInMillis < START_TIME_IN_MILLIS) {
                 mButtonReset.setEnabled(true);
+                mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
             } else {
                 mButtonReset.setEnabled(false);
+                mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryVariant)));
             }
         }
     }

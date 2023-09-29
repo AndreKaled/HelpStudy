@@ -22,7 +22,7 @@ import java.util.List;
 public class AddTarefaFragment extends DialogFragment {
 
     private View view;
-    private ControllerTarefas controlerTarefas = ControllerTarefas.getInstancia();
+    private ControllerTarefas controlerTarefas;
     private Button bt;
 
     @Override
@@ -38,6 +38,9 @@ public class AddTarefaFragment extends DialogFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
+
+
+        controlerTarefas = ControllerTarefas.getInstancia();
 
         bt = view.findViewById(R.id.idDialogList);
         bt.setOnClickListener(new View.OnClickListener() {
