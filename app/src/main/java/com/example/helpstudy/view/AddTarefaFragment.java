@@ -40,7 +40,7 @@ public class AddTarefaFragment extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        controlerTarefas = ControllerTarefas.getInstancia();
+        controlerTarefas = new ControllerTarefas(getContext());
 
         bt = view.findViewById(R.id.idDialogList);
         bt.setOnClickListener(new View.OnClickListener() {
@@ -61,18 +61,12 @@ public class AddTarefaFragment extends DialogFragment {
                 descricao = viewDescricao.getText().toString();
 
                 controlerTarefas.cadastrar(titulo,descricao, null, false);
-                controlerTarefas.atualizarTarefas();
-                update();
 
                 dismiss();
             }
         });
 
 
-    }
-
-    private void update(){
-        new ROOT(getContext()).sincTarefas();
     }
 
 }

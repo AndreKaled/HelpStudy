@@ -50,7 +50,7 @@ public class TarefasFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 Bundle bundle = new Bundle();
-                Tarefa tarefa = ControllerTarefas.getInstancia().buscarPorPosicao(i);
+                Tarefa tarefa = new ControllerTarefas(getContext()).buscarPorPosicao(i);
                 bundle.putString("tituloTarefa", tarefa.getNome());
                 bundle.putString("descricaoTarefa", tarefa.getDescricao());
                 bundle.putString("dataTarefa", tarefa.getDataEntrega());

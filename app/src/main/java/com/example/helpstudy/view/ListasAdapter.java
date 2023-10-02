@@ -25,10 +25,11 @@ public class ListasAdapter extends BaseAdapter {
 
     static Context context;
     static List<Listas> listas;
+    private ControllerListas controllerListas;
 
     public ListasAdapter(Context context){
         this.context = context;
-        ControllerListas controllerListas = ControllerListas.getInstancia();
+        controllerListas = new ControllerListas(context);
         this.listas = controllerListas.buscarTodos();
     }
 
@@ -50,7 +51,6 @@ public class ListasAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        ControllerListas controllerListas = ControllerListas.getInstancia();
 
         View v = LayoutInflater.from(context).inflate(R.layout.itens_listas, parent, false);
 
@@ -79,8 +79,7 @@ public class ListasAdapter extends BaseAdapter {
 
 
                             controllerListas.remover(list);
-                            controllerListas.atualizarLista();
-                            new ROOT(bt.getContext()).sincListas();
+
                             Toast.makeText(bt.getContext(), "Editar deletar", Toast.LENGTH_SHORT).show();
 
                         } else{

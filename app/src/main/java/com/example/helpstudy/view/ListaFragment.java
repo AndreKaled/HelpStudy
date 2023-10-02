@@ -60,8 +60,7 @@ public class ListaFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ControllerTarefas.setListaSelecionada(ControllerListas.buscarPorPosicao(i).getId());
-                ControllerTarefas.getInstancia();
-                new ROOT(getContext()).sincTarefas();
+                new ControllerTarefas(getContext());
                 replaceFragment(new TarefasFragment());
             }
 

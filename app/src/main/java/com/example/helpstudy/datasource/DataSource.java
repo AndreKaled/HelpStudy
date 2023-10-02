@@ -42,7 +42,6 @@ public class DataSource {
 
         Listas listasarray = new Listas();
         listasarray.setTitulo(titulo);
-        listasarray.setId(titulo);
 
         listasRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS);
 
@@ -269,7 +268,7 @@ public class DataSource {
         tarefa.setDataEntrega(dataEntrega);
         tarefa.setConcluida(concluida);
         tarefa.setId(Long.parseLong(nome));
-        tarefaRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS).document(ControllerTarefas.getListaSelecionada()).collection(COLECAO_TAREFAS);
+        tarefaRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS).document(String.valueOf(ControllerTarefas.getListaSelecionada())).collection(COLECAO_TAREFAS);
 
         tarefaRef.document(String.valueOf(tarefa.getId())).set(tarefa).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -286,7 +285,7 @@ public class DataSource {
     }
 
     public void consultarTarefas(){
-        tarefaRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS).document(ControllerTarefas.getListaSelecionada()).collection(COLECAO_TAREFAS);
+        tarefaRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS).document(String.valueOf(ControllerTarefas.getListaSelecionada())).collection(COLECAO_TAREFAS);
 
         tarefaRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override

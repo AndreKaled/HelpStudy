@@ -18,13 +18,13 @@ import com.example.helpstudy.utils.ROOT;
 public class AddListFragment extends DialogFragment {
 
     private View view;
-    private ControllerListas controlerLista = ControllerListas.getInstancia();
+    private ControllerListas controlerLista;
     private Button bt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        controlerLista = new ControllerListas(getContext());
         return inflater.inflate(R.layout.dialog_create_list, container, false);
 
     }
@@ -54,10 +54,6 @@ public class AddListFragment extends DialogFragment {
                 descricao = viewDescricao.getText().toString();
 
                 controlerLista.cadastrar(titulo);
-
-                controlerLista.atualizarLista();
-
-                new ROOT(getContext()).sincListas();
 
                 dismiss();
             }

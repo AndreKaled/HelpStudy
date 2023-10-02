@@ -23,10 +23,11 @@ public class TarefaAdapter extends BaseAdapter {
 
     static Context context;
     static List<Tarefa> list;
+    private ControllerTarefas controllerTarefas;
 
     public TarefaAdapter(Context context){
         this.context = context;
-        ControllerTarefas controllerTarefas = ControllerTarefas.getInstancia();
+        controllerTarefas = new ControllerTarefas(context);
         this.list = controllerTarefas.buscarTodos();
     }
     @Override

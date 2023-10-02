@@ -30,7 +30,7 @@ public class Repository {
         Cursor c = db.rawQuery(sql, null);
         while(c.moveToNext()){
             Listas l = new Listas();
-            l.setId(String.valueOf(c.getLong(0)));
+            l.setId(c.getLong(0));
             l.setTitulo(c.getString(1));
             ControllerListas.add(l);
         }
@@ -147,7 +147,7 @@ public class Repository {
 
         values.put(data.TITULO_LISTA, lista.getTitulo());
 
-        return db.update(data.TABELA_LISTAS, values," WHERE " +data.ID_LISTA +" = ?", new String[]{lista.getId()}) != -1 ? true : false;
+        return db.update(data.TABELA_LISTAS, values," WHERE " +data.ID_LISTA +" = ?", new String[]{String.valueOf(lista.getId())}) != -1 ? true : false;
     }
 
     public boolean atualizarFlashcard(FlashCard flashcard){

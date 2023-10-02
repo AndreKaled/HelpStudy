@@ -3,7 +3,7 @@ package com.example.helpstudy.model;
 public class Listas {
 
     private String titulo;
-    private String id;
+    private long id;
 
     public Listas(){}
 
@@ -20,11 +20,11 @@ public class Listas {
         return titulo;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
