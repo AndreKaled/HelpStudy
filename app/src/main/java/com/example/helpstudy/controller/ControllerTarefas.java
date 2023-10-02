@@ -21,7 +21,7 @@ public class ControllerTarefas {
 
     public ControllerTarefas(Context context){
         repository = new Repository(context);
-        repository.buscarTarefas(listaSelecionada);
+        atualizarTarefas();
     }
 
     public void cadastrar(String nome, String descricao, String dataEntrega, boolean concluida){
@@ -39,7 +39,7 @@ public class ControllerTarefas {
         return resposta;
     }
     public boolean remover(Tarefa tarefa){
-        boolean resposta = repository.deletarTarefa(tarefa.getId(), listaSelecionada);
+        boolean resposta = repository.deletarTarefa(listaSelecionada, tarefa.getId());
         atualizarTarefas();
         return resposta;
     }

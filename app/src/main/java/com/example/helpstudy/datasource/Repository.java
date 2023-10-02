@@ -89,8 +89,9 @@ public class Repository {
 
     public boolean deletarTarefa(long idLista,long idTarefa){
         SQLiteDatabase db = data.getWritableDatabase();
+        String[] args = {String.valueOf(idTarefa), String.valueOf(idLista)};
         int i = db.delete(data.TABELA_TAREFAS, data.ID_TAREFA +" = ? AND "
-                +data.ID_LISTA +" = ? ", new String[]{String.valueOf(idTarefa), String.valueOf(idLista)});
+                +data.ID_LISTA +" = ? ", args);
         if(i != 0)
             return true;
         return false;

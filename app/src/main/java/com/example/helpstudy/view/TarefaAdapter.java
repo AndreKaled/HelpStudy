@@ -74,6 +74,8 @@ public class TarefaAdapter extends BaseAdapter {
                         } else if (menuItem.getItemId() == R.id.deletar) {
 
                             Toast.makeText(bt.getContext(), "Deletar", Toast.LENGTH_SHORT).show();
+                            Tarefa t = controllerTarefas.buscarPorPosicao(position);
+                            controllerTarefas.remover(t);
 
                         } else {
 
