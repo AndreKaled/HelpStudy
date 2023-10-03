@@ -1,16 +1,20 @@
 package com.example.helpstudy.view;
 
 import android.app.Dialog;
+import android.os.BaseBundle;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -51,12 +55,33 @@ public class FlashCardFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+
+        listViewFlashCard.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Bundle args = new Bundle();
+                FlashCard flashCard = new ControllerFlashCard(getContext()).buscarPorPosicao(i);
+                args.putString("front", flashCard.getTitulo());
+                args.putString("back", flashCard.getDescricao());
+                ViewFlashCardFragment fragment = new ViewFlashCardFragment();
+                fragment.setArguments(args);
+                replaceFragment(fragment);
+            }
+        });
         return view;
     }
     private void abrirModal() {
 
         AddDialogFragment dialog = new AddDialogFragment();
         dialog.show(getActivity().getSupportFragmentManager(), "oi");
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
     }
 
 }

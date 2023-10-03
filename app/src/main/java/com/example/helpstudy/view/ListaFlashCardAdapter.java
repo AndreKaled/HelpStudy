@@ -48,11 +48,11 @@ public class ListaFlashCardAdapter extends BaseAdapter {
         View v = LayoutInflater.from(context).inflate(R.layout.item_lista_flashcards, parent, false);
 
         TextView textView_titulo = v.findViewById(R.id.tituloCard);
-        TextView textViewDescricao = v.findViewById(R.id.descricaoCard);
+
+
         Button bt = v.findViewById(R.id.menu_kebad);
         FlashCard flashCard = flashCards.get(position);
         textView_titulo.setText(flashCard.getTitulo());
-        textViewDescricao.setText(flashCard.getDescricao());
 
         ControllerFlashCard controllerFlashCard = new ControllerFlashCard(context);
 
@@ -75,12 +75,8 @@ public class ListaFlashCardAdapter extends BaseAdapter {
 
                         } else if (menuItem.getItemId() == R.id.deletar){
 
-
-
                             controllerFlashCard.remover(flashCard);
                             controllerFlashCard.atualizarFlash();
-
-
                             Toast.makeText(bt.getContext(), "Deletar", Toast.LENGTH_SHORT).show();
 
                         } else{

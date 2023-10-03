@@ -53,6 +53,11 @@ public class ControllerFlashCard {
         repository.buscarFlashcards();
     }
 
+    public FlashCard buscarPorPosicao(int posicao){
+
+        return lista.get(posicao);
+    }
+
     public static void add(FlashCard flashCard){
         lista.add(flashCard);
         System.out.println("AA " +lista);
