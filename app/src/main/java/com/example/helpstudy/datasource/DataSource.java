@@ -126,7 +126,7 @@ public class DataSource {
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(@NonNull Exception e) {
+            public void onFailure(@NonNull Exception e)  {
                 Log.w(TAG, COLECAO_FLASHCARDS + "-> não foi registrado com sucesso");
                 e.printStackTrace();
             }

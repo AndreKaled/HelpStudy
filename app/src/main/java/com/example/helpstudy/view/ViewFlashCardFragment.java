@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,10 @@ public class ViewFlashCardFragment extends Fragment {
     TextView textFront, textBack, textInstrucao;
     String bundleFront, bundleBack;
     View view;
+
+    Handler handler;
+
+    Boolean canClick = true;
     FloatingActionButton fb;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +40,7 @@ public class ViewFlashCardFragment extends Fragment {
         textBack = view.findViewById(R.id.back_card);
         textInstrucao = view.findViewById(R.id.textoInstrucao);
         fb = view.findViewById(R.id.btvoltar);
+        handler = new Handler();
         //pegar o texto vindo do flashcard
         if(bundle != null){
 
@@ -58,24 +64,39 @@ public class ViewFlashCardFragment extends Fragment {
         backanim = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.animator.back_animator);
 
         textFront.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
 
-                if(isFront){
+                if(canClick){
 
-                    frontanim.setTarget(card_front);
-                    backanim.setTarget(card_back);
-                    frontanim.start();
-                    backanim.start();
-                    isFront= false;
-                }else{
 
-                    frontanim.setTarget(card_back);
-                    backanim.setTarget(card_front);
-                    backanim.start();
-                    frontanim.start();
-                    isFront = true;
+                    if(isFront){
 
+                        frontanim.setTarget(card_front);
+                        backanim.setTarget(card_back);
+                        frontanim.start();
+                        backanim.start();
+                        isFront= false;
+                    }else{
+
+                        frontanim.setTarget(card_back);
+                        backanim.setTarget(card_front);
+                        backanim.start();
+                        frontanim.start();
+                        isFront = true;
+
+                    }
+
+                    canClick = false;
+
+
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            canClick = true;
+                        }
+                    }, 1500 );
                 }
             }
         });

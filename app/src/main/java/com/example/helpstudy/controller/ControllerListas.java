@@ -33,6 +33,7 @@ public class ControllerListas {
         repository.adicionarLista(lista);
         atualizarLista();
     }
+
     public boolean atualizar(Listas listas){
         boolean retorno = repository.atualizarLista(listas);
         atualizarLista();

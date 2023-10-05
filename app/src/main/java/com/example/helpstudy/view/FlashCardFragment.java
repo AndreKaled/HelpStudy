@@ -76,12 +76,10 @@ public class FlashCardFragment extends Fragment {
         AddDialogFragment dialog = new AddDialogFragment();
         dialog.show(getActivity().getSupportFragmentManager(), "oi");
     }
-
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
-
 }
