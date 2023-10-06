@@ -15,8 +15,6 @@ public class ControllerListas {
     private static ControllerListas instancia = null;
     private String selecaoId;
 
-    private DataSource db = new DataSource();
-
     public ControllerListas(Context context){
         repository = new Repository(context);
         consultaListas();
@@ -31,7 +29,7 @@ public class ControllerListas {
         Listas lista = new Listas();
         lista.setTitulo(titulo);
         repository.adicionarLista(lista);
-        atualizarLista();
+       atualizarLista();
     }
 
     public boolean atualizar(Listas listas){

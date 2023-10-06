@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 public class ControllerFlashCard {
     private Repository repository;
-    private DataSource db = new DataSource();
     private static ArrayList<FlashCard> lista = new ArrayList<>();
     private static ControllerFlashCard instancia = null;
 
@@ -36,7 +35,7 @@ public class ControllerFlashCard {
 
     public void atualizarFlash(){
         lista.clear();
-        db.consultarFlashcards();
+        repository.buscarFlashcards();
     }
 
     public boolean remover(FlashCard flashCard){

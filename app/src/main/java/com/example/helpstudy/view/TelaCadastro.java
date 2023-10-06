@@ -19,7 +19,7 @@ public class TelaCadastro extends AppCompatActivity {
     EditText textNome, textEmail, textDataNasc, textSenha;
     String nome, email, dataNasc, senha;
 
-    private ControllerUsuario controllerUsuario = ControllerUsuario.getInstancia();
+    private ControllerUsuario controllerUsuario = ControllerUsuario.getInstancia(getApplicationContext());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

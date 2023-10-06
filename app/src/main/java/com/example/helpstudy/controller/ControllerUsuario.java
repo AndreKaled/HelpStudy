@@ -1,5 +1,6 @@
 package com.example.helpstudy.controller;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.example.helpstudy.datasource.DataSource;
@@ -12,17 +13,18 @@ public class ControllerUsuario {
 
     private static String idUsuario;
     private final List<Usuario> lista;
-    private DataSource db = new DataSource();
+    private DataSource db;
     private static ControllerUsuario instancia = null;
 
-    private ControllerUsuario() throws Exception {
+    private ControllerUsuario(Context context) throws Exception {
+        db = new DataSource(context);
         lista = db.consultaUsuarios();
     }
 
-    public static ControllerUsuario getInstancia() {
+    public static ControllerUsuario getInstancia(Context context) {
         if (instancia == null) {
             try {
-                instancia = new ControllerUsuario();
+                instancia = new ControllerUsuario(context);
             } catch (Exception e) {
                 e.printStackTrace();
             }

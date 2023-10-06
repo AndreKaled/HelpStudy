@@ -15,8 +15,6 @@ public class ControllerTarefas {
     private Repository repository;
     private static List<Tarefa> lista = new ArrayList<>();
     private static ControllerTarefas instancia = null;
-
-    private DataSource db = new DataSource();
     private static long listaSelecionada;
 
     public ControllerTarefas(Context context){

@@ -37,7 +37,7 @@ public class TelaLogin extends AppCompatActivity {
             Intent intent = new Intent(TelaLogin.this, MainActivity.class);
             startActivity(intent);
         }else{
-            ControllerUsuario.getInstancia();
+            ControllerUsuario.getInstancia(getApplicationContext());
 
             textCadastro = findViewById(R.id.textoLogin);
             textEmail = findViewById(R.id.login_email);
@@ -68,7 +68,7 @@ public class TelaLogin extends AppCompatActivity {
 
     private void validarUsuario() throws Exception {
         Usuario usuario;
-        usuario = ControllerUsuario.getInstancia().buscarPorEmail(textEmail.getText().toString());
+        usuario = ControllerUsuario.getInstancia(getApplicationContext()).buscarPorEmail(textEmail.getText().toString());
         if (usuario == null) {
             textEmail.setError("Email não encontrado!");
         }

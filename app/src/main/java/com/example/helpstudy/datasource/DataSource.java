@@ -1,5 +1,7 @@
 package com.example.helpstudy.datasource;
 
+import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -34,147 +36,38 @@ public class DataSource {
     private CollectionReference usuarioRef = dataBase.collection(COLECAO_USUARIOS);
     private CollectionReference flashcardRef;
     private CollectionReference listasRef, tarefaRef;
+    private Context context;
+    private Repository repository;
+
+    public DataSource(Context context){
+        this.context = context;
+        repository = new Repository(context);
+    }
 
 
-    //CRUD LISTAS
+    public void excluirLista(String id){
+        Log.i(TAG,COLECAO_LISTAS +"-> excluindo lista " +id);
+        listasRef.document(id).delete();
+    }
 
-    public void salvarListas(String titulo){
-
-        Listas listasarray = new Listas();
-        listasarray.setTitulo(titulo);
-
-        listasRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS);
-
-        listasRef.document(titulo).set(listasarray).addOnCompleteListener(new OnCompleteListener<Void>() {
+    public void consultarFlashcards(){
+        flashcardRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_FLASHCARDS);
+        flashcardRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Log.i(TAG, COLECAO_LISTAS + "-> registrado com sucesso!" + listasarray);
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                    FlashCard flashCard = documentSnapshot.toObject(FlashCard.class);
+                    new ControllerFlashCard(context).cadastrar(flashCard.getTitulo(), flashCard.getDescricao());
+                }
+                Log.i(TAG, COLECAO_FLASHCARDS + "-> Query feita!");
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w(TAG, COLECAO_LISTAS + "-> não foi registrado com sucesso");
+                Log.e(TAG, COLECAO_FLASHCARDS + "-> Erro ao executar Query!");
                 e.printStackTrace();
             }
         });
-    }
-
-
-    public void consultarListas(){
-            final ExecutorService threadpool = Executors.newFixedThreadPool(3);
-
-            class Result implements Callable<ArrayList>{
-
-                @Override
-                public ArrayList call() throws Exception {
-
-                    ArrayList<Listas> list = new ArrayList<>();
-                    listasRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS);
-                    listasRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                                Listas listas = documentSnapshot.toObject(Listas.class);
-                                ControllerListas.add(listas);
-                            }
-                            Log.i(TAG, COLECAO_LISTAS + "-> Query realizada com sucesso!");
-                        }
-
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.e(TAG, "açargsed");
-                            Log.e(TAG, COLECAO_LISTAS + "-> Erro ao executar Query no Banco");
-                            e.printStackTrace();
-                        }
-                    });
-                    return null;
-                }
-            }
-
-            try{
-                Result task = new Result();
-                Future<ArrayList> future = threadpool.submit(task);
-                while(!future.isDone()){
-                    Log.i(TAG, COLECAO_LISTAS +" -> Buscando no BD...");
-                    Thread.sleep(1);
-                }
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-        }
-        public void excluirLista(String id){
-
-            Log.i(TAG,COLECAO_LISTAS +"-> excluindo lista " +id);
-            listasRef.document(id).delete();
-        }
-
-
-
-    //CRUD dos FLASHCARDS
-    public void salvarFlashcard(String titulo, String descricao,  int codigo) {
-        FlashCard flashCard = new FlashCard();
-        flashCard.setTitulo(titulo);
-        flashCard.setDescricao(descricao);
-        flashCard.setCodigo(codigo);
-
-        flashcardRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_FLASHCARDS);
-        flashcardRef.document(titulo).set(flashCard).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Log.i(TAG, COLECAO_FLASHCARDS + "-> registrado com sucesso!" + flashCard);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e)  {
-                Log.w(TAG, COLECAO_FLASHCARDS + "-> não foi registrado com sucesso");
-                e.printStackTrace();
-            }
-        });
-    }
-    public void consultarFlashcards(){
-        final ExecutorService threadpool = Executors.newFixedThreadPool(3);
-
-        class Result implements Callable<ArrayList>{
-
-            @Override
-            public ArrayList call() throws Exception {
-
-                ArrayList<FlashCard> list = new ArrayList<>();
-                flashcardRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_FLASHCARDS);
-                flashcardRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                            FlashCard flashCard = documentSnapshot.toObject(FlashCard.class);
-                            //flashCard.setCodigo(Integer.parseInt(documentSnapshot.getId()));
-                            ControllerFlashCard.add(flashCard);
-                        }
-                        Log.i(TAG, COLECAO_FLASHCARDS + "-> Query realizada com sucesso!");
-                    }
-
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "açargsed");
-                        Log.e(TAG, COLECAO_FLASHCARDS + "-> Erro ao executar Query no Banco");
-                        e.printStackTrace();
-                    }
-                });
-                return null;
-            }
-        }
-
-        try{
-            Result task = new Result();
-            Future<ArrayList> future = threadpool.submit(task);
-            while(!future.isDone()){
-                Log.i(TAG, COLECAO_FLASHCARDS +" -> Buscando no BD...");
-                Thread.sleep(1);
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-        }
     }
 
     //CRUD dos USUARIOS
@@ -261,29 +154,6 @@ public class DataSource {
         });
     }
 
-    public void salvarTarefa(String nome, String desc, String dataEntrega, boolean concluida){
-        Tarefa tarefa = new Tarefa();
-        tarefa.setNome(nome);
-        tarefa.setDescricao(desc);
-        tarefa.setDataEntrega(dataEntrega);
-        tarefa.setConcluida(concluida);
-        tarefa.setId(Long.parseLong(nome));
-        tarefaRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS).document(String.valueOf(ControllerTarefas.getListaSelecionada())).collection(COLECAO_TAREFAS);
-
-        tarefaRef.document(String.valueOf(tarefa.getId())).set(tarefa).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Log.i(TAG, COLECAO_TAREFAS + "-> registrado com sucesso! " + tarefa);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e(TAG, COLECAO_TAREFAS + "-> tarefa não registrada");
-                e.printStackTrace();
-            }
-        });
-    }
-
     public void consultarTarefas(){
         tarefaRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS).document(String.valueOf(ControllerTarefas.getListaSelecionada())).collection(COLECAO_TAREFAS);
 
@@ -292,17 +162,170 @@ public class DataSource {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                     Tarefa tarefa = documentSnapshot.toObject(Tarefa.class);
-                    ControllerTarefas.add(tarefa);
-                    Log.i(TAG, COLECAO_TAREFAS +"-> Query realizada com sucesso!" +tarefa);
+                    new ControllerTarefas(context).cadastrar(tarefa.getNome(), tarefa.getDescricao(), tarefa.getDataEntrega(),
+                            tarefa.isConcluida());
+                    Log.i(TAG, COLECAO_TAREFAS +"-> Query feita!");
                 }
 
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.e(TAG, COLECAO_TAREFAS +"-> Erro ao executar Query no Banco");
+                Log.e(TAG, COLECAO_TAREFAS +"-> Erro ao executar Query!");
                 e.printStackTrace();
             }
         });
+    }
+
+    public void fazerBackup(){
+        class FazBackupLista extends AsyncTask<Listas, Void, Void> {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected Void doInBackground(Listas... listas) {
+                listasRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS);
+
+                for (Listas l : listas) {
+                    listasRef.document(String.valueOf(l.getId())).set(l).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.i(TAG, COLECAO_LISTAS + "-> SALVO!");
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, COLECAO_LISTAS + "-> NÃO SALVO!");
+                            e.printStackTrace();
+                        }
+                    });
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void v) {
+                super.onPostExecute(v);
+            }
+        }
+
+        //salvando todas as listas
+        new FazBackupLista().execute((Listas[]) new ControllerListas(context).buscarTodos().toArray());
+
+        class FazBackupTarefas extends AsyncTask<Tarefa, Void, Void>{
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected Void doInBackground(Tarefa... tarefas) {
+                tarefaRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS).document(String.valueOf(ControllerTarefas.getListaSelecionada())).collection(COLECAO_TAREFAS);
+
+                for (Tarefa tarefa: tarefas){
+                    tarefaRef.document(String.valueOf(tarefa.getId())).set(tarefa).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.i(TAG, COLECAO_TAREFAS + "-> SALVO!");
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e(TAG, COLECAO_TAREFAS + "-> NÃO SALVO!");
+                            e.printStackTrace();
+                        }
+                    });
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void unused) {
+                super.onPostExecute(unused);
+            }
+        }
+
+        //salvando todas as tarefas das listas
+        for(Listas lista: new ControllerListas(context).buscarTodos()) {
+            ControllerTarefas.setListaSelecionada(lista.getId());
+            new FazBackupTarefas().execute((Tarefa[]) new ControllerTarefas(context).buscarTodos().toArray());
+        }
+
+        class FazBackupFlashcard extends AsyncTask<FlashCard, Void, Void>{
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected Void doInBackground(FlashCard... flashCards) {
+                flashcardRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_FLASHCARDS);
+                for (FlashCard f: flashCards) {
+                    flashcardRef.document(String.valueOf(f.getCodigo())).set(f).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.i(TAG, COLECAO_FLASHCARDS + "-> SALVO!");
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e)  {
+                            Log.w(TAG, COLECAO_FLASHCARDS + "-> NÃO SALVO!");
+                            e.printStackTrace();
+                        }
+                    });
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void unused) {
+                super.onPostExecute(unused);
+            }
+        }
+
+        //salvando todos os flashcards
+        new FazBackupFlashcard().execute((FlashCard[]) new ControllerFlashCard(context).buscarTodos().toArray());
+    }
+
+    public void resgatarBackup(){
+
+        class ResgataBackupListas extends AsyncTask<Void, Void, Void>{
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                listasRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS);
+                listasRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            Listas listas = documentSnapshot.toObject(Listas.class);
+                            new ControllerListas(context).cadastrar(listas.getTitulo());
+                        }
+                        Log.i(TAG, COLECAO_LISTAS + "-> Query de listas feita!");
+                    }
+
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, COLECAO_LISTAS + "-> Erro ao executar Query!");
+                        e.printStackTrace();
+                    }
+                });
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void unused) {
+                super.onPostExecute(unused);
+            }
+        }
     }
 }
