@@ -8,14 +8,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.helpstudy.R;
-import com.example.helpstudy.view.TelaCadastro;
 
-public class ConquistasFragment extends Fragment {
+public class PerfilFragments extends Fragment {
 
-    Button bt;
+    ImageView bt;
     Intent intent;
 
     @Override
@@ -25,7 +24,7 @@ public class ConquistasFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_conquistas, container, false);
         intent = new Intent(getActivity(), TelaCadastro.class);
 
-        bt = (Button) rootView.findViewById(R.id.buttonn);
+        bt = rootView.findViewById(R.id.sairBt);
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -24,6 +24,6 @@
 
     <item
         android:id="@+id/conquistass"
-        android:title="Conquistas"
-        android:icon="@drawable/conquistas" />
+        android:title="Perfil"
+        android:icon="@drawable/circle_perfil" />
 </menu>

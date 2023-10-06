@@ -12,11 +12,12 @@
         android:id="@+id/logoHP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="@+id/tituloCadastro"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="@+id/tituloCadastro"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo"
-        tools:layout_editor_absoluteY="64dp"
         tools:ignore="MissingConstraints" />
 
     <TextView

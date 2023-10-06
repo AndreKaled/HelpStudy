@@ -3,26 +3,16 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.graphics.Color;
-import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.view.Menu;
-import android.view.MenuInflater;
 
 import com.example.helpstudy.R;
 import com.example.helpstudy.datasource.DataSource;
-import com.example.helpstudy.model.Usuario;
-import com.example.helpstudy.utils.Atencao;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new FlashCardFragment());
                     break;
                 case R.id.conquistass:
-                    replaceFragment(new ConquistasFragment());
+                    replaceFragment(new PerfilFragments());
                     break;
             }
 

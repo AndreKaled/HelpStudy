@@ -23,7 +23,6 @@
         android:layout_above="@id/front_card"
         android:layout_marginStart="20sp"
         android:layout_marginBottom="20sp"
-        android:fontFamily="@font/poppins_regular"
         android:text="Tente lembrar e clique"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -39,7 +38,7 @@
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@color/primary"/>
+        android:background="@drawable/cardFront"/>
 
     <TextView
         android:id="@+id/back_card"
@@ -54,8 +53,6 @@
         android:text="Back card"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@color/primaryVariant"/>
-
-
+        android:background="@drawable/cardBack"/>
 
 </RelativeLayout>
