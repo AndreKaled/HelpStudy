@@ -50,26 +50,6 @@ public class DataSource {
         listasRef.document(id).delete();
     }
 
-    public void consultarFlashcards(){
-        flashcardRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_FLASHCARDS);
-        flashcardRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                    FlashCard flashCard = documentSnapshot.toObject(FlashCard.class);
-                    new ControllerFlashCard(context).cadastrar(flashCard.getTitulo(), flashCard.getDescricao());
-                }
-                Log.i(TAG, COLECAO_FLASHCARDS + "-> Query feita!");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e(TAG, COLECAO_FLASHCARDS + "-> Erro ao executar Query!");
-                e.printStackTrace();
-            }
-        });
-    }
-
     //CRUD dos USUARIOS
     public void salvarUsuario(String nome, String email, String dataNasc, String senha) {
         Usuario user = new Usuario();
@@ -149,29 +129,6 @@ public class DataSource {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Log.e(TAG, COLECAO_FLASHCARDS +"-> falha ao alterar dados!");
-                e.printStackTrace();
-            }
-        });
-    }
-
-    public void consultarTarefas(){
-        tarefaRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS).document(String.valueOf(ControllerTarefas.getListaSelecionada())).collection(COLECAO_TAREFAS);
-
-        tarefaRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                    Tarefa tarefa = documentSnapshot.toObject(Tarefa.class);
-                    new ControllerTarefas(context).cadastrar(tarefa.getNome(), tarefa.getDescricao(), tarefa.getDataEntrega(),
-                            tarefa.isConcluida());
-                    Log.i(TAG, COLECAO_TAREFAS +"-> Query feita!");
-                }
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e(TAG, COLECAO_TAREFAS +"-> Erro ao executar Query!");
                 e.printStackTrace();
             }
         });
@@ -327,5 +284,80 @@ public class DataSource {
                 super.onPostExecute(unused);
             }
         }
+        new ResgataBackupListas().execute();
+        class ResgataBackupTarefas extends AsyncTask<Void, Void, Void>{
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                tarefaRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_LISTAS).document(String.valueOf(ControllerTarefas.getListaSelecionada())).collection(COLECAO_TAREFAS);
+                tarefaRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            Tarefa tarefa = documentSnapshot.toObject(Tarefa.class);
+                            new ControllerTarefas(context).cadastrar(tarefa.getNome(), tarefa.getDescricao(), tarefa.getDataEntrega(),
+                                    tarefa.isConcluida());
+                            Log.i(TAG, COLECAO_TAREFAS +"-> Query feita!");
+                        }
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, COLECAO_TAREFAS +"-> Erro ao executar Query!");
+                        e.printStackTrace();
+                    }
+                });
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void unused) {
+                super.onPostExecute(unused);
+            }
+        }
+        for(Listas l: new ControllerListas(context).buscarTodos()){
+            ControllerTarefas.setListaSelecionada(l.getId());
+            new ResgataBackupTarefas().execute();
+        }
+        class ResgataBackupFlashcards extends AsyncTask<Void, Void, Void> {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                flashcardRef = usuarioRef.document(ControllerUsuario.getIdUsuario()).collection(COLECAO_FLASHCARDS);
+                flashcardRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            FlashCard flashCard = documentSnapshot.toObject(FlashCard.class);
+                            new ControllerFlashCard(context).cadastrar(flashCard.getTitulo(), flashCard.getDescricao());
+                        }
+                        Log.i(TAG, COLECAO_FLASHCARDS + "-> Query feita!");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, COLECAO_FLASHCARDS + "-> Erro ao executar Query!");
+                        e.printStackTrace();
+                    }
+                });
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void unused) {
+                super.onPostExecute(unused);
+            }
+        }
+        new ResgataBackupFlashcards().execute();
     }
 }
