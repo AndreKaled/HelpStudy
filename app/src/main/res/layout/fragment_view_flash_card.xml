@@ -38,7 +38,7 @@
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/cardFront"/>
+        android:background="@drawable/card_front"/>
 
     <TextView
         android:id="@+id/back_card"
@@ -53,6 +53,6 @@
         android:text="Back card"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/cardBack"/>
+        android:background="@drawable/card_back"/>
 
 </RelativeLayout>

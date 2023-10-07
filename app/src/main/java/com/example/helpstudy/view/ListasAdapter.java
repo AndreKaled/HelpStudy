@@ -1,5 +1,6 @@
 package com.example.helpstudy.view;
 
+import static com.google.android.material.internal.ContextUtils.getActivity;
 import static java.security.AccessController.getContext;
 
 import android.content.Context;
@@ -12,6 +13,10 @@ import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerListas;
@@ -72,7 +77,7 @@ public class ListasAdapter extends BaseAdapter {
                     public boolean onMenuItemClick(MenuItem menuItem) {
 
                         if(menuItem.getItemId() == R.id.editar){
-
+                            new EditListFragment(list, controllerListas);
                             Toast.makeText(bt.getContext(), "Editar lista", Toast.LENGTH_SHORT).show();
 
                         } else if (menuItem.getItemId() == R.id.deletar){
@@ -98,4 +103,6 @@ public class ListasAdapter extends BaseAdapter {
         });
         return v;
     }
+
+
 }

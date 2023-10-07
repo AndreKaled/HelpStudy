@@ -208,7 +208,8 @@ public class DataSource {
         }
 
         //salvando todas as tarefas das listas
-        for(Listas lista: new ControllerListas(context).buscarTodos()) {
+        List<Listas> lis =new ControllerListas(context).buscarTodos();
+        for(Listas lista: lis) {
             List<Tarefa> listTaref = new ControllerTarefas(context).buscarTodos();
             ControllerTarefas.setListaSelecionada(lista.getId());
             new FazBackupTarefas().execute(listTaref.toArray(new Tarefa[listTaref.size()]));

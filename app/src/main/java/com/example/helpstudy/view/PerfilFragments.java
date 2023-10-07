@@ -13,7 +13,7 @@ import android.widget.Button;
 import com.example.helpstudy.R;
 import com.example.helpstudy.datasource.DataSource;
 
-public class ConquistasFragment extends Fragment {
+public class PerfilFragments extends Fragment {
 
     Button bt;
     Intent intent;

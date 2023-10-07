@@ -29,6 +29,7 @@ public class ControllerTarefas {
         t.setDescricao(descricao);
         t.setConcluida(concluida);
         repository.adicionarTarefa(t, listaSelecionada);
+        atualizarTarefas();
     }
 
     public boolean atualizar(Tarefa tarefa){
