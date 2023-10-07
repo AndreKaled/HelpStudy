@@ -3,6 +3,7 @@ package com.example.helpstudy.datasource;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -170,7 +171,8 @@ public class DataSource {
         }
 
         //salvando todas as listas
-        new FazBackupLista().execute((Listas[]) new ControllerListas(context).buscarTodos().toArray());
+        List<Listas> list = new ControllerListas(context).buscarTodos();
+        new FazBackupLista().execute(list.toArray(new Listas[list.size()]));
 
         class FazBackupTarefas extends AsyncTask<Tarefa, Void, Void>{
             @Override
@@ -207,8 +209,9 @@ public class DataSource {
 
         //salvando todas as tarefas das listas
         for(Listas lista: new ControllerListas(context).buscarTodos()) {
+            List<Tarefa> listTaref = new ControllerTarefas(context).buscarTodos();
             ControllerTarefas.setListaSelecionada(lista.getId());
-            new FazBackupTarefas().execute((Tarefa[]) new ControllerTarefas(context).buscarTodos().toArray());
+            new FazBackupTarefas().execute(listTaref.toArray(new Tarefa[listTaref.size()]));
         }
 
         class FazBackupFlashcard extends AsyncTask<FlashCard, Void, Void>{
@@ -241,11 +244,13 @@ public class DataSource {
             @Override
             protected void onPostExecute(Void unused) {
                 super.onPostExecute(unused);
+                Toast.makeText(context, "Finalizou!", Toast.LENGTH_SHORT).show();
             }
         }
 
         //salvando todos os flashcards
-        new FazBackupFlashcard().execute((FlashCard[]) new ControllerFlashCard(context).buscarTodos().toArray());
+        List<FlashCard> listFlash = new ControllerFlashCard(context).buscarTodos();
+        new FazBackupFlashcard().execute(listFlash.toArray(new FlashCard[listFlash.size()]));
     }
 
     public void resgatarBackup(){

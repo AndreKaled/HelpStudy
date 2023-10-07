@@ -8,13 +8,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Button;
 
 import com.example.helpstudy.R;
+import com.example.helpstudy.datasource.DataSource;
 
-public class PerfilFragments extends Fragment {
+public class ConquistasFragment extends Fragment {
 
-    ImageView bt;
+    Button bt;
     Intent intent;
 
     @Override
@@ -22,13 +23,12 @@ public class PerfilFragments extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_conquistas, container, false);
-        intent = new Intent(getActivity(), TelaCadastro.class);
 
-        bt = rootView.findViewById(R.id.sairBt);
+        bt = (Button) rootView.findViewById(R.id.buttonTesteBackup);
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(intent);
+                new DataSource(getContext()).fazerBackup();
             }
         });
         // Inflate the layout for this fragment
