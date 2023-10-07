@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="toolbar">#191919</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name= "blackFundo">#eee6ff</color>
+    <color name= "blackDialog">#333333</color>
+    <color name="lateralBar">#202020</color>
+    <color name="painelCartoes">#474747</color>
+    <color name="topbar">#191919</color>
+    <color name = "textColorLight">#35404b</color>
+    <color name= "painel_color_dark">#242424</color>
+    <color name="confirmarAzul">#4ECAFF</color>
+    <color name="verdeBt">@color/secondaryPrimary</color>
+    <color name="primary">#01579B</color>
+    <color name="primaryVariant">#0277BD</color>
+    <color name="secondaryPrimary">#E8BF1A</color>
+    <color name="secondaryVariant">#9C7F09</color>
+
+    <color name = "my_button_enabled_state_color">@color/secondaryPrimary</color>
+    <color name = "my_button_disabled_state_color">@color/secondaryVariant</color>
+
+
+
+</resources>

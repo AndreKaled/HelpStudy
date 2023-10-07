@@ -2,15 +2,14 @@
 
 ## Status ⏰
 
-🚧 Em desenvolvimento inicial 🚧
+🚧 Em desenvolvimento 🚧
 
 ## Autores 🤓
 
 André Kaled Duarte
 
-Kauan Ferreira dos Santos 
-
 Manfred Lima Veiga
+
 ## Técnicas e tecnologias 🔬
 
 -- Paradigma Orientada a Objetos 
@@ -24,5 +23,3 @@ Manfred Lima Veiga
 -- Base de dados: Firebase
 
 -- Hospedagem de código: Github 
-
-## Acesso ao projeto
