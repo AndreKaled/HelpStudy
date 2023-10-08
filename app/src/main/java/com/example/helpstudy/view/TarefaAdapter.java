@@ -12,6 +12,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentManager;
+
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerTarefas;
 import com.example.helpstudy.model.Tarefa;
@@ -46,8 +48,8 @@ public class TarefaAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View contentView, ViewGroup viewGroup) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_tarefa, viewGroup, false);
+    public View getView(int position, View contentView, ViewGroup parent) {
+        View v = LayoutInflater.from(context).inflate(R.layout.item_tarefa, parent, false);
 
         TextView textView_nome = v.findViewById(R.id.tituloTarefa);
         TextView textView_desc = v.findViewById(R.id.descricaoTarefa);
@@ -66,15 +68,17 @@ public class TarefaAdapter extends BaseAdapter {
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
+                        Tarefa t = controllerTarefas.buscarPorPosicao(position);
 
                         if (menuItem.getItemId() == R.id.editar) {
 
+                            new EditTarefaFragment(t, controllerTarefas).show(FragmentManager.findFragment(parent).getFragmentManager(),"alalal");
                             Toast.makeText(bt.getContext(), "Editar", Toast.LENGTH_SHORT).show();
 
                         } else if (menuItem.getItemId() == R.id.deletar) {
 
                             Toast.makeText(bt.getContext(), "Deletar", Toast.LENGTH_SHORT).show();
-                            Tarefa t = controllerTarefas.buscarPorPosicao(position);
+
                             controllerTarefas.remover(t);
 
                         } else {
