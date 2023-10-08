@@ -148,7 +148,7 @@ public class Repository {
 
         values.put(data.TITULO_LISTA, lista.getTitulo());
 
-        return db.update(data.TABELA_LISTAS, values," WHERE " +data.ID_LISTA +" = ?", new String[]{String.valueOf(lista.getId())}) != -1 ? true : false;
+        return db.update(data.TABELA_LISTAS, values,data.ID_LISTA +" = ?", new String[]{String.valueOf(lista.getId())}) != -1 ? true : false;
     }
 
     public boolean atualizarFlashcard(FlashCard flashcard){
@@ -158,7 +158,7 @@ public class Repository {
         values.put(data.TITULO_FLASHCARD, flashcard.getTitulo());
         values.put(data.DESCRICAO_FLASHCARD, flashcard.getDescricao());
 
-        return db.update(data.TABELA_TAREFAS, values," WHERE " +data.ID_FLASHCARD +" = ? ",
+        return db.update(data.TABELA_TAREFAS, values,data.ID_FLASHCARD +" = ? ",
                 new String[]{String.valueOf(flashcard.getCodigo())}) != -1 ? true : false;
     }
 }

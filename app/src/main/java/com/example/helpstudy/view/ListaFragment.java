@@ -76,6 +76,7 @@ public class ListaFragment extends Fragment {
         dialog.show(getActivity().getSupportFragmentManager(), "oi2");
     }
 
+
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

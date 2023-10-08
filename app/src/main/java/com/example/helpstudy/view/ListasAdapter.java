@@ -77,7 +77,8 @@ public class ListasAdapter extends BaseAdapter {
                     public boolean onMenuItemClick(MenuItem menuItem) {
 
                         if(menuItem.getItemId() == R.id.editar){
-                            new EditListFragment(list, controllerListas);
+                            new EditListFragment(list, controllerListas).show(FragmentManager.findFragment(parent).getFragmentManager(),"alalal");
+
                             Toast.makeText(bt.getContext(), "Editar lista", Toast.LENGTH_SHORT).show();
 
                         } else if (menuItem.getItemId() == R.id.deletar){
@@ -103,6 +104,7 @@ public class ListasAdapter extends BaseAdapter {
         });
         return v;
     }
+
 
 
 }

@@ -20,16 +20,6 @@ public class ROOT {
         new ControllerFlashCard(context);
     }
 
-    public void sincListas(){
-        //te odeio
-        try {
-            Thread.sleep(500);
-            new ListasAdapter(context).notifyDataSetChanged();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public void sincTarefas(){
         //te odeio
         try {
