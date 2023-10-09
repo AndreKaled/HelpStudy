@@ -138,8 +138,8 @@ public class Repository {
         values.put(data.DATA_ENTREGA_TAREFA, tarefa.getDataEntrega());
         values.put(data.CONCLUIDA_TAREFA, tarefa.isConcluida() ? 1 : 0);
 
-        return db.update(data.TABELA_TAREFAS, values," WHERE " +data.ID_TAREFA +" = ? AND "
-                +data.ID_LISTA +" = ?", new String[]{String.valueOf(tarefa.getId()), String.valueOf(idLista)}) != -1 ? true : false;
+        return db.update(data.TABELA_TAREFAS, values,data.ID_TAREFA +" = ? AND "
+                +data.CHAVE_ESTRANGEIRA_TAREFA +" = ?", new String[]{String.valueOf(tarefa.getId()), String.valueOf(idLista)}) != -1 ? true : false;
     }
 
     public boolean atualizarLista(Listas lista){

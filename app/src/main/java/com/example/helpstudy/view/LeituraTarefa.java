@@ -22,9 +22,7 @@ public class LeituraTarefa extends Fragment {
     private View view;
 
 
-    private TextView tituloTarefa, descricaoTarefa, descricaoTexto, tituloData;
-
-    private Button data;
+    private TextView tituloTarefa, descricaoTarefa, descricaoTexto, tituloData, data;
     private String tituloBundle, descricaoBundle, dataBundle;
 
     private DatePickerDialog dataPicker;

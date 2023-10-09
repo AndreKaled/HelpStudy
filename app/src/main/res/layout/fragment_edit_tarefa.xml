@@ -52,7 +52,7 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <EditText
+    <TextView
         android:id="@+id/dataEditTarefa"
         android:layout_width= "wrap_content"
         android:layout_height="wrap_content"
@@ -63,5 +63,18 @@
         style="?android:spinnerStyle"
         android:hint="dd/mm/nnnn"
         android:inputType="date"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonConfirmaTarefaEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dataEditTarefa"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/botao_verde"
+        android:hint="Confirmar"
+        android:textColorHint="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
 
 </RelativeLayout>

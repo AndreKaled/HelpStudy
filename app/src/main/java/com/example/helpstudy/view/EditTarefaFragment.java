@@ -11,8 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerTarefas;
@@ -22,7 +24,9 @@ import java.util.Calendar;
 
 public class EditTarefaFragment extends DialogFragment {
 
-    private EditText editTituloTarefa, editDescTarefa, editDataTarefa;
+    private EditText editTituloTarefa, editDescTarefa;
+    private TextView editDataTarefa;
+    private Button btnConfirmar;
     private Tarefa tarefa;
     private ControllerTarefas c;
     private DatePickerDialog dateDick;
@@ -40,6 +44,7 @@ public class EditTarefaFragment extends DialogFragment {
         editTituloTarefa = view.findViewById(R.id.tituloTarefaEdit);
         editDescTarefa = view.findViewById(R.id.descricaoTextoEdit);
         editDataTarefa = view.findViewById(R.id.dataEditTarefa);
+        btnConfirmar = view.findViewById(R.id.buttonConfirmaTarefaEdit);
 
         initDatePicker();
         editDataTarefa.setText(getDate());
@@ -49,6 +54,17 @@ public class EditTarefaFragment extends DialogFragment {
             public void onClick(View view) {
                 Log.i("CALENDARIO", "AAA DETECTADO!");
                 dateDick.show();
+            }
+        });
+
+        btnConfirmar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tarefa.setNome(editTituloTarefa.getText().toString());
+                tarefa.setDescricao(editDescTarefa.getText().toString());
+                tarefa.setDataEntrega(editDataTarefa.getText().toString());
+                c.atualizar(tarefa);
+                dismiss();
             }
         });
 
@@ -85,39 +101,9 @@ public class EditTarefaFragment extends DialogFragment {
     }
     private String makeDateString(int dia, int mes, int ano)
     {
-        return dia +" " +getFormatoMes(mes) + " " + ano;
+        return dia +"/" +mes + "/" + ano;
     }
 
-    private String getFormatoMes(int mes)
-    {
-        if(mes == 1)
-            return "JAN";
-        if(mes == 2)
-            return "FEV";
-        if(mes == 3)
-            return "MAR";
-        if(mes == 4)
-            return "ABR";
-        if(mes == 5)
-            return "MAIO";
-        if(mes == 6)
-            return "JUN";
-        if(mes == 7)
-            return "JUL";
-        if(mes == 8)
-            return "AGO";
-        if(mes == 9)
-            return "SET";
-        if(mes == 10)
-            return "OUT";
-        if(mes == 11)
-            return "NOV";
-        if(mes == 12)
-            return "DEZ";
-
-        //default should never happen
-        return "JAN";
-    }
     private String getDate(){
 
         Calendar cal = Calendar.getInstance();
