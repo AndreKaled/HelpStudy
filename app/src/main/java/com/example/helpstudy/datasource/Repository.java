@@ -91,7 +91,7 @@ public class Repository {
         SQLiteDatabase db = data.getWritableDatabase();
         String[] args = {String.valueOf(idTarefa), String.valueOf(idLista)};
         int i = db.delete(data.TABELA_TAREFAS, data.ID_TAREFA +" = ? AND "
-                +data.ID_LISTA +" = ? ", args);
+                +data.CHAVE_ESTRANGEIRA_TAREFA +" = ? ", args);
         if(i != 0)
             return true;
         return false;
@@ -158,7 +158,7 @@ public class Repository {
         values.put(data.TITULO_FLASHCARD, flashcard.getTitulo());
         values.put(data.DESCRICAO_FLASHCARD, flashcard.getDescricao());
 
-        return db.update(data.TABELA_TAREFAS, values,data.ID_FLASHCARD +" = ? ",
+        return db.update(data.TABELA_FLASHCARDS, values,data.ID_FLASHCARD +" = ? ",
                 new String[]{String.valueOf(flashcard.getCodigo())}) != -1 ? true : false;
     }
 }

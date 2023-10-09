@@ -11,6 +11,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentManager;
+
 import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.R;
 import com.example.helpstudy.model.FlashCard;
@@ -71,6 +73,7 @@ public class ListaFlashCardAdapter extends BaseAdapter {
 
                         if(menuItem.getItemId() == R.id.editar){
 
+                            new EditFlashcardFragment(flashCard, controllerFlashCard).show(FragmentManager.findFragment(parent).getFragmentManager(),"alalal");
                             Toast.makeText(bt.getContext(), "Editar", Toast.LENGTH_SHORT).show();
 
                         } else if (menuItem.getItemId() == R.id.deletar){
