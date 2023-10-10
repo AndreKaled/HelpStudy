@@ -56,18 +56,6 @@
             android:textColorLink="@color/textColorLight" />
 
         <EditText
-            android:id="@+id/cadastro_dataNasc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/textColorLight"
-            android:hint="Data de nascimento:"
-            android:inputType="datetime"
-            android:textColor="@color/textColorLight"
-            android:textColorHighlight="@color/textColorLight"
-            android:textColorHint="@color/textColorLight"
-            android:textColorLink="@color/textColorLight" />
-
-        <EditText
             android:id="@+id/cadastro_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

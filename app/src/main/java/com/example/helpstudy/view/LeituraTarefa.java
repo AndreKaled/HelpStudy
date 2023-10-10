@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.example.helpstudy.R;
+import com.example.helpstudy.controller.ControllerTarefas;
+import com.example.helpstudy.model.Tarefa;
 
 import java.util.Calendar;
 
@@ -21,34 +24,43 @@ public class LeituraTarefa extends Fragment {
 
     private View view;
 
-
     private TextView tituloTarefa, descricaoTarefa, descricaoTexto, tituloData, data;
     private String tituloBundle, descricaoBundle, dataBundle;
 
+    private Tarefa tarefa;
     private DatePickerDialog dataPicker;
+
+    public LeituraTarefa(Tarefa tarefa){
+
+        this.tarefa = tarefa;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_leitura_tarefa, container, false);
-        Bundle bundle = getArguments();
+//        Bundle bundle = getArguments();
         tituloTarefa = view.findViewById(R.id.tituloTarefa);
         descricaoTarefa = view.findViewById(R.id.descricaoTarefa);
         descricaoTexto = view.findViewById(R.id.descricaoTexto);
         tituloData = view.findViewById(R.id.dataTarefa);
         data = view.findViewById(R.id.data);
         initDatePicker();
-        data.setText(getDate());
+        data.setText(tarefa.getDataEntrega());
+        tituloTarefa.setText(tarefa.getNome());
+        descricaoTexto.setText(tarefa.getDescricao());
+        data.setTextColor(getResources().getColor(R.color.black));
 
-       if(bundle != null){
-
-           tituloBundle = getArguments().getString("tituloTarefa");
-           descricaoBundle = getArguments().getString("descricaoTarefa");
-           dataBundle = getArguments().getString("dataTarefa");
-
-           tituloTarefa.setText(tituloBundle);
-           descricaoTexto.setText(descricaoBundle);
-       }
+//       if(bundle != null){
+//
+//           tituloBundle = getArguments().getString("tituloTarefa");
+//           descricaoBundle = getArguments().getString("descricaoTarefa");
+//           dataBundle = getArguments().getString("dataTarefa");
+//
+//           tituloTarefa.setText(tituloBundle);
+//           descricaoTexto.setText(descricaoBundle);
+//       }
 
 
        data.setOnClickListener(new View.OnClickListener() {

@@ -42,6 +42,7 @@ public class PerfilFragments extends Fragment {
             @Override
             public void onClick(View view) {
 
+                new Preferencias(getContext()).limparPreferencias();
                 intent = new Intent();
                 intent.setClass(getActivity(), TelaLogin.class);
                 getActivity().startActivity(intent);

@@ -16,25 +16,28 @@ import com.example.helpstudy.model.Usuario;
 
 public class TelaCadastro extends AppCompatActivity {
 
-    EditText textNome, textEmail, textDataNasc, textSenha;
+    EditText textNome, textEmail, textSenha;
     String nome, email, dataNasc, senha;
+    TextView text;
 
-    private ControllerUsuario controllerUsuario = ControllerUsuario.getInstancia(getApplicationContext());
+    Button btCadastrar;
+
+    private ControllerUsuario controllerUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        controllerUsuario = ControllerUsuario.getInstancia(getApplicationContext());
         setContentView(R.layout.activity_tela_cadastro);
 
-        TextView text;
 
         text = findViewById(R.id.textoLogin);
 
         textNome = findViewById(R.id.cadastro_nome);
         textEmail = findViewById(R.id.cadastro_email);
-        textDataNasc = findViewById(R.id.cadastro_dataNasc);
         textSenha = findViewById(R.id.cadastro_senha);
-        Button btCadastrar = findViewById(R.id.btn_cadastro);
+        btCadastrar = findViewById(R.id.btn_cadastro);
 
         text.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,21 +65,16 @@ public class TelaCadastro extends AppCompatActivity {
 
         nome = textNome.getText().toString();
         email = textEmail.getText().toString();
-        dataNasc = textDataNasc.getText().toString();
         senha = textSenha.getText().toString();
 
-        if(textNome.getText().toString().isEmpty() && textEmail.getText().toString().isEmpty() &&
-                textDataNasc.getText().toString().isEmpty() && textSenha.getText().toString().isEmpty()){
+        if(textNome.getText().toString().isEmpty() && textEmail.getText().toString().isEmpty() && textSenha.getText().toString().isEmpty()){
             textNome.setError("Ei, você esqueceu de me preencher! 😓");
             textEmail.setError("Ei, você esqueceu de me preencher! 😓");
-            textDataNasc.setError("Ei, você esqueceu de me preencher! 😓");
             textSenha.setError("Ei, você esqueceu de me preencher! 😓");
         }
-        else if(textNome.getText().toString().isEmpty() && textEmail.getText().toString().isEmpty() &&
-                textDataNasc.getText().toString().isEmpty()){
+        else if(textNome.getText().toString().isEmpty() && textEmail.getText().toString().isEmpty()){
             textNome.setError("Ei, você esqueceu de me preencher! 😓");
             textEmail.setError("Ei, você esqueceu de me preencher! 😓");
-            textDataNasc.setError("Ei, você esqueceu de me preencher! 😓");
         }
         else if(textNome.getText().toString().isEmpty() && textEmail.getText().toString().isEmpty() &&
                  textSenha.getText().toString().isEmpty()){
@@ -84,16 +82,13 @@ public class TelaCadastro extends AppCompatActivity {
             textEmail.setError("Ei, você esqueceu de me preencher! 😓");
             textSenha.setError("Ei, você esqueceu de me preencher! 😓");
         }
-        else if(textNome.getText().toString().isEmpty() &&
-                textDataNasc.getText().toString().isEmpty() && textSenha.getText().toString().isEmpty()){
+        else if(textNome.getText().toString().isEmpty() && textSenha.getText().toString().isEmpty()){
             textNome.setError("Ei, você esqueceu de me preencher! 😓");
-            textDataNasc.setError("Ei, você esqueceu de me preencher! 😓");
             textSenha.setError("Ei, você esqueceu de me preencher! 😓");
         }
-        else if(textEmail.getText().toString().isEmpty() && textDataNasc.getText().toString().isEmpty() &&
+        else if(textEmail.getText().toString().isEmpty()  &&
                 textSenha.getText().toString().isEmpty()){
             textEmail.setError("Ei, você esqueceu de me preencher! 😓");
-            textDataNasc.setError("Ei, você esqueceu de me preencher! 😓");
             textSenha.setError("Ei, você esqueceu de me preencher! 😓");
         }
         else if(textNome.getText().toString().isEmpty() && textEmail.getText().toString().isEmpty()){
@@ -104,26 +99,21 @@ public class TelaCadastro extends AppCompatActivity {
             textNome.setError("Ei, você esqueceu de me preencher! 😓");
             textSenha.setError("Ei, você esqueceu de me preencher! 😓");
         }
-        else if(textNome.getText().toString().isEmpty() && textDataNasc.getText().toString().isEmpty()){
+        else if(textNome.getText().toString().isEmpty()){
             textNome.setError("Ei, você esqueceu de me preencher! 😓");
-            textDataNasc.setError("Ei, você esqueceu de me preencher! 😓");
         }
-        else if(textEmail.getText().toString().isEmpty() && textDataNasc.getText().toString().isEmpty()) {
+        else if(textEmail.getText().toString().isEmpty()) {
             textEmail.setError("Ei, você esqueceu de me preencher! 😓");
-            textDataNasc.setError("Ei, você esqueceu de me preencher! 😓");
         }
         else if(textEmail.getText().toString().isEmpty() && textSenha.getText().toString().isEmpty()){
             textEmail.setError("Ei, você esqueceu de me preencher! 😓");
             textSenha.setError("Ei, você esqueceu de me preencher! 😓");
         }
-        else if(textDataNasc.getText().toString().isEmpty() && textSenha.getText().toString().isEmpty()){
-            textDataNasc.setError("Ei, você esqueceu de me preencher! 😓");
+        else if(textSenha.getText().toString().isEmpty()){
             textSenha.setError("Ei, você esqueceu de me preencher! 😓");
         }
         else if(textNome.getText().toString().isEmpty())
             textNome.setError("Ei, você esqueceu de me preencher! 😓");
-        else if (textDataNasc.getText().toString().isEmpty())
-            textDataNasc.setError("Ei, você esqueceu de me preencher! 😓");
         else if (textEmail.getText().toString().isEmpty())
             textEmail.setError("Ei, você esqueceu de me preencher! 😓");
         else if(textSenha.getText().toString().isEmpty())

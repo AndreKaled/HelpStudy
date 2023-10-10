@@ -60,8 +60,8 @@
             android:layout_marginLeft="40dp"
             android:ems="10"
             android:textSize="18sp"
-            style="?android:spinnerStyle"
             android:hint="dd/mm/nnnn"
-            android:inputType="date"/>
+            android:inputType="date"
+            android:enabled="false" />
 
 </RelativeLayout>

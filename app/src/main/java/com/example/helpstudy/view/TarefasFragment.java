@@ -25,6 +25,8 @@ import org.checkerframework.checker.units.qual.A;
 public class TarefasFragment extends Fragment {
 //    fazer
     static ListView listView;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class TarefasFragment extends Fragment {
         btnCriar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 abrirModal();
             }
         });
@@ -49,13 +52,11 @@ public class TarefasFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Bundle bundle = new Bundle();
+//                Bundle bundle = new Bundle();
                 Tarefa tarefa = new ControllerTarefas(getContext()).buscarPorPosicao(i);
-                bundle.putString("tituloTarefa", tarefa.getNome());
-                bundle.putString("descricaoTarefa", tarefa.getDescricao());
-                bundle.putString("dataTarefa", tarefa.getDataEntrega());
-                LeituraTarefa fragmento = new LeituraTarefa();
-                fragmento.setArguments(bundle);
+//                bundle.putString("id", tarefa.getNome());
+                LeituraTarefa fragmento = new LeituraTarefa(tarefa);
+//                fragmento.setArguments(bundle);
                 replaceFragment(fragmento);
             }
         });

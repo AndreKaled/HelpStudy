@@ -2,29 +2,47 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/textColorLight"
+    android:paddingHorizontal="50dp"
+    android:paddingVertical="40dp"
     tools:context=".view.LeituraTarefa">
+
+
+    <TextView
+        android:id="@+id/telaEditTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30px"
+        android:text="Editar tarefa"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/tituloTarefaEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Titulo da tarefa"
+        android:layout_below="@id/telaEditTitulo"
         android:layout_centerHorizontal="true"
-        android:textSize="24sp"
-        android:textColor="@color/black"
+        android:backgroundTint="#F0F9FA"
+        android:text="Titulo da tarefa"
+        android:textColor="@color/white"
+        android:textColorHint="#F1F1F1"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/descricaoTarefaEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/black"
-        android:text="Descrição"
         android:layout_below="@id/tituloTarefaEdit"
         android:layout_marginLeft="25dp"
+        android:layout_marginTop="16dp"
+        android:text="Descrição"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -32,11 +50,13 @@
         android:id="@+id/descricaoTextoEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/black"
-        android:text="texto descrição"
         android:layout_below="@id/descricaoTarefaEdit"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#F6E6E6"
+        android:text="texto descrição"
+        android:textColor="@color/white"
+        android:textColorHint="#E4DBDB"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -44,25 +64,28 @@
         android:id="@+id/dataTarefaEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
-        android:text="Data"
         android:layout_below="@id/descricaoTextoEdit"
         android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:text="Data"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/dataEditTarefa"
-        android:layout_width= "wrap_content"
+        style="?android:spinnerStyle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/dataTarefaEdit"
         android:layout_marginLeft="40dp"
+        android:backgroundTint="#EFEDED"
         android:ems="10"
-        android:textSize="18sp"
-        style="?android:spinnerStyle"
         android:hint="dd/mm/nnnn"
-        android:inputType="date"/>
+        android:inputType="date"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#F6F5F5"
+        android:textSize="18sp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonConfirmaTarefaEdit"
