@@ -37,4 +37,8 @@ public class Preferencias {
         editor.putString("id", id);
         editor.commit();
     }
+    public void limparPreferencias(){
+        editor.clear();
+        editor.commit();
+    }
 }
