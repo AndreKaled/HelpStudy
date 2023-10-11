@@ -1,8 +1,16 @@
 package com.example.helpstudy.view;
 
+import android.Manifest;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -29,7 +37,7 @@ public class PerfilFragments extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_conquistas, container, false);
 
         btBackup = rootView.findViewById(R.id.buttonTesteBackup);
-        btSair =  rootView.findViewById(R.id.sairBt);
+        btSair = rootView.findViewById(R.id.sairBt);
         pref = new Preferencias(getContext());
         btBackup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,4 +59,6 @@ public class PerfilFragments extends Fragment {
         // Inflate the layout for this fragment
         return rootView;
     }
+
+
 }
