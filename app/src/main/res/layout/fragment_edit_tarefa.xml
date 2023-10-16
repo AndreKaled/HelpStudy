@@ -6,7 +6,7 @@
     android:background="@color/textColorLight"
     android:paddingHorizontal="50dp"
     android:paddingVertical="40dp"
-    tools:context=".view.LeituraTarefa">
+    tools:context=".LeituraTarefa">
 
 
     <TextView

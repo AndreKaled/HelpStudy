@@ -67,31 +67,147 @@
         android:layout_below="@+id/perfil_visualizacao"/>
 
     <TextView
+
         android:id="@+id/nomePerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/listaConquistas"
-        android:layout_marginStart="30sp"
-        android:layout_marginTop="30sp"
+        android:layout_marginStart="60sp"
+        android:layout_marginTop="20sp"
         android:layout_marginEnd="30sp"
         android:layout_marginBottom="25sp"
-        android:text="Nome do usuário"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:text="Nome"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
-    <EditText
+    <TextView
+
         android:id="@+id/editNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/nomePerfil"
-        android:layout_marginStart="40sp"
+        android:layout_marginStart="60sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginEnd="30sp"
+        android:layout_marginBottom="25sp"
+        android:text="Nome"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/editTextNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below= "@id/nomePerfil"
+        android:layout_marginStart="60sp"
+        android:layout_marginTop="0sp"
+        android:layout_marginEnd="30sp"
+        android:layout_marginBottom="10sp"
+        android:ems="8"
+        android:visibility="invisible"
+        android:inputType="text"
+        android:text="Nome"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/emailPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nomePerfil"
+        android:layout_marginStart="60sp"
+        android:layout_marginTop="25sp"
+        android:layout_marginEnd="30sp"
+        android:layout_marginBottom="25sp"
+        android:ems="8"
+        android:inputType="text"
+        android:text="Email"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/editEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emailPerfil"
+        android:layout_marginStart="60sp"
         android:layout_marginTop="5sp"
         android:layout_marginEnd="30sp"
         android:layout_marginBottom="25sp"
         android:ems="8"
         android:inputType="text"
-        android:text="Nome"
-        android:textSize="20sp" />
+        android:text="Email"
+        android:textSize="16sp" />
 
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emailPerfil"
+        android:layout_marginStart="60sp"
+        android:layout_marginTop="30sp"
+        android:layout_marginEnd="30sp"
+        android:visibility="invisible"
+        android:layout_marginBottom="25sp"
+        android:ems="8"
+        android:inputType="text"
+        android:text="Email"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/senhaPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emailPerfil"
+        android:layout_marginStart="60sp"
+        android:layout_marginTop="70sp"
+        android:layout_marginEnd="30sp"
+        android:layout_marginBottom="25sp"
+        android:ems="8"
+        android:inputType="text"
+        android:text="Senha"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/editSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/senhaPerfil"
+        android:layout_marginStart="60sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginEnd="30sp"
+        android:layout_marginBottom="25sp"
+        android:ems="8"
+        android:inputType="text"
+        android:text="Senha"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/editTextSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/senhaPerfil"
+        android:layout_marginStart="60sp"
+        android:layout_marginTop="0sp"
+        android:layout_marginEnd="30sp"
+        android:layout_marginBottom="25sp"
+        android:ems="8"
+        android:visibility="invisible"
+        android:inputType="text"
+        android:text="Senha"
+        android:textSize="16sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/senhaPerfil"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30px"
+        android:layout_marginTop="30px"
+        android:layout_marginEnd="40px"
+        android:layout_marginBottom="30px"
+        android:background="@drawable/botao_confirma"
+        android:text="Editar"
+        android:textColor="#000000" />
 
 </RelativeLayout>
