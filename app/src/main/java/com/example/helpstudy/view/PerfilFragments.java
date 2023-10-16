@@ -21,6 +21,7 @@ import android.widget.ImageView;
 
 import com.example.helpstudy.R;
 import com.example.helpstudy.datasource.DataSource;
+import com.example.helpstudy.utils.Notificacao;
 import com.example.helpstudy.utils.Preferencias;
 
 public class PerfilFragments extends Fragment {
@@ -42,7 +43,12 @@ public class PerfilFragments extends Fragment {
         btBackup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DataSource(getContext()).fazerBackup();
+                try {
+                    new DataSource(getContext()).fazerBackup();
+                    new Notificacao(getContext()).notificar("Backup", "Seu backup foi realizado com sucesso!", 1);
+                }catch (Exception e){
+                    new Notificacao(getContext()).notificar("Backup", "Seu backup deu pau! se fodeu", 1);
+                }
             }
         });
 

@@ -135,7 +135,7 @@ public class DataSource {
         });
     }
 
-    public void fazerBackup(){
+    public void fazerBackup() throws RuntimeException{
         class FazBackupLista extends AsyncTask<Listas, Void, Void> {
 
             @Override
@@ -157,7 +157,7 @@ public class DataSource {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Log.w(TAG, COLECAO_LISTAS + "-> NÃO SALVO!");
-                            e.printStackTrace();
+                            throw new RuntimeException(e);
                         }
                     });
                 }
@@ -194,7 +194,7 @@ public class DataSource {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Log.e(TAG, COLECAO_TAREFAS + "-> NÃO SALVO!");
-                            e.printStackTrace();
+                            throw new RuntimeException(e);
                         }
                     });
                 }
@@ -235,7 +235,7 @@ public class DataSource {
                         @Override
                         public void onFailure(@NonNull Exception e)  {
                             Log.w(TAG, COLECAO_FLASHCARDS + "-> NÃO SALVO!");
-                            e.printStackTrace();
+                            throw new RuntimeException(e);
                         }
                     });
                 }
@@ -254,7 +254,7 @@ public class DataSource {
         new FazBackupFlashcard().execute(listFlash.toArray(new FlashCard[listFlash.size()]));
     }
 
-    public void resgatarBackup(){
+    public void resgatarBackup() throws RuntimeException{
 
         class ResgataBackupListas extends AsyncTask<Void, Void, Void>{
             @Override
@@ -279,7 +279,7 @@ public class DataSource {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e(TAG, COLECAO_LISTAS + "-> Erro ao executar Query!");
-                        e.printStackTrace();
+                        throw new RuntimeException(e);
                     }
                 });
                 return null;
@@ -315,7 +315,7 @@ public class DataSource {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e(TAG, COLECAO_TAREFAS +"-> Erro ao executar Query!");
-                        e.printStackTrace();
+                        throw new RuntimeException(e);
                     }
                 });
                 return null;
@@ -353,7 +353,7 @@ public class DataSource {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e(TAG, COLECAO_FLASHCARDS + "-> Erro ao executar Query!");
-                        e.printStackTrace();
+                        throw new RuntimeException(e);
                     }
                 });
                 return null;

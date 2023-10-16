@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.helpstudy.R;
+import com.example.helpstudy.view.TelaLogin;
 
 public class Notificacao {
 
@@ -19,12 +20,11 @@ public class Notificacao {
         this.context = context;
     }
 
-    public void notificar(String Titulo, String mensagem, int id){
+    public void notificar(String titulo, String mensagem, int id){
+        Intent it = new Intent(context, TelaLogin.class);
 
-        Intent it = new Intent(context, null);
-
-        PendingIntent pi = PendingIntent.getActivity(context, id, it, PendingIntent.FLAG_UPDATE_CURRENT);
-        Notification notification = new Notification.Builder(context).setContentTitle("Titulo")
+        PendingIntent pi = PendingIntent.getActivity(context, id, it, PendingIntent.FLAG_IMMUTABLE |PendingIntent.FLAG_UPDATE_CURRENT);
+        Notification notification = new Notification.Builder(context).setContentTitle(titulo)
                 .setContentText(mensagem).setSmallIcon(R.mipmap.ic_launcher)
                 .setContentIntent(pi).setChannelId("Canal_1").build();
         NotificationManager manager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
