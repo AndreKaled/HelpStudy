@@ -16,7 +16,7 @@ public class ControllerUsuario {
     private DataSource db;
     private static ControllerUsuario instancia = null;
 
-    private ControllerUsuario(Context context) throws Exception {
+    private ControllerUsuario(Context context){
         db = new DataSource(context);
         lista = db.consultaUsuarios();
     }

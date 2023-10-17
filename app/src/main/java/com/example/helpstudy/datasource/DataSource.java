@@ -74,14 +74,13 @@ public class DataSource {
         });
     }
 
-    public List<Usuario> consultaUsuarios() throws Exception {
+    public List<Usuario> consultaUsuarios(){
         List<Usuario> usuarios = new ArrayList<>();
         usuarioRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                     Usuario usuario = documentSnapshot.toObject(Usuario.class);
-                    usuario.setId(documentSnapshot.getId());
                     usuarios.add(usuario);
                 }
                 Log.i(TAG, COLECAO_USUARIOS +"-> Query realizada com sucesso!");
