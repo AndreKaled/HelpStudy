@@ -49,6 +49,8 @@ public class PerfilFragments extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_conquistas, container, false);
 
         apertado = true;
+
+        //instanciacoes dos textos e botoes
         btBackup = rootView.findViewById(R.id.buttonTesteBackup);
         btSair = rootView.findViewById(R.id.sairBt);
         btEditar = rootView.findViewById(R.id.btEditar);
