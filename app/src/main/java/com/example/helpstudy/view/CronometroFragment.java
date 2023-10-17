@@ -88,6 +88,7 @@ public class CronometroFragment extends Fragment {
 
 
                 resetTimer();
+                mMusic.setImageResource(R.drawable.music);
             }
         });
 

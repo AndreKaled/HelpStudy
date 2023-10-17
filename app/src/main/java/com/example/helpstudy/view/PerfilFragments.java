@@ -27,6 +27,7 @@ import com.example.helpstudy.datasource.DataSource;
 import com.example.helpstudy.model.Usuario;
 import com.example.helpstudy.utils.Notificacao;
 import com.example.helpstudy.utils.Preferencias;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class PerfilFragments extends Fragment {
 
@@ -40,7 +41,7 @@ public class PerfilFragments extends Fragment {
 
     TextView textNome,textEmail, textSenha, emailPerfil, nomePerfil, senhaPerfil;
 
-    Button btEditar;
+    FloatingActionButton btEditar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,7 +49,7 @@ public class PerfilFragments extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_conquistas, container, false);
 
-        apertado = true;
+        apertado = false;
 
         //instanciacoes dos textos e botoes
         btBackup = rootView.findViewById(R.id.buttonTesteBackup);
@@ -91,6 +92,9 @@ public class PerfilFragments extends Fragment {
             @Override
             public void onClick(View view) {
 
+
+
+                //quando termina a edição
                 if(apertado){
 
                     textNome.setVisibility(View.VISIBLE);
@@ -99,9 +103,13 @@ public class PerfilFragments extends Fragment {
                     editTextEmail.setVisibility(View.INVISIBLE);
                     editTextNome.setVisibility(View.INVISIBLE);
                     editTextSenha.setVisibility((View.INVISIBLE));
+                    btEditar.setImageResource(R.drawable.baseline_edit_24);
                     apertado = false;
 
                 }else{
+
+
+                    //quando habilita a edição
 
                     textNome.setVisibility(View.INVISIBLE);
                     textEmail.setVisibility(View.INVISIBLE);
@@ -109,6 +117,7 @@ public class PerfilFragments extends Fragment {
                     editTextEmail.setVisibility(View.VISIBLE);
                     editTextNome.setVisibility(View.VISIBLE);
                     editTextSenha.setVisibility((View.VISIBLE));
+                    btEditar.setImageResource(R.drawable.baseline_edit_off_24);
                     apertado = true;
 
 

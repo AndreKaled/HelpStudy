@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name= "blackFundo">#eee6ff</color>
+    <color name= "blackFundo">#F0F2FC</color>
     <color name= "blackDialog">#333333</color>
     <color name="lateralBar">#202020</color>
     <color name="painelCartoes">#474747</color>
