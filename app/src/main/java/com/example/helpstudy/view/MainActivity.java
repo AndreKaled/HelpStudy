@@ -28,18 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.closed);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        if (savedInstanceState == null) {
-
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new CronometroFragment()).commit();
-            navigationView.setCheckedItem(R.id.cronometro);
-        }
 
 
         replaceFragment(new CronometroFragment());

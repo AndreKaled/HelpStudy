@@ -5,6 +5,8 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerTarefas;
 import com.example.helpstudy.model.Tarefa;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
 
@@ -29,6 +32,8 @@ public class LeituraTarefa extends Fragment {
 
     private Tarefa tarefa;
     private DatePickerDialog dataPicker;
+
+    FloatingActionButton fb;
 
     public LeituraTarefa(Tarefa tarefa){
 
@@ -51,6 +56,7 @@ public class LeituraTarefa extends Fragment {
         tituloTarefa.setText(tarefa.getNome());
         descricaoTexto.setText(tarefa.getDescricao());
         data.setTextColor(getResources().getColor(R.color.black));
+        fb = view.findViewById(R.id.voltarBt);
 
 //       if(bundle != null){
 //
@@ -61,6 +67,16 @@ public class LeituraTarefa extends Fragment {
 //           tituloTarefa.setText(tituloBundle);
 //           descricaoTexto.setText(descricaoBundle);
 //       }
+
+
+
+        fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                replaceFragment(new TarefasFragment());
+            }
+        });
 
 
        data.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +165,14 @@ public class LeituraTarefa extends Fragment {
     public void openDatePicker()
     {
         dataPicker.show();
+    }
+
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
     }
 
 }

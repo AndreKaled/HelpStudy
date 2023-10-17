@@ -41,6 +41,7 @@ public class ViewFlashCardFragment extends Fragment {
         textInstrucao = view.findViewById(R.id.textoInstrucao);
         fb = view.findViewById(R.id.btvoltar);
         handler = new Handler();
+
         //pegar o texto vindo do flashcard
         if(bundle != null){
 

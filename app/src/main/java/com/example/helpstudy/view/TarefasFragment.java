@@ -26,6 +26,7 @@ public class TarefasFragment extends Fragment {
 //    fazer
     static ListView listView;
 
+    FloatingActionButton fb;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,11 +41,20 @@ public class TarefasFragment extends Fragment {
 
         listView.setAdapter(adapter);
 
+        fb = view.findViewById(R.id.voltarBt);
         btnCriar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 abrirModal();
+            }
+        });
+
+        fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                replaceFragment(new ListaFragment());
             }
         });
 
