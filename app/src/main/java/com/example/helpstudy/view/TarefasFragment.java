@@ -24,8 +24,9 @@ import org.checkerframework.checker.units.qual.A;
 
 public class TarefasFragment extends Fragment {
 //    fazer
-    static ListView listView;
+    private static ListView listView;
 
+    private static TarefaAdapter adapter;
     FloatingActionButton fb;
 
     @Override
@@ -37,7 +38,7 @@ public class TarefasFragment extends Fragment {
         FloatingActionButton btnCriar = view.findViewById(R.id.btn_criar_tarefas);
         listView = view.findViewById(R.id.listview_tarefas);
 
-        TarefaAdapter adapter = new TarefaAdapter(getContext());
+        adapter = new TarefaAdapter(getContext());
 
         listView.setAdapter(adapter);
 
@@ -87,4 +88,7 @@ public class TarefasFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
+    public static void updateViews(){
+        listView.invalidateViews();
+    }
 }

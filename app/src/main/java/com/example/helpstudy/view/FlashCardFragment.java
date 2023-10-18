@@ -30,10 +30,9 @@ import java.util.List;
 
 public class FlashCardFragment extends Fragment {
 
-    private ListView listViewFlashCard;
-    private View view;
-    List<FlashCard> listfla = new ArrayList<>();
-
+    private static ListView listViewFlashCard;
+    private static View view;
+    private static ListaFlashCardAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,12 +41,8 @@ public class FlashCardFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_flash_card, container, false);
         FloatingActionButton btCriar = view.findViewById(R.id.btn_criar_flashcard);
         listViewFlashCard = view.findViewById(R.id.lista_de_flashcards);
-        ArrayAdapter<FlashCard> adapter = new ArrayAdapter<>(
-                getContext(), android.R.layout.simple_list_item_1, listfla
-        );
-
-        listfla = new ControllerFlashCard(getContext()).buscarTodos();
-        listViewFlashCard.setAdapter(new ListaFlashCardAdapter(getContext()));
+        adapter = new ListaFlashCardAdapter(getContext());
+        listViewFlashCard.setAdapter(adapter);
         btCriar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,5 +77,9 @@ public class FlashCardFragment extends Fragment {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
+    }
+
+    public static void updateViews(){
+        listViewFlashCard.invalidateViews();
     }
 }

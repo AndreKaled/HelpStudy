@@ -36,6 +36,7 @@ public class ListasAdapter extends BaseAdapter {
         this.context = context;
         controllerListas = new ControllerListas(context);
         this.listas = controllerListas.buscarTodos();
+
     }
 
     @Override
@@ -78,21 +79,12 @@ public class ListasAdapter extends BaseAdapter {
 
                         if(menuItem.getItemId() == R.id.editar){
                             new EditListFragment(list, controllerListas).show(FragmentManager.findFragment(parent).getFragmentManager(),"alalal");
-
                             Toast.makeText(bt.getContext(), "Editar lista", Toast.LENGTH_SHORT).show();
-
                         } else if (menuItem.getItemId() == R.id.deletar){
-
-
                             controllerListas.remover(list);
-
                             Toast.makeText(bt.getContext(), "Editar deletar", Toast.LENGTH_SHORT).show();
-
                         } else{
-
                             Toast.makeText(bt.getContext(), "Erro", Toast.LENGTH_SHORT).show();
-
-
                         }
                         return true;
                     }
@@ -105,6 +97,8 @@ public class ListasAdapter extends BaseAdapter {
         return v;
     }
 
-
+    public void atualizaView(){
+        notifyAll();
+    }
 
 }

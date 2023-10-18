@@ -45,6 +45,7 @@ public class EditFlashcardFragment extends DialogFragment {
                 flashCard.setTitulo(editTituloFlashcard.getText().toString());
                 flashCard.setDescricao(editRespostaFlashcard.getText().toString());
                 c.atualizar(flashCard);
+                FlashCardFragment.updateViews();
                 dismiss();
             }
         });

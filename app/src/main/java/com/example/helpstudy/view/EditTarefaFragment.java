@@ -64,6 +64,7 @@ public class EditTarefaFragment extends DialogFragment {
                 tarefa.setDescricao(editDescTarefa.getText().toString());
                 tarefa.setDataEntrega(editDataTarefa.getText().toString());
                 c.atualizar(tarefa);
+                TarefasFragment.updateViews();
                 dismiss();
             }
         });

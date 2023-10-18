@@ -30,9 +30,9 @@ import java.util.List;
 public class ListaFragment extends Fragment {
 
     private View view;
-    private ListView listView;
+    private static ListView listView;
 
-    ListasAdapter adapter;
+    static ListasAdapter adapter;
 
 
     @Override
@@ -82,5 +82,9 @@ public class ListaFragment extends Fragment {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
+    }
+
+    public static void upateView(){
+        listView.invalidateViews();
     }
 }

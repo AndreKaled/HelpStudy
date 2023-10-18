@@ -39,4 +39,12 @@ public class ROOT {
             throw new RuntimeException(e);
         }
     }
+    public void sincListas(){
+        try {
+            Thread.sleep(1000);
+            new ListasAdapter(context).notifyDataSetChanged();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
