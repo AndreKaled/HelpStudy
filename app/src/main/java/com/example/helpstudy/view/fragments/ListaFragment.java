@@ -25,14 +25,8 @@ public class ListaFragment extends Fragment {
 
     private View view;
     private static ListView listView;
-
-
     private Context context;
-
-
     static ListasAdapter adapter;
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,14 +46,8 @@ public class ListaFragment extends Fragment {
             public void onClick(View v) {
 
                 abrirModal();
-
             }
-
-
         });
-
-
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -77,7 +65,16 @@ public class ListaFragment extends Fragment {
 
     private void abrirModal() {
 
-        AddListFragment dialog = new AddListFragment(context);
+
+        Snackbar mySnackBar = Snackbar.make(view.findViewById(R.id.layoutLista), "Lista adicionada!", Snackbar.LENGTH_LONG);
+        mySnackBar.setAction("Fechar", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Saiu", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AddListFragment dialog = new AddListFragment(mySnackBar);
         dialog.show(getActivity().getSupportFragmentManager(), "oi2");
     }
 

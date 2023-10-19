@@ -29,7 +29,7 @@ public class AddTarefaFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.dialog_create_list, container, false);
+        return inflater.inflate(R.layout.dialog_create_flashcard, container, false);
 
     }
 
@@ -52,11 +52,11 @@ public class AddTarefaFragment extends DialogFragment {
 
                 String titulo = "AAA", descricao = "bb";
 
-                viewTitulo = (EditText) view.findViewById(R.id.editTextTituloList);
+                viewTitulo = (EditText) view.findViewById(R.id.editTextTituloFlashCard);
 
                 titulo =  viewTitulo.getText().toString();
 
-                viewDescricao = (EditText) view.findViewById(R.id.editTextDescricao);
+                viewDescricao = (EditText) view.findViewById(R.id.editTextResposta);
 
                 descricao = viewDescricao.getText().toString();
 

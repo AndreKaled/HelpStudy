@@ -1,6 +1,7 @@
 package com.example.helpstudy.view.dialog;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,11 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerListas;
+import com.example.helpstudy.controller.ControllerUsuario;
+import com.example.helpstudy.model.Usuario;
 import com.example.helpstudy.utils.ROOT;
+import com.example.helpstudy.view.activitys.MainActivity;
+import com.example.helpstudy.view.activitys.TelaLogin;
 import com.google.android.material.snackbar.Snackbar;
 
 public class AddListFragment extends DialogFragment {
@@ -23,13 +28,12 @@ public class AddListFragment extends DialogFragment {
     private View view;
     private ControllerListas controlerLista;
     private Button bt;
+    private Snackbar snackbar;
 
-    private Context context;
+    private EditText viewTitulo;
+    public AddListFragment(Snackbar snackbar){
 
-
-    public AddListFragment(Context context){
-
-        this.context = context;
+        this.snackbar = snackbar;
     }
 
     @Override
@@ -49,32 +53,39 @@ public class AddListFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
 
-
-                TextView viewTitulo, viewDescricao;
-
-                String titulo = "AAA", descricao = "bb";
-
+                String titulo = "AAA";
                 viewTitulo = (EditText) view.findViewById(R.id.editTextTituloList);
-
                 titulo =  viewTitulo.getText().toString();
+                try {
 
-                viewDescricao = (EditText) view.findViewById(R.id.editTextDescricao);
+                    if(validaLista(viewTitulo) == true){
 
-                descricao = viewDescricao.getText().toString();
-
-                controlerLista.cadastrar(titulo);
-                dismiss();
-
-                mensagemAviso(view);
+                        dismiss();
+                    }
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
 
-    private void mensagemAviso(View view) {
+    private Boolean validaLista(EditText titulo) throws Exception {
 
-//        View inflateV = getLayoutInflater().inflate(R.layout.fragment_lista, null);
-        Snackbar mySnackBar = Snackbar.make(view.findViewById(R.id.pop_upAddList), "aa", Snackbar.LENGTH_LONG);
-        mySnackBar.show();
+        if(titulo == null){
 
+            Toast.makeText(getActivity(), "Título não encontrado", Toast.LENGTH_SHORT).show();
+
+            return false;
+        } else if(titulo.getText().toString().isEmpty()){
+
+            titulo.setError("Título não pode ser vazio.");
+
+            return false;
+        } else {
+
+            controlerLista.cadastrar(titulo.getText().toString());
+            snackbar.show();
+            return true;
+        }
     }
 }
