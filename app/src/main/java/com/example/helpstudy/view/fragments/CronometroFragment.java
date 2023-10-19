@@ -15,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.helpstudy.R;
 import com.example.helpstudy.utils.Atencao;
 import com.example.helpstudy.utils.Musica;
@@ -25,36 +27,23 @@ import java.util.Locale;
 public class CronometroFragment extends Fragment {
 
     private static long START_TIME_IN_MILLIS = 600000;
-
     private static TextView mTextViewCountDown;
     private FloatingActionButton mButtonStartPause;
     private FloatingActionButton mButtonReset;
-
     private FloatingActionButton mMusic;
-
     private static Boolean testar = true;
-
     private CountDownTimer mCountDownTimer;
-
     public Musica musica;
-
     private boolean mTimerRunning;
-
     private static long mTimeLeftInMillis;
-    private long mEndTime;
+    private static long mEndTime;
     private static Context context;
-
     View view;
-
     Atencao atencao;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -126,8 +115,10 @@ public class CronometroFragment extends Fragment {
     private void pauseTimer() {
         mCountDownTimer.cancel();
         mTimerRunning = false;
+        Toast.makeText(context, "AAAAA", Toast.LENGTH_SHORT).show();
         updateButtons();
         atencao.naoDetectar();
+
     }
 
     private void resetTimer() {
@@ -186,11 +177,22 @@ public class CronometroFragment extends Fragment {
             mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
             mMusic.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryVariant)));
             mMusic.setEnabled(false);
-
             musica.pauseMusic();
-            if (mTimeLeftInMillis < START_TIME_IN_MILLIS) {
+
+            // reiniciar o cronômetro para 5 minutos quando chegar a 0. este aqui por algum motivo nao esta PEGANDO
+            if (mTimeLeftInMillis == 0) {
+
+                Toast.makeText(context, "Anormal", Toast.LENGTH_SHORT).show();
+                mTimeLeftInMillis = 5 * 60000;
+                updateCountDownText();
+
+                // se o cronometro for maior que zero
+            } else if (mTimeLeftInMillis <= START_TIME_IN_MILLIS && mTimeLeftInMillis > 0) {
+                Toast.makeText(context, "ask", Toast.LENGTH_SHORT).show();
                 mButtonReset.setEnabled(true);
                 mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
+
+                // so deixar como desabilitado
             } else {
                 mButtonReset.setEnabled(false);
                 mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryVariant)));
@@ -205,7 +207,6 @@ public class CronometroFragment extends Fragment {
 
         SharedPreferences prefs = getContext().getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-
         editor.putLong("millisLeft", mTimeLeftInMillis);
         editor.putBoolean("timerRunning", mTimerRunning);
         editor.putLong("endTime", mEndTime);
@@ -221,10 +222,8 @@ public class CronometroFragment extends Fragment {
         super.onStart();
 
         SharedPreferences prefs = getContext().getSharedPreferences("prefs", MODE_PRIVATE);
-
         mTimeLeftInMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);
         mTimerRunning = prefs.getBoolean("timerRunning", false);
-
         updateCountDownText();
         updateButtons();
 
@@ -233,23 +232,20 @@ public class CronometroFragment extends Fragment {
             mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
 
             if (mTimeLeftInMillis < 0) {
-                mTimeLeftInMillis = 0;
                 mTimerRunning = false;
-                updateCountDownText();
                 updateButtons();
             } else {
                 startTimer();
             }
         }
     }
-
-    public static void mudaText(int min, int sec){
+    public static void mudaText(int min, int sec) {
         mTextViewCountDown.setText(String.format(Locale.getDefault(), "%02d:%02d", min, sec));
         mTimeLeftInMillis = (min * 60000 + sec * 1000);
+        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;  // Atualize mEndTime
         SharedPreferences share = context.getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor edit = share.edit();
         edit.putLong("millisLeft", mTimeLeftInMillis);
         edit.commit();
     }
-
 }
