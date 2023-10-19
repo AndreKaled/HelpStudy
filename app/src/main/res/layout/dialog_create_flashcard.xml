@@ -20,7 +20,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editTextTituloFlashCard"
+        android:id="@+id/addTextTituloFlashCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
@@ -33,7 +33,7 @@
         android:textColorLink="@color/confirmarAzul" />
 
     <EditText
-        android:id="@+id/editTextResposta"
+        android:id="@+id/addTextRespostaFlashcard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
@@ -45,7 +45,7 @@
         android:textColorLink="@color/confirmarAzul" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/idDialogList"
+        android:id="@+id/btnCriarFlashcard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"

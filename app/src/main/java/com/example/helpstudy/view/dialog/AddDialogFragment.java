@@ -14,14 +14,14 @@ import android.widget.TextView;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.utils.MensagemBar;
-import com.example.helpstudy.utils.ROOT;
-import com.google.android.material.snackbar.Snackbar;
 
 public class AddDialogFragment extends DialogFragment {
 
     private View view;
     private ControllerFlashCard controllerFlashCard;
     private Button bt;
+    private TextView viewTitulo, viewResposta;
+
 
 
     public AddDialogFragment(){
@@ -32,7 +32,7 @@ public class AddDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         controllerFlashCard = new ControllerFlashCard(getContext());
-        return inflater.inflate(R.layout.dialog_create, container, false);
+        return inflater.inflate(R.layout.dialog_create_flashcard, container, false);
 
     }
 
@@ -41,36 +41,33 @@ public class AddDialogFragment extends DialogFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
+        viewTitulo = (EditText) view.findViewById(R.id.addTextTituloFlashCard);
+        viewResposta = (EditText) view.findViewById(R.id.addTextRespostaFlashcard);
 
-        bt = view.findViewById(R.id.idDialog);
+        bt = view.findViewById(R.id.btnCriarFlashcard);
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                TextView viewTitulo, viewResposta;
-
-                String titulo = "AAA", resposta = "bb";
-
-                viewTitulo = (EditText) view.findViewById(R.id.editTextTituloList);
-
-                titulo =  viewTitulo.getText().toString();
-
-                viewResposta = (EditText) view.findViewById(R.id.editTextresp);
-
-                resposta = viewResposta.getText().toString();
-
-                controllerFlashCard.cadastrar(titulo, resposta);
-
-                MensagemBar msg = new MensagemBar(getActivity().findViewById(R.id.layoutFlashcard),"Flashcard adicionado");
-                msg.defineSnackLongo();
-                msg.mostrar();
-
-                dismiss();
+                validarCampos();
             }
         });
+    }
+    private void validarCampos(){
+        if(viewTitulo.getText().toString().isEmpty())
+            viewTitulo.setError("Titulo não pode ser vazio!");
+        if(viewResposta.getText().toString().isEmpty())
+            viewResposta.setError("Resposta não pode ser vazia");
+        if(!(viewTitulo.getText().toString().isEmpty()&&viewResposta.getText().toString().isEmpty())){
+            String titulo =  viewTitulo.getText().toString();
+            String resposta = viewResposta.getText().toString();
+            controllerFlashCard.cadastrar(titulo, resposta);
 
+            MensagemBar msg = new MensagemBar(getActivity().findViewById(R.id.layoutFlashcard),"Flashcard adicionado");
+            msg.defineSnackLongo();
+            msg.mostrar();
 
+            dismiss();
+        }
     }
 
 }

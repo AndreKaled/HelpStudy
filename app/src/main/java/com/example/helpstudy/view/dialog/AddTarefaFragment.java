@@ -11,25 +11,23 @@ import android.widget.TextView;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.helpstudy.R;
-import com.example.helpstudy.controller.ControllerListas;
 import com.example.helpstudy.controller.ControllerTarefas;
-import com.example.helpstudy.model.Tarefa;
-import com.example.helpstudy.utils.ROOT;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.helpstudy.utils.MensagemBar;
 
 public class AddTarefaFragment extends DialogFragment {
 
     private View view;
     private ControllerTarefas controlerTarefas;
     private Button bt;
+    private int cont = 0;
+
+    private TextView viewTitulo, viewDescricao;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.dialog_create_flashcard, container, false);
+        return inflater.inflate(R.layout.dialog_create_tarefa, container, false);
 
     }
 
@@ -42,31 +40,36 @@ public class AddTarefaFragment extends DialogFragment {
 
         controlerTarefas = new ControllerTarefas(getContext());
 
-        bt = view.findViewById(R.id.idDialogList);
+        viewTitulo = (EditText) view.findViewById(R.id.addTextTituloTarefa);
+        viewDescricao = (EditText) view.findViewById(R.id.addTextRespostaTarefa);
+
+        bt = view.findViewById(R.id.btn_criar_tarefas);
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                TextView viewTitulo, viewDescricao;
-
-                String titulo = "AAA", descricao = "bb";
-
-                viewTitulo = (EditText) view.findViewById(R.id.editTextTituloFlashCard);
-
-                titulo =  viewTitulo.getText().toString();
-
-                viewDescricao = (EditText) view.findViewById(R.id.editTextResposta);
-
-                descricao = viewDescricao.getText().toString();
-
-                controlerTarefas.cadastrar(titulo,descricao, null, false);
-
-                dismiss();
+                validarCampos();
             }
         });
 
 
+    }
+
+    private void validarCampos() {
+        String titulo = viewTitulo.getText().toString();
+        String descricao = viewDescricao.getText().toString();
+        if (viewTitulo.getText().toString().isEmpty())
+            viewTitulo.setError("O título não pode ser vazia!");
+        if (viewDescricao.getText().toString().isEmpty() && cont == 0){
+            viewDescricao.setError("Está certo de que não deve ter uma descrição?");
+            cont++;
+        }else{
+            controlerTarefas.cadastrar(titulo,descricao, null, false);
+            cont= 0;
+
+//            MensagemBar msg = new MensagemBar(getActivity().findViewById(), "")
+
+            dismiss();
+        }
     }
 
 }

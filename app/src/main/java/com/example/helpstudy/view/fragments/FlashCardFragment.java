@@ -73,7 +73,7 @@ public class FlashCardFragment extends Fragment {
             }
         });
 
-        AddDialogFragment dialog = new AddDialogFragment(mySnackBar);
+        AddDialogFragment dialog = new AddDialogFragment();
         dialog.show(getActivity().getSupportFragmentManager(), "oi");
     }
     private void replaceFragment(Fragment fragment) {

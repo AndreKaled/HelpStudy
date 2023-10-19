@@ -9,17 +9,17 @@
         android:padding="40dp">
 
         <TextView
-            android:id="@+id/textoDialog"
+            android:id="@+id/textoDialogTarefa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Adicionar Flashcard"
+            android:text="Adicionar Tarefa"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editTextTituloList"
+        android:id="@+id/addTextTituloTarefa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
@@ -32,7 +32,7 @@
         android:textColorLink="@color/confirmarAzul" />
 
         <EditText
-            android:id="@+id/editTextresp"
+            android:id="@+id/addTextRespostaTarefa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
@@ -44,7 +44,7 @@
             android:textColorLink="@color/confirmarAzul"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/idDialog"
+            android:id="@+id/btn_criar_tarefas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"

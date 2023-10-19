@@ -41,7 +41,7 @@ public class EditListFragment extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
         EditText editTitulo = view.findViewById(R.id.editTextTituloList);
         editTitulo.setText(l.getTitulo());
-        Button btn = view.findViewById(R.id.idDialogList);
+        Button btn = view.findViewById(R.id.btnCriarLista);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
