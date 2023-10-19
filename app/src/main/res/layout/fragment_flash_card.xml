@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/blackFundo"
     android:outlineSpotShadowColor="#FFFFFF"
-    tools:context=".view.FlashCardFragment">
+    tools:context=".view.fragments.FlashCardFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -23,8 +23,8 @@
 
     <ListView
         android:id="@+id/lista_de_flashcards"
-        android:layout_width="match_parent"
-        android:layout_height="90mm"
+        android:layout_width="wrap_content"
+        android:layout_height="80mm"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:divider="@null"

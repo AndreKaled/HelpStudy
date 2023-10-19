@@ -1,24 +1,19 @@
-package com.example.helpstudy.view;
+package com.example.helpstudy.view.fragments;
 
 import static android.content.Context.MODE_PRIVATE;
-import static android.content.Context.SENSOR_SERVICE;
 
-import static java.lang.System.in;
-
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
-import android.graphics.drawable.Drawable;
-import android.hardware.SensorManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import com.example.helpstudy.R;
 import com.example.helpstudy.utils.Atencao;
@@ -29,9 +24,9 @@ import java.util.Locale;
 
 public class CronometroFragment extends Fragment {
 
-    private static final long START_TIME_IN_MILLIS = 600000;
+    private static long START_TIME_IN_MILLIS = 600000;
 
-    private TextView mTextViewCountDown;
+    private static TextView mTextViewCountDown;
     private FloatingActionButton mButtonStartPause;
     private FloatingActionButton mButtonReset;
 
@@ -45,8 +40,10 @@ public class CronometroFragment extends Fragment {
 
     private boolean mTimerRunning;
 
-    private long mTimeLeftInMillis;
+    private static long mTimeLeftInMillis;
     private long mEndTime;
+    private static Context context;
+
     View view;
 
     Atencao atencao;
@@ -63,8 +60,16 @@ public class CronometroFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_cronometro, container, false);
         atencao = new Atencao(getContext());
+        context = getContext();
 
         mTextViewCountDown = view.findViewById(R.id.text_view_countdown);
+
+        mTextViewCountDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new TempoCronometroFragment().show(FragmentManager.findFragment(view).getFragmentManager(),"alalal");
+            }
+        });
 
         mButtonStartPause = view.findViewById(R.id.button_start_pause);
         mButtonReset = view.findViewById(R.id.button_reset);
@@ -138,6 +143,7 @@ public class CronometroFragment extends Fragment {
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
 
         mTextViewCountDown.setText(timeLeftFormatted);
+//        mTimeLeftInMillis = Long.parseLong(mTextViewCountDown.getText().toString());
     }
 
     private void updateButtons() {
@@ -235,6 +241,15 @@ public class CronometroFragment extends Fragment {
                 startTimer();
             }
         }
+    }
+
+    public static void mudaText(int min, int sec){
+        mTextViewCountDown.setText(String.format(Locale.getDefault(), "%02d:%02d", min, sec));
+        mTimeLeftInMillis = (min * 60000 + sec * 1000);
+        SharedPreferences share = context.getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor edit = share.edit();
+        edit.putLong("millisLeft", mTimeLeftInMillis);
+        edit.commit();
     }
 
 }

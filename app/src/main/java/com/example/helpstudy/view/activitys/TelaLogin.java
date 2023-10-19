@@ -1,24 +1,18 @@
-package com.example.helpstudy.view;
-
-import static java.util.Locale.ROOT;
+package com.example.helpstudy.view.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.helpstudy.controller.ControllerUsuario;
 import com.example.helpstudy.R;
-import com.example.helpstudy.datasource.DataSource;
 import com.example.helpstudy.model.Usuario;
 import com.example.helpstudy.utils.Preferencias;
-import com.example.helpstudy.utils.ROOT;
 
 public class TelaLogin extends AppCompatActivity {
 
@@ -33,7 +27,7 @@ public class TelaLogin extends AppCompatActivity {
         pref = new Preferencias(getApplicationContext());
         if(pref.getEmailUsuario() != null){
             ControllerUsuario.setIdUsuario(pref.getIdUsuario());
-            new ROOT(getApplicationContext()).buscarTudo();
+
             Intent intent = new Intent(TelaLogin.this, MainActivity.class);
             startActivity(intent);
         }else{
@@ -87,7 +81,6 @@ public class TelaLogin extends AppCompatActivity {
             pref.editEmailUsuario(textEmail.getText().toString());
             pref.editSenhaUsuario(textSenha.getText().toString());
             pref.editIdUsuario(usuario.getId());
-            new ROOT(getApplicationContext()).buscarTudo();
 
             Intent intent = new Intent(TelaLogin.this, MainActivity.class);
             startActivity(intent);

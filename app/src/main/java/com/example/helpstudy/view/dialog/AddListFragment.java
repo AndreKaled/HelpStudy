@@ -1,31 +1,31 @@
-package com.example.helpstudy.view;
+package com.example.helpstudy.view.dialog;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.DialogFragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.fragment.app.DialogFragment;
+
 import com.example.helpstudy.R;
-import com.example.helpstudy.controller.ControllerFlashCard;
+import com.example.helpstudy.controller.ControllerListas;
 import com.example.helpstudy.utils.ROOT;
 
-public class AddDialogFragment extends DialogFragment {
+public class AddListFragment extends DialogFragment {
 
     private View view;
-    private ControllerFlashCard controllerFlashCard;
+    private ControllerListas controlerLista;
     private Button bt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        controllerFlashCard = new ControllerFlashCard(getContext());
-        return inflater.inflate(R.layout.dialog_create, container, false);
+        controlerLista = new ControllerListas(getContext());
+        return inflater.inflate(R.layout.dialog_create_list, container, false);
 
     }
 
@@ -35,25 +35,25 @@ public class AddDialogFragment extends DialogFragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        bt = view.findViewById(R.id.idDialog);
+        bt = view.findViewById(R.id.idDialogList);
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                TextView viewTitulo, viewResposta;
+                TextView viewTitulo, viewDescricao;
 
-                String titulo = "AAA", resposta = "bb";
+                String titulo = "AAA", descricao = "bb";
 
                 viewTitulo = (EditText) view.findViewById(R.id.editTextTituloList);
 
                 titulo =  viewTitulo.getText().toString();
 
-                viewResposta = (EditText) view.findViewById(R.id.editTextresp);
+                viewDescricao = (EditText) view.findViewById(R.id.editTextDescricao);
 
-                resposta = viewResposta.getText().toString();
+                descricao = viewDescricao.getText().toString();
 
-                controllerFlashCard.cadastrar(titulo, resposta);
+                controlerLista.cadastrar(titulo);
 
                 dismiss();
             }

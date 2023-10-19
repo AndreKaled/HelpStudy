@@ -1,32 +1,22 @@
-package com.example.helpstudy.view;
+package com.example.helpstudy.view.fragments;
 
-import android.Manifest;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.helpstudy.R;
-import com.example.helpstudy.controller.ControllerUsuario;
 import com.example.helpstudy.datasource.DataSource;
-import com.example.helpstudy.model.Usuario;
 import com.example.helpstudy.utils.Notificacao;
 import com.example.helpstudy.utils.Preferencias;
+import com.example.helpstudy.view.activitys.TelaLogin;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class PerfilFragments extends Fragment {

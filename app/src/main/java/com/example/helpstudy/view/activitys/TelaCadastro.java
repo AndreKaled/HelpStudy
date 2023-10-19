@@ -1,4 +1,4 @@
-package com.example.helpstudy.view;
+package com.example.helpstudy.view.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.example.helpstudy.controller.ControllerUsuario;
 import com.example.helpstudy.R;
-import com.example.helpstudy.model.Usuario;
 
 public class TelaCadastro extends AppCompatActivity {
 

@@ -1,17 +1,11 @@
-package com.example.helpstudy.view;
+package com.example.helpstudy.view.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -19,13 +13,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerListas;
 import com.example.helpstudy.controller.ControllerTarefas;
-import com.example.helpstudy.model.FlashCard;
-import com.example.helpstudy.model.Listas;
-import com.example.helpstudy.utils.ROOT;
+import com.example.helpstudy.view.adapters.ListasAdapter;
+import com.example.helpstudy.view.dialog.AddListFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ListaFragment extends Fragment {
 
@@ -66,7 +56,6 @@ public class ListaFragment extends Fragment {
 
         });
 
-
         return view;
     }
 
@@ -76,7 +65,6 @@ public class ListaFragment extends Fragment {
         dialog.show(getActivity().getSupportFragmentManager(), "oi2");
     }
 
-
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -84,7 +72,7 @@ public class ListaFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
-    public static void upateView(){
+    public static void updateView(){
         listView.invalidateViews();
     }
 }

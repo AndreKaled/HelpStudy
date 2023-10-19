@@ -1,20 +1,19 @@
-package com.example.helpstudy.view;
+package com.example.helpstudy.view.dialog;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.model.FlashCard;
+import com.example.helpstudy.view.fragments.FlashCardFragment;
 
 public class EditFlashcardFragment extends DialogFragment {
 

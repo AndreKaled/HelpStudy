@@ -1,4 +1,4 @@
-package com.example.helpstudy.view;
+package com.example.helpstudy.view.fragments;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
@@ -12,7 +12,6 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.helpstudy.R;

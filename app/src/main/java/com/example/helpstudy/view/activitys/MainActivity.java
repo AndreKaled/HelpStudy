@@ -1,15 +1,17 @@
-package com.example.helpstudy.view;
-import androidx.appcompat.app.ActionBarDrawerToggle;
+package com.example.helpstudy.view.activitys;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 
 import com.example.helpstudy.R;
-import com.example.helpstudy.datasource.DataSource;
+import com.example.helpstudy.view.fragments.CronometroFragment;
+import com.example.helpstudy.view.fragments.FlashCardFragment;
+import com.example.helpstudy.view.fragments.ListaFragment;
+import com.example.helpstudy.view.fragments.PerfilFragments;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import androidx.appcompat.widget.Toolbar;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;

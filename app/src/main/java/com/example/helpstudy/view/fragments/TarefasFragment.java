@@ -1,4 +1,4 @@
-package com.example.helpstudy.view;
+package com.example.helpstudy.view.fragments;
 
 import android.os.Bundle;
 
@@ -10,17 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerTarefas;
 import com.example.helpstudy.model.Tarefa;
-import com.example.helpstudy.utils.ROOT;
+import com.example.helpstudy.view.adapters.TarefaAdapter;
+import com.example.helpstudy.view.dialog.AddTarefaFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import org.checkerframework.checker.units.qual.A;
 
 public class TarefasFragment extends Fragment {
 //    fazer

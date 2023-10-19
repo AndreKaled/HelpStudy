@@ -1,11 +1,10 @@
-package com.example.helpstudy.view;
+package com.example.helpstudy.view.dialog;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +18,7 @@ import android.widget.TextView;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerTarefas;
 import com.example.helpstudy.model.Tarefa;
+import com.example.helpstudy.view.fragments.TarefasFragment;
 
 import java.util.Calendar;
 

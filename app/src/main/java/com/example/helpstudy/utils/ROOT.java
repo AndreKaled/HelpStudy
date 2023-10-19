@@ -1,14 +1,12 @@
 package com.example.helpstudy.utils;
 
 import android.content.Context;
-import android.widget.ArrayAdapter;
 
 import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.controller.ControllerListas;
-import com.example.helpstudy.controller.ControllerTarefas;
-import com.example.helpstudy.view.ListaFlashCardAdapter;
-import com.example.helpstudy.view.ListasAdapter;
-import com.example.helpstudy.view.TarefaAdapter;
+import com.example.helpstudy.view.adapters.ListaFlashCardAdapter;
+import com.example.helpstudy.view.adapters.ListasAdapter;
+import com.example.helpstudy.view.adapters.TarefaAdapter;
 
 public class ROOT {
     private Context context;

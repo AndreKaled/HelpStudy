@@ -1,4 +1,4 @@
-package com.example.helpstudy.view;
+package com.example.helpstudy.view.fragments;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -8,17 +8,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.example.helpstudy.R;
-import com.example.helpstudy.controller.ControllerTarefas;
 import com.example.helpstudy.model.Tarefa;
+import com.example.helpstudy.view.fragments.TarefasFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;

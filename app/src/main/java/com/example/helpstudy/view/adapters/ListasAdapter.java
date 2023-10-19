@@ -1,7 +1,4 @@
-package com.example.helpstudy.view;
-
-import static com.google.android.material.internal.ContextUtils.getActivity;
-import static java.security.AccessController.getContext;
+package com.example.helpstudy.view.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,15 +11,13 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerListas;
-import com.example.helpstudy.datasource.DataSource;
 import com.example.helpstudy.model.Listas;
-import com.example.helpstudy.utils.ROOT;
+import com.example.helpstudy.view.dialog.EditListFragment;
+import com.example.helpstudy.view.fragments.ListaFragment;
 
 import java.util.List;
 
@@ -82,6 +77,7 @@ public class ListasAdapter extends BaseAdapter {
                             Toast.makeText(bt.getContext(), "Editar lista", Toast.LENGTH_SHORT).show();
                         } else if (menuItem.getItemId() == R.id.deletar){
                             controllerListas.remover(list);
+                            ListaFragment.updateView();
                             Toast.makeText(bt.getContext(), "Editar deletar", Toast.LENGTH_SHORT).show();
                         } else{
                             Toast.makeText(bt.getContext(), "Erro", Toast.LENGTH_SHORT).show();

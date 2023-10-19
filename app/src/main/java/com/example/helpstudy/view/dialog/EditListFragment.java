@@ -1,12 +1,10 @@
-package com.example.helpstudy.view;
+package com.example.helpstudy.view.dialog;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +15,7 @@ import android.widget.EditText;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerListas;
 import com.example.helpstudy.model.Listas;
-import com.example.helpstudy.utils.ROOT;
+import com.example.helpstudy.view.fragments.ListaFragment;
 
 public class EditListFragment extends DialogFragment {
 
@@ -52,7 +50,7 @@ public class EditListFragment extends DialogFragment {
             public void onClick(View view) {
                 l.setTitulo(editTitulo.getText().toString());
                 ctrl.atualizar(l);
-                ListaFragment.upateView();
+                ListaFragment.updateView();
                 dismiss();
             }
         });

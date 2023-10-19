@@ -10,7 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.helpstudy.R;
-import com.example.helpstudy.view.TelaLogin;
+import com.example.helpstudy.view.activitys.TelaLogin;
 
 public class Notificacao {
 

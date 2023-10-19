@@ -1,4 +1,4 @@
-package com.example.helpstudy.view;
+package com.example.helpstudy.view.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,31 +13,33 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 
-import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.R;
-import com.example.helpstudy.model.FlashCard;
-import com.example.helpstudy.utils.ROOT;
+import com.example.helpstudy.controller.ControllerTarefas;
+import com.example.helpstudy.model.Tarefa;
+import com.example.helpstudy.view.dialog.EditTarefaFragment;
+import com.example.helpstudy.view.fragments.TarefasFragment;
 
 import java.util.List;
 
-public class ListaFlashCardAdapter extends BaseAdapter {
-    Context context;
-    List<FlashCard> flashCards;
+public class TarefaAdapter extends BaseAdapter {
 
-    public ListaFlashCardAdapter(Context context){
+    static Context context;
+    static List<Tarefa> list;
+    private ControllerTarefas controllerTarefas;
+
+    public TarefaAdapter(Context context){
         this.context = context;
-        ControllerFlashCard controllerFlashCard = new ControllerFlashCard(context);
-        this.flashCards = controllerFlashCard.buscarTodos();
+        controllerTarefas = new ControllerTarefas(context);
+        this.list = controllerTarefas.buscarTodos();
     }
-
     @Override
     public int getCount() {
-        return flashCards.size();
+        return list.size();
     }
 
     @Override
-    public FlashCard getItem(int i) {
-        return flashCards.get(i);
+    public Tarefa getItem(int i) {
+        return list.get(i);
     }
 
     @Override
@@ -46,53 +48,52 @@ public class ListaFlashCardAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_lista_flashcards, parent, false);
+    public View getView(int position, View contentView, ViewGroup parent) {
+        View v = LayoutInflater.from(context).inflate(R.layout.item_tarefa, parent, false);
 
-        TextView textView_titulo = v.findViewById(R.id.tituloCard);
-
-
+        TextView textView_nome = v.findViewById(R.id.tituloTarefa);
+        TextView textView_desc = v.findViewById(R.id.descricaoTarefa);
+        Tarefa tarefa = list.get(position);
+        textView_nome.setText(tarefa.getNome());
+        textView_desc.setText(tarefa.getDescricao());
         Button bt = v.findViewById(R.id.menu_kebad);
-        FlashCard flashCard = flashCards.get(position);
-        textView_titulo.setText(flashCard.getTitulo());
-
-        ControllerFlashCard controllerFlashCard = new ControllerFlashCard(context);
 
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 PopupMenu popupMenu = new PopupMenu(bt.getContext(), bt);
-
                 popupMenu.getMenuInflater().inflate(R.menu.menu_popup, popupMenu.getMenu());
-
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
+                        Tarefa t = controllerTarefas.buscarPorPosicao(position);
 
-                        if(menuItem.getItemId() == R.id.editar){
+                        if (menuItem.getItemId() == R.id.editar) {
 
-                            new EditFlashcardFragment(flashCard, controllerFlashCard).show(FragmentManager.findFragment(parent).getFragmentManager(),"alalal");
+                            new EditTarefaFragment(t, controllerTarefas).show(FragmentManager.findFragment(parent).getFragmentManager(),"alalal");
                             Toast.makeText(bt.getContext(), "Editar", Toast.LENGTH_SHORT).show();
 
-                        } else if (menuItem.getItemId() == R.id.deletar){
+                        } else if (menuItem.getItemId() == R.id.deletar) {
 
-                            controllerFlashCard.remover(flashCard);
-                            controllerFlashCard.atualizarFlash();
                             Toast.makeText(bt.getContext(), "Deletar", Toast.LENGTH_SHORT).show();
 
-                        } else{
+                            controllerTarefas.remover(t);
+                            TarefasFragment.updateViews();
+
+                        } else {
 
                             Toast.makeText(bt.getContext(), "Erro", Toast.LENGTH_SHORT).show();
                         }
                         return true;
                     }
                 });
-
                 popupMenu.show();
             }
         });
+
         return v;
     }
+
 }

@@ -1,32 +1,23 @@
-package com.example.helpstudy.view;
+package com.example.helpstudy.view.fragments;
 
-import android.app.Dialog;
-import android.os.BaseBundle;
 import android.os.Bundle;
 
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.R;
 import com.example.helpstudy.model.FlashCard;
+import com.example.helpstudy.view.adapters.ListaFlashCardAdapter;
+import com.example.helpstudy.view.dialog.AddDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class FlashCardFragment extends Fragment {
 
