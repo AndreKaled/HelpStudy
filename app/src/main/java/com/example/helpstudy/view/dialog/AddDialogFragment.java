@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerFlashCard;
+import com.example.helpstudy.utils.MensagemBar;
 import com.example.helpstudy.utils.ROOT;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -22,12 +23,9 @@ public class AddDialogFragment extends DialogFragment {
     private ControllerFlashCard controllerFlashCard;
     private Button bt;
 
-    private Snackbar snackbar;
 
+    public AddDialogFragment(){
 
-    public AddDialogFragment(Snackbar snackbar){
-
-        this.snackbar = snackbar;
     }
 
     @Override
@@ -64,9 +62,11 @@ public class AddDialogFragment extends DialogFragment {
 
                 controllerFlashCard.cadastrar(titulo, resposta);
 
-                dismiss();
+                MensagemBar msg = new MensagemBar(getActivity().findViewById(R.id.layoutFlashcard),"Flashcard adicionado");
+                msg.defineSnackLongo();
+                msg.mostrar();
 
-                snackbar.show();
+                dismiss();
             }
         });
 
