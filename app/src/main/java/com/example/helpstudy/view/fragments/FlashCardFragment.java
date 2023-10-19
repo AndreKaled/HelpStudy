@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.R;
@@ -18,6 +19,7 @@ import com.example.helpstudy.model.FlashCard;
 import com.example.helpstudy.view.adapters.ListaFlashCardAdapter;
 import com.example.helpstudy.view.dialog.AddDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 public class FlashCardFragment extends Fragment {
 
@@ -40,6 +42,9 @@ public class FlashCardFragment extends Fragment {
 
                 abrirModal();
                 adapter.notifyDataSetChanged();
+
+
+                Snackbar mySnackBar = Snackbar.make(view.findViewById(R.id.layoutFlashcard), "aa", Snackbar.LENGTH_LONG);
             }
         });
 
@@ -60,7 +65,15 @@ public class FlashCardFragment extends Fragment {
     }
     private void abrirModal() {
 
-        AddDialogFragment dialog = new AddDialogFragment();
+        Snackbar mySnackBar = Snackbar.make(view.findViewById(R.id.layoutFlashcard), "Flashcard adicionado!", Snackbar.LENGTH_LONG);
+        mySnackBar.setAction("Fechar", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Saiu", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AddDialogFragment dialog = new AddDialogFragment(mySnackBar);
         dialog.show(getActivity().getSupportFragmentManager(), "oi");
     }
     private void replaceFragment(Fragment fragment) {
@@ -68,6 +81,16 @@ public class FlashCardFragment extends Fragment {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
+    }
+
+    private void mensagemAviso(View view) {
+
+//        View inflateV = getLayoutInflater().inflate(R.layout.fragment_lista, null);
+        Snackbar mySnackBar = Snackbar.make(view.findViewById(R.id.layoutFlashcard), "Adicionado", Snackbar.LENGTH_LONG);
+
+
+        mySnackBar.show();
+
     }
 
     public static void updateViews(){

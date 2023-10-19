@@ -1,11 +1,13 @@
 package com.example.helpstudy.view.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -13,14 +15,20 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerListas;
 import com.example.helpstudy.controller.ControllerTarefas;
+import com.example.helpstudy.utils.MensagemBar;
 import com.example.helpstudy.view.adapters.ListasAdapter;
 import com.example.helpstudy.view.dialog.AddListFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 public class ListaFragment extends Fragment {
 
     private View view;
     private static ListView listView;
+
+
+    private Context context;
+
 
     static ListasAdapter adapter;
 
@@ -37,6 +45,8 @@ public class ListaFragment extends Fragment {
 
         listView.setAdapter(adapter);
 
+        context = getActivity();
+
         btCriar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +54,11 @@ public class ListaFragment extends Fragment {
                 abrirModal();
 
             }
+
+
         });
+
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -59,9 +73,11 @@ public class ListaFragment extends Fragment {
         return view;
     }
 
+
+
     private void abrirModal() {
 
-        AddListFragment dialog = new AddListFragment();
+        AddListFragment dialog = new AddListFragment(context);
         dialog.show(getActivity().getSupportFragmentManager(), "oi2");
     }
 

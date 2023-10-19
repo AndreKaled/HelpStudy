@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blackFundo"
+    android:id="@+id/layoutFlashcard"
     android:outlineSpotShadowColor="#FFFFFF"
     tools:context=".view.fragments.FlashCardFragment">
 

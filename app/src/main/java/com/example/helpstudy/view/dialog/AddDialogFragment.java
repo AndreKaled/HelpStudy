@@ -14,12 +14,21 @@ import android.widget.TextView;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.utils.ROOT;
+import com.google.android.material.snackbar.Snackbar;
 
 public class AddDialogFragment extends DialogFragment {
 
     private View view;
     private ControllerFlashCard controllerFlashCard;
     private Button bt;
+
+    private Snackbar snackbar;
+
+
+    public AddDialogFragment(Snackbar snackbar){
+
+        this.snackbar = snackbar;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,6 +65,8 @@ public class AddDialogFragment extends DialogFragment {
                 controllerFlashCard.cadastrar(titulo, resposta);
 
                 dismiss();
+
+                snackbar.show();
             }
         });
 
