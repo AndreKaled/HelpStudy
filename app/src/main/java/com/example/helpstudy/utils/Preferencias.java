@@ -39,6 +39,7 @@ public class Preferencias {
     }
     public void limparPreferencias(){
         editor.clear();
+        editor.apply();
         editor.commit();
     }
 }

@@ -7,8 +7,18 @@
     tools:context=".view.fragments.CronometroFragment"
     android:background="@color/blackFundo">
 
+    <TextView
+        android:id="@+id/texto_informativo_cronometro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/cardLayoutCronometro"
+        android:layout_marginStart="20dp"
+        android:text="Clique para iniciar o pomodoro"
+        android:textSize="20dp" />
+
     <androidx.cardview.widget.CardView
         app:cardElevation = "16dp"
+        android:id="@+id/cardLayoutCronometro"
         app:cardCornerRadius = "160dp"
         android:layout_margin = "16dp"
         android:foregroundGravity = "center"
@@ -18,21 +28,43 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true">
 
+
+
+
         <!-- simple image view -->
         <ImageView
             android:scaleType = "centerCrop"
             android:src = "@drawable/componente_cronometro"
             android:layout_width = "match_parent"
             android:layout_height = "match_parent"
+            android:id="@+id/background_cronometro"
             />
 
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:id="@+id/layout_cronometro"
+            >
 
 
+            <ImageView
+                android:id="@+id/update_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/timer_update"
+                android:layout_above="@+id/text_view_countdown"
+                android:layout_centerHorizontal="true"/>
 
+            <ImageView
+                android:id="@+id/break_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_coffee_24"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:layout_above="@id/text_view_countdown"/>
 
             <TextView
                 android:id="@+id/text_view_countdown"
@@ -100,6 +132,7 @@
         android:layout_centerHorizontal="true"
         android:translationZ="100px"
         android:background="@color/white"/>
+
 
 
 

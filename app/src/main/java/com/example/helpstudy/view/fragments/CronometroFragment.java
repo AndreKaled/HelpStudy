@@ -14,6 +14,7 @@ import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,14 +33,17 @@ public class CronometroFragment extends Fragment {
     private FloatingActionButton mButtonReset;
     private FloatingActionButton mMusic;
     private static Boolean testar;
-    private CountDownTimer mCountDownTimer;
+    private static CountDownTimer mCountDownTimer;
     public Musica musica;
-    private boolean mTimerRunning;
+    private TextView textoComplementar;
+    private static boolean mTimerRunning;
     private static long mTimeLeftInMillis;
     private static long mEndTime;
     private static Context context;
     View view;
     Atencao atencao;
+
+    ImageView update_timer, break_time;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +54,13 @@ public class CronometroFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_cronometro, container, false);
         atencao = new Atencao(getContext());
         testar = false;
+        update_timer = view.findViewById(R.id.update_timer);
         context = getContext();
+        break_time = view.findViewById(R.id.break_time);
         mTextViewCountDown = view.findViewById(R.id.text_view_countdown);
-        mTextViewCountDown.setOnClickListener(new View.OnClickListener() {
+        textoComplementar = view.findViewById(R.id.texto_informativo_cronometro);
+
+        update_timer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new TempoCronometroFragment().show(FragmentManager.findFragment(view).getFragmentManager(),"alalal");
@@ -102,13 +110,20 @@ public class CronometroFragment extends Fragment {
 
                     mTimerRunning = false;
                     mTimeLeftInMillis = 5 * 60000;
+                    textoComplementar.setText("Hora da pausa!");
                     updateCountDownText();
                     updateButtons();
-
+                    update_timer.setVisibility(View.GONE);
+                    break_time.setVisibility(View.VISIBLE);
                     testar = true;
+
                 } else {
 
+
+                    textoComplementar.setText("Clique para iniciar o pomodoro");
                     mTimeLeftInMillis = 20 * 60000;
+                    update_timer.setVisibility(View.VISIBLE);
+                    break_time.setVisibility(View.GONE);
                     updateCountDownText();
                     updateButtons();
                     testar = false;
@@ -130,12 +145,11 @@ public class CronometroFragment extends Fragment {
     private void pauseTimer() {
         mCountDownTimer.cancel();
         mTimerRunning = false;
-        Toast.makeText(context, "AAAAA", Toast.LENGTH_SHORT).show();
         updateButtons();
         atencao.naoDetectar();
     }
 
-    private void resetTimer() {
+    protected void resetTimer() {
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
         updateCountDownText();
         updateButtons();
@@ -154,6 +168,7 @@ public class CronometroFragment extends Fragment {
             //mButtonStartPause.setText("Pause");
             mButtonStartPause.setImageResource(R.drawable.stop);
             mMusic.setEnabled(true);
+            textoComplementar.setText("Hora de focar");
             mButtonReset.setEnabled(false);
             mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryVariant)));
             mMusic.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
@@ -184,6 +199,7 @@ public class CronometroFragment extends Fragment {
             //mButtonStartPause.setText("Start");
             mButtonStartPause.setImageResource(R.drawable.play);
             mButtonReset.setEnabled(true);
+            textoComplementar.setText("Clique para iniciar o pomodoro");
             mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
             mMusic.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryVariant)));
             mMusic.setEnabled(false);
@@ -191,7 +207,6 @@ public class CronometroFragment extends Fragment {
 
             // reiniciar o cronômetro para 5 minutos quando chegar a 0. este aqui por algum motivo nao esta PEGANDO
        if (mTimeLeftInMillis < START_TIME_IN_MILLIS) {
-                Toast.makeText(context, "ask", Toast.LENGTH_SHORT).show();
                 mButtonReset.setEnabled(true);
                 mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
 
