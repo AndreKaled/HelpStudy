@@ -49,10 +49,11 @@ public class Usuario {
     @Override
     public String toString() {
         return "Usuario{" +
-                "nome=" + nome +
-                ", email=" +email +
-                ", dataNasc=" +dataNasc +
-                ", senha=" +senha
-                +'}';
+                "nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", dataNasc='" + dataNasc + '\'' +
+                ", id='" + id + '\'' +
+                '}';
     }
 }
