@@ -27,8 +27,8 @@ public class AddTarefaFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.dialog_create_tarefa, container, false);
-
+        view = inflater.inflate(R.layout.dialog_create_tarefa, container, false);
+        return view;
     }
 
 
@@ -40,8 +40,8 @@ public class AddTarefaFragment extends DialogFragment {
 
         controlerTarefas = new ControllerTarefas(getContext());
 
-        viewTitulo = (EditText) view.findViewById(R.id.addTextTituloTarefa);
-        viewDescricao = (EditText) view.findViewById(R.id.addTextRespostaTarefa);
+        viewTitulo = view.findViewById(R.id.addTextTituloTarefa);
+        viewDescricao = view.findViewById(R.id.addTextRespostaTarefa);
 
         bt = view.findViewById(R.id.btn_criar_tarefas);
         bt.setOnClickListener(new View.OnClickListener() {
@@ -65,8 +65,9 @@ public class AddTarefaFragment extends DialogFragment {
         }else{
             controlerTarefas.cadastrar(titulo,descricao, null, false);
             cont= 0;
-
-//            MensagemBar msg = new MensagemBar(getActivity().findViewById(), "")
+            MensagemBar msg = new MensagemBar(getActivity().findViewById(R.id.fragment_tarefas),"Tarefa adicionada");
+            msg.defineSnackLongo();
+            msg.mostrar();
 
             dismiss();
         }

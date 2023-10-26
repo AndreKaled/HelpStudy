@@ -78,7 +78,7 @@ public class ListasAdapter extends BaseAdapter {
                         } else if (menuItem.getItemId() == R.id.deletar){
                             controllerListas.remover(list);
                             ListaFragment.updateView();
-                            Toast.makeText(bt.getContext(), "Editar deletar", Toast.LENGTH_SHORT).show();
+
                         } else{
                             Toast.makeText(bt.getContext(), "Erro", Toast.LENGTH_SHORT).show();
                         }

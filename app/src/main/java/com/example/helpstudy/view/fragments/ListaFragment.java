@@ -64,17 +64,7 @@ public class ListaFragment extends Fragment {
 
 
     private void abrirModal() {
-
-
-        Snackbar mySnackBar = Snackbar.make(view.findViewById(R.id.layoutLista), "Lista adicionada!", Snackbar.LENGTH_LONG);
-        mySnackBar.setAction("Fechar", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "Saiu", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        AddListFragment dialog = new AddListFragment(mySnackBar);
+        AddListFragment dialog = new AddListFragment();
         dialog.show(getActivity().getSupportFragmentManager(), "oi2");
     }
 

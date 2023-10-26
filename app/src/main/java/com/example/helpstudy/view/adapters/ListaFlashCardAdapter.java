@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.R;
 import com.example.helpstudy.model.FlashCard;
+import com.example.helpstudy.utils.MensagemBar;
 import com.example.helpstudy.view.dialog.EditFlashcardFragment;
 import com.example.helpstudy.view.fragments.FlashCardFragment;
 
@@ -73,16 +74,14 @@ public class ListaFlashCardAdapter extends BaseAdapter {
                     public boolean onMenuItemClick(MenuItem menuItem) {
 
                         if(menuItem.getItemId() == R.id.editar){
-
                             new EditFlashcardFragment(flashCard, controllerFlashCard).show(FragmentManager.findFragment(parent).getFragmentManager(),"alalal");
-                            Toast.makeText(bt.getContext(), "Editar", Toast.LENGTH_SHORT).show();
-
                         } else if (menuItem.getItemId() == R.id.deletar){
 
                             controllerFlashCard.remover(flashCard);
                             FlashCardFragment.updateViews();
-                            Toast.makeText(bt.getContext(), "Deletar", Toast.LENGTH_SHORT).show();
-
+                            MensagemBar msg = new MensagemBar(new FlashCardFragment().findLayoutView(), "Flashcard deletado!");
+                            msg.defineSnackLongo();
+                            msg.mostrar();
                         } else{
 
                             Toast.makeText(bt.getContext(), "Erro", Toast.LENGTH_SHORT).show();

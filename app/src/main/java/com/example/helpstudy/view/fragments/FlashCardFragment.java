@@ -27,6 +27,9 @@ public class FlashCardFragment extends Fragment {
     private static View view;
     private static ListaFlashCardAdapter adapter;
 
+    public FlashCardFragment(){
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -95,5 +98,8 @@ public class FlashCardFragment extends Fragment {
 
     public static void updateViews(){
         listViewFlashCard.invalidateViews();
+    }
+    public View findLayoutView(){
+        return view;
     }
 }

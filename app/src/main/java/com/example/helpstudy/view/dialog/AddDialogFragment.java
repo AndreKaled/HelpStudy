@@ -21,9 +21,6 @@ public class AddDialogFragment extends DialogFragment {
     private ControllerFlashCard controllerFlashCard;
     private Button bt;
     private TextView viewTitulo, viewResposta;
-
-
-
     public AddDialogFragment(){
 
     }

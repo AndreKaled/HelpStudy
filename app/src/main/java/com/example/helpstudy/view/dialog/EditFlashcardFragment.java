@@ -13,6 +13,7 @@ import android.widget.EditText;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.model.FlashCard;
+import com.example.helpstudy.utils.MensagemBar;
 import com.example.helpstudy.view.fragments.FlashCardFragment;
 
 public class EditFlashcardFragment extends DialogFragment {
@@ -46,6 +47,9 @@ public class EditFlashcardFragment extends DialogFragment {
                 c.atualizar(flashCard);
                 FlashCardFragment.updateViews();
                 dismiss();
+                MensagemBar msg = new MensagemBar(new FlashCardFragment().findLayoutView(), "Flashcard alterado!");
+                msg.defineSnackLongo();
+                msg.mostrar();
             }
         });
         return v;

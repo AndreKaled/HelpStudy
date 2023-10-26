@@ -11,21 +11,15 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerListas;
+import com.example.helpstudy.utils.MensagemBar;
 import com.google.android.material.snackbar.Snackbar;
 
 public class AddListFragment extends DialogFragment {
-
-    private View view;
     private ControllerListas controlerLista;
     private Button bt;
-    private Snackbar snackbar;
-
     private EditText viewTitulo;
-    public AddListFragment(Snackbar snackbar){
-
-        this.snackbar = snackbar;
+    public AddListFragment(){
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,8 +54,10 @@ public class AddListFragment extends DialogFragment {
             titulo.setError("Título não pode ser vazio.");
             return false;
         } else {
+            MensagemBar msg = new MensagemBar(getActivity().findViewById(R.id.layoutLista), "Lista adicionada!");
+            msg.defineSnackLongo();
             controlerLista.cadastrar(titulo.getText().toString());
-            snackbar.show();
+            msg.mostrar();
             return true;
         }
     }
