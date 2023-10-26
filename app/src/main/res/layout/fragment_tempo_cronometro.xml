@@ -22,7 +22,9 @@
             android:layout_below="@id/informe_cronometro"
             android:layout_gravity="center"
             android:layout_toRightOf="@id/textoDoisPontos"
-            android:background="@color/white"></NumberPicker>
+            android:background="@color/white"
+            android:foregroundTint="@color/black"
+            android:theme="@style/Theme.AppCompat.Light"></NumberPicker>
 
         <TextView
             android:id="@+id/textoDoisPontos"
@@ -44,7 +46,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/informe_cronometro"
             android:layout_toLeftOf="@id/textoDoisPontos"
-            android:background="@color/white"></NumberPicker>
+            android:background="@color/white"
+            android:foregroundTint="@color/black"
+            android:theme="@style/Theme.AppCompat.Light"></NumberPicker>
 
 
         <TextView
