@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerTarefas;
 import com.example.helpstudy.model.Tarefa;
+import com.example.helpstudy.utils.MensagemBar;
 import com.example.helpstudy.view.fragments.TarefasFragment;
 
 import java.util.Calendar;
@@ -66,6 +67,9 @@ public class EditTarefaFragment extends DialogFragment {
                 c.atualizar(tarefa);
                 TarefasFragment.updateViews();
                 dismiss();
+                MensagemBar msg = new MensagemBar(new TarefasFragment().findLayoutView(), "Tarefa alterada!");
+                msg.defineSnackLongo();
+                msg.mostrar();
             }
         });
 

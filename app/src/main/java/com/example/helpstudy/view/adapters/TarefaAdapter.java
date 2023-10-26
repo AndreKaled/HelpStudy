@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerTarefas;
 import com.example.helpstudy.model.Tarefa;
+import com.example.helpstudy.utils.MensagemBar;
 import com.example.helpstudy.view.dialog.EditTarefaFragment;
 import com.example.helpstudy.view.fragments.TarefasFragment;
 
@@ -69,19 +70,14 @@ public class TarefaAdapter extends BaseAdapter {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         Tarefa t = controllerTarefas.buscarPorPosicao(position);
-
                         if (menuItem.getItemId() == R.id.editar) {
-
                             new EditTarefaFragment(t, controllerTarefas).show(FragmentManager.findFragment(parent).getFragmentManager(),"alalal");
-                            Toast.makeText(bt.getContext(), "Editar", Toast.LENGTH_SHORT).show();
-
                         } else if (menuItem.getItemId() == R.id.deletar) {
-
-                            Toast.makeText(bt.getContext(), "Deletar", Toast.LENGTH_SHORT).show();
-
                             controllerTarefas.remover(t);
                             TarefasFragment.updateViews();
-
+                            MensagemBar msg = new MensagemBar(new TarefasFragment().findLayoutView(), "Tarefa excluída!");
+                            msg.defineSnackLongo();
+                            msg.mostrar();
                         } else {
 
                             Toast.makeText(bt.getContext(), "Erro", Toast.LENGTH_SHORT).show();

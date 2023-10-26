@@ -76,10 +76,9 @@ public class ListaFlashCardAdapter extends BaseAdapter {
                         if(menuItem.getItemId() == R.id.editar){
                             new EditFlashcardFragment(flashCard, controllerFlashCard).show(FragmentManager.findFragment(parent).getFragmentManager(),"alalal");
                         } else if (menuItem.getItemId() == R.id.deletar){
-
                             controllerFlashCard.remover(flashCard);
                             FlashCardFragment.updateViews();
-                            MensagemBar msg = new MensagemBar(new FlashCardFragment().findLayoutView(), "Flashcard deletado!");
+                            MensagemBar msg = new MensagemBar(new FlashCardFragment().findLayoutView(), "Flashcard excluída!");
                             msg.defineSnackLongo();
                             msg.mostrar();
                         } else{

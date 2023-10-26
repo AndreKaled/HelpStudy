@@ -23,10 +23,12 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class ListaFragment extends Fragment {
 
-    private View view;
+    private static View view;
     private static ListView listView;
     private Context context;
     static ListasAdapter adapter;
+
+    public ListaFragment(){}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,5 +79,9 @@ public class ListaFragment extends Fragment {
 
     public static void updateView(){
         listView.invalidateViews();
+    }
+
+    public View findLayoutView(){
+        return view;
     }
 }

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.R;
 import com.example.helpstudy.model.FlashCard;
+import com.example.helpstudy.utils.MensagemBar;
 import com.example.helpstudy.view.adapters.ListaFlashCardAdapter;
 import com.example.helpstudy.view.dialog.AddDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -42,12 +43,8 @@ public class FlashCardFragment extends Fragment {
         btCriar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 abrirModal();
                 adapter.notifyDataSetChanged();
-
-
-                Snackbar mySnackBar = Snackbar.make(view.findViewById(R.id.layoutFlashcard), "aa", Snackbar.LENGTH_LONG);
             }
         });
 
@@ -67,15 +64,6 @@ public class FlashCardFragment extends Fragment {
         return view;
     }
     private void abrirModal() {
-
-        Snackbar mySnackBar = Snackbar.make(view.findViewById(R.id.layoutFlashcard), "Flashcard adicionado!", Snackbar.LENGTH_LONG);
-        mySnackBar.setAction("Fechar", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "Saiu", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         AddDialogFragment dialog = new AddDialogFragment();
         dialog.show(getActivity().getSupportFragmentManager(), "oi");
     }
@@ -85,17 +73,6 @@ public class FlashCardFragment extends Fragment {
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
-
-    private void mensagemAviso(View view) {
-
-//        View inflateV = getLayoutInflater().inflate(R.layout.fragment_lista, null);
-        Snackbar mySnackBar = Snackbar.make(view.findViewById(R.id.layoutFlashcard), "Adicionado", Snackbar.LENGTH_LONG);
-
-
-        mySnackBar.show();
-
-    }
-
     public static void updateViews(){
         listViewFlashCard.invalidateViews();
     }

@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerListas;
 import com.example.helpstudy.model.Listas;
+import com.example.helpstudy.utils.MensagemBar;
 import com.example.helpstudy.view.dialog.EditListFragment;
 import com.example.helpstudy.view.fragments.ListaFragment;
 
@@ -74,11 +75,12 @@ public class ListasAdapter extends BaseAdapter {
 
                         if(menuItem.getItemId() == R.id.editar){
                             new EditListFragment(list, controllerListas).show(FragmentManager.findFragment(parent).getFragmentManager(),"alalal");
-                            Toast.makeText(bt.getContext(), "Editar lista", Toast.LENGTH_SHORT).show();
                         } else if (menuItem.getItemId() == R.id.deletar){
                             controllerListas.remover(list);
                             ListaFragment.updateView();
-
+                            MensagemBar msg = new MensagemBar(new ListaFragment().findLayoutView(), "Lista excluída!");
+                            msg.defineSnackLongo();
+                            msg.mostrar();
                         } else{
                             Toast.makeText(bt.getContext(), "Erro", Toast.LENGTH_SHORT).show();
                         }

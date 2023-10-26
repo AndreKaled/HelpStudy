@@ -25,12 +25,13 @@ public class TarefasFragment extends Fragment {
 
     private static TarefaAdapter adapter;
     FloatingActionButton fb;
+    private static View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_tarefas, container, false);
+        view = inflater.inflate(R.layout.fragment_tarefas, container, false);
 
         FloatingActionButton btnCriar = view.findViewById(R.id.btn_criar_tarefas);
         listView = view.findViewById(R.id.listview_tarefas);
@@ -59,12 +60,8 @@ public class TarefasFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-//                Bundle bundle = new Bundle();
                 Tarefa tarefa = new ControllerTarefas(getContext()).buscarPorPosicao(i);
-//                bundle.putString("id", tarefa.getNome());
                 LeituraTarefa fragmento = new LeituraTarefa(tarefa);
-//                fragmento.setArguments(bundle);
                 replaceFragment(fragmento);
             }
         });
@@ -87,5 +84,8 @@ public class TarefasFragment extends Fragment {
 
     public static void updateViews(){
         listView.invalidateViews();
+    }
+    public View findLayoutView(){
+        return view;
     }
 }

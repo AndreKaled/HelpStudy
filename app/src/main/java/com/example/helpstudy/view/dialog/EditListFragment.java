@@ -15,6 +15,7 @@ import android.widget.EditText;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerListas;
 import com.example.helpstudy.model.Listas;
+import com.example.helpstudy.utils.MensagemBar;
 import com.example.helpstudy.view.fragments.ListaFragment;
 
 public class EditListFragment extends DialogFragment {
@@ -49,6 +50,9 @@ public class EditListFragment extends DialogFragment {
                 ctrl.atualizar(l);
                 ListaFragment.updateView();
                 dismiss();
+                MensagemBar msg = new MensagemBar(new ListaFragment().findLayoutView(), "Lista alterada!");
+                msg.defineSnackLongo();
+                msg.mostrar();
             }
         });
     }
