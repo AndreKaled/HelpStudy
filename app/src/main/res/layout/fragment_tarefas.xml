@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/blackFundo"
     android:outlineSpotShadowColor="#FFFFFF"
-    tools:context=".view.fragments.TarefasFragment">
+    tools:context=".view.fragments.TarefasFragment"
+    android:id="@+id/fragment_tarefas">
 
     <!-- TODO: Update blank fragment layout -->
 
