@@ -32,7 +32,7 @@ public class CronometroFragment extends Fragment {
     private FloatingActionButton mButtonStartPause;
     private FloatingActionButton mButtonReset;
     private FloatingActionButton mMusic;
-    private static Boolean testar;
+    private static Boolean ativado;
     private static CountDownTimer mCountDownTimer;
     public Musica musica;
     private TextView textoComplementar;
@@ -53,7 +53,7 @@ public class CronometroFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_cronometro, container, false);
         atencao = new Atencao(getContext());
-        testar = false;
+        ativado = false;
         update_timer = view.findViewById(R.id.update_timer);
         context = getContext();
         break_time = view.findViewById(R.id.break_time);
@@ -106,8 +106,9 @@ public class CronometroFragment extends Fragment {
             @Override
             public void onFinish() {
 
-                if(testar == false){
+                if(ativado == false){
 
+                    ativado = true;
                     mTimerRunning = false;
                     mTimeLeftInMillis = 5 * 60000;
                     textoComplementar.setText("Hora da pausa!");
@@ -115,19 +116,16 @@ public class CronometroFragment extends Fragment {
                     updateButtons();
                     update_timer.setVisibility(View.GONE);
                     break_time.setVisibility(View.VISIBLE);
-                    testar = true;
 
                 } else {
 
-
+                    ativado = false;
                     textoComplementar.setText("Clique para iniciar o pomodoro");
                     mTimeLeftInMillis = 20 * 60000;
                     update_timer.setVisibility(View.VISIBLE);
                     break_time.setVisibility(View.GONE);
                     updateCountDownText();
                     updateButtons();
-                    testar = false;
-
 
                     if(mButtonReset.isEnabled() == false){
 
@@ -167,8 +165,15 @@ public class CronometroFragment extends Fragment {
             //mButtonReset.setVisibility(View.INVISIBLE);
             //mButtonStartPause.setText("Pause");
             mButtonStartPause.setImageResource(R.drawable.stop);
+            if(ativado == false){
+
+                textoComplementar.setText("Hora de focar!");
+            } else{
+
+                textoComplementar.setText("Hora da Pausa!");
+                mButtonReset.setEnabled(false);
+            }
             mMusic.setEnabled(true);
-            textoComplementar.setText("Hora de focar");
             mButtonReset.setEnabled(false);
             mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryVariant)));
             mMusic.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
@@ -183,23 +188,30 @@ public class CronometroFragment extends Fragment {
                         mMusic.setImageResource(R.drawable.music_off);
                         mMusic.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
                         mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryVariant)));
-                        //musica.pauseMusic();
 
                     }else{
 
                         mMusic.setImageResource(R.drawable.music);
                         mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryVariant)));
                         mMusic.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
-                        //musica.startMusic();
                     }
                 }
             });
 
         } else {
+
+
+            if(ativado == false){
+
+                textoComplementar.setText("Clique para iniciar");
+
+            } else{
+
+                textoComplementar.setText("Clique para iniciar a pausa");
+            }
             //mButtonStartPause.setText("Start");
             mButtonStartPause.setImageResource(R.drawable.play);
             mButtonReset.setEnabled(true);
-            textoComplementar.setText("Clique para iniciar o pomodoro");
             mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
             mMusic.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryVariant)));
             mMusic.setEnabled(false);
@@ -245,6 +257,7 @@ public class CronometroFragment extends Fragment {
         updateButtons();
 
         if (mTimerRunning) {
+
             mEndTime = prefs.getLong("endTime", 0);
             mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
 

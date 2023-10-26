@@ -17,7 +17,7 @@ public class TempoCronometroFragment extends DialogFragment {
 
     public final int NUMERO_MAXIMO_SEGUNDO = 59,
             NUMERO_MAXIMO_MINUTO = 59,
-            NUMERO_MINIMO_MINUTO = 1,
+            NUMERO_MINIMO_MINUTO = 0,
             NUMERO_MINIMO_SEGUNDO = 0;
 
     @Override
