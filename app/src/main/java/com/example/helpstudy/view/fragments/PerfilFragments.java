@@ -15,9 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.helpstudy.R;
-import com.example.helpstudy.controller.ControllerUsuario;
 import com.example.helpstudy.datasource.DataSource;
-import com.example.helpstudy.model.Usuario;
 import com.example.helpstudy.utils.Notificacao;
 import com.example.helpstudy.utils.Preferencias;
 import com.example.helpstudy.view.activitys.TelaLogin;
@@ -118,16 +116,16 @@ public class PerfilFragments extends Fragment {
                 }
             }
         });
-        ControllerUsuario ctrlUsuario = ControllerUsuario.getInstancia(getContext());
-        Usuario user = ctrlUsuario.buscarPorId(pref.getIdUsuario());
-
-        textNome.setText(user.getNome());
-        textEmail.setText(user.getEmail());
-        textSenha.setText(user.getSenha());
-        editTextEmail.setText(user.getNome());
-        editTextEmail.setText(user.getEmail());
-        editTextSenha.setText(user.getSenha());
-        // Inflate the layout for this fragment
+//        ControllerUsuario ctrlUsuario = ControllerUsuario.getInstancia(getContext());
+//        Usuario user = ctrlUsuario.buscarPorId(pref.getIdUsuario());
+//
+//        textNome.setText(user.getNome());
+//        textEmail.setText(user.getEmail());
+//        textSenha.setText(user.getSenha());
+//        editTextEmail.setText(user.getNome());
+//        editTextEmail.setText(user.getEmail());
+//        editTextSenha.setText(user.getSenha());
+//        // Inflate the layout for this fragment
         return rootView;
     }
 

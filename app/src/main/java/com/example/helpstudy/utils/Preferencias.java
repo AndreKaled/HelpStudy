@@ -22,6 +22,7 @@ public class Preferencias {
         return shared.getString("senha", null);
     }
     public String getIdUsuario(){return shared.getString("id",null);}
+    public String getNomeUsuario(){return shared.getString("nome", null);}
 
     public void editEmailUsuario(String email){
         editor.putString("email", email);
@@ -35,6 +36,10 @@ public class Preferencias {
 
     public  void editIdUsuario(String id){
         editor.putString("id", id);
+        editor.commit();
+    }
+    public void editNomeUsuario(String nome){
+        editor.putString("nome", nome);
         editor.commit();
     }
     public void limparPreferencias(){

@@ -81,6 +81,7 @@ public class TelaLogin extends AppCompatActivity {
             pref.editEmailUsuario(textEmail.getText().toString());
             pref.editSenhaUsuario(textSenha.getText().toString());
             pref.editIdUsuario(usuario.getId());
+            pref.editNomeUsuario(usuario.getNome());
 
             Intent intent = new Intent(TelaLogin.this, MainActivity.class);
             startActivity(intent);
