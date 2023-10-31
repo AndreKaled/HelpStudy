@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerUsuario;
 import com.example.helpstudy.datasource.DataSource;
+import com.example.helpstudy.model.FlashCard;
 import com.example.helpstudy.model.Usuario;
 import com.example.helpstudy.utils.Notificacao;
 import com.example.helpstudy.utils.Preferencias;
@@ -87,9 +88,32 @@ public class PerfilFragments extends Fragment {
             public void onClick(View view) {
 
 
+                changeVisibilityText();
+            }
 
+            private void changeVisibilityText() {
                 //quando termina a edição
                 if(apertado){
+
+                    ControllerUsuario control = new ControllerUsuario(getActivity());
+                    Usuario usuario = new Usuario();
+                    usuario.setId(pref.getIdUsuario());
+                    usuario.setNome(editTextNome.getText().toString());
+                    usuario.setEmail(editTextEmail.getText().toString());
+                    usuario.setSenha(editTextSenha.getText().toString());
+                    control.atualizar(usuario);
+
+                    pref.editNomeUsuario(editTextNome.getText().toString());
+                    pref.editEmailUsuario(editTextEmail.getText().toString());
+                    pref.editSenhaUsuario(editTextSenha.getText().toString());
+
+
+                    setDados();
+
+
+
+                    //MEXENDO COM A VISILIDADE DOS TEXTOS
+
 
                     textNome.setVisibility(View.VISIBLE);
                     textEmail.setVisibility(View.VISIBLE);
@@ -116,19 +140,35 @@ public class PerfilFragments extends Fragment {
                 }
             }
         });
-        Usuario user = new Usuario();
-        user.setNome(pref.getNomeUsuario());
-        user.setSenha(pref.getSenhaUsuario());
-        user.setEmail(pref.getEmailUsuario());
 
-        textNome.setText(user.getNome());
-        textEmail.setText(user.getEmail());
-        textSenha.setText(user.getSenha());
-        editTextNome.setText(user.getNome());
-        editTextEmail.setText(user.getEmail());
-        editTextSenha.setText(user.getSenha());
+        setDados();
         // Inflate the layout for this fragment
         return rootView;
+    }
+
+    private void setDados() {
+        textNome.setText(pref.getNomeUsuario());
+        textEmail.setText(pref.getEmailUsuario());
+        textSenha.setText(convertMask(pref.getSenhaUsuario()));
+        editTextNome.setText(pref.getNomeUsuario());
+        editTextEmail.setText(pref.getEmailUsuario());
+        editTextSenha.setText(pref.getSenhaUsuario());
+    }
+
+
+    private String convertMask(String string){
+
+        String formatado = "";
+
+            for(int i = 0; i < string.length(); i++){
+
+
+                formatado += "*";
+            }
+
+
+        return formatado;
+
     }
 
 

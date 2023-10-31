@@ -16,7 +16,7 @@ public class ControllerUsuario {
     private DataSource db;
     private static ControllerUsuario instancia = null;
 
-    private ControllerUsuario(Context context){
+    public ControllerUsuario(Context context){
         db = new DataSource(context);
         lista = db.consultaUsuarios();
     }
@@ -38,14 +38,9 @@ public class ControllerUsuario {
 
     }
 
-    public boolean alterar(Usuario usuario) {
-        for (int i = 0; i < lista.size(); i++) {
-            if (usuario.getId() == lista.get(i).getId()) {
-                lista.set(i, usuario);
-                return true;
-            }
-        }
-        return false;
+    public void atualizar(Usuario usuario) {
+
+        db.alterarUsuario(usuario);
     }
 
     public int remover(Usuario usuario) {

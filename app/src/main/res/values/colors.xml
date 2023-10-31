@@ -20,7 +20,6 @@
     <color name="primaryVariant">#0277BD</color>
     <color name="secondaryPrimary">#E8BF1A</color>
     <color name="secondaryVariant">#9C7F09</color>
-
     <color name = "my_button_enabled_state_color">@color/secondaryPrimary</color>
     <color name = "my_button_disabled_state_color">@color/secondaryVariant</color>
 

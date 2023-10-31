@@ -198,12 +198,16 @@ public class CronometroFragment extends Fragment {
                 }
             });
 
+
+            // quando o cronometro n estiver rodando
         } else {
 
 
             if(ativado == false){
 
                 textoComplementar.setText("Clique para iniciar");
+                mButtonReset.setEnabled(true);
+                mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
 
             } else{
 
@@ -211,22 +215,12 @@ public class CronometroFragment extends Fragment {
             }
             //mButtonStartPause.setText("Start");
             mButtonStartPause.setImageResource(R.drawable.play);
-            mButtonReset.setEnabled(true);
-            mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
+
             mMusic.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryVariant)));
             mMusic.setEnabled(false);
             musica.pauseMusic();
 
-            // reiniciar o cronômetro para 5 minutos quando chegar a 0. este aqui por algum motivo nao esta PEGANDO
-       if (mTimeLeftInMillis < START_TIME_IN_MILLIS) {
-                mButtonReset.setEnabled(true);
-                mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
 
-                // so deixar como desabilitado
-            } else {
-           mButtonReset.setEnabled(true);
-           mButtonReset.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondaryPrimary)));
-            }
         }
     }
 

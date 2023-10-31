@@ -83,7 +83,7 @@
     <TextView
 
         android:id="@+id/editNome"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/nomePerfil"
         android:layout_marginStart="60sp"
@@ -95,7 +95,7 @@
 
     <EditText
         android:id="@+id/editTextNome"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below= "@id/nomePerfil"
         android:layout_marginStart="60sp"
@@ -125,7 +125,7 @@
 
     <TextView
         android:id="@+id/editEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/emailPerfil"
         android:layout_marginStart="60sp"
@@ -139,7 +139,7 @@
 
     <EditText
         android:id="@+id/editTextEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/emailPerfil"
         android:layout_marginStart="60sp"
@@ -169,7 +169,7 @@
 
     <TextView
         android:id="@+id/editSenha"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/senhaPerfil"
         android:layout_marginStart="60sp"
@@ -183,7 +183,7 @@
 
     <EditText
         android:id="@+id/editTextSenha"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/senhaPerfil"
         android:layout_marginStart="60sp"

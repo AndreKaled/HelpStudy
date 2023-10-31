@@ -111,16 +111,15 @@ public class DataSource {
         return false;
     }
 
-    private void alterarUsuario(String id, String nome, String email, String dataNasc, String senha){
+    public void alterarUsuario(Usuario usuario2){
+
         Usuario usuario = new Usuario();
-        usuario.setId(id);
-        usuario.setNome(nome);
-        usuario.setDataNasc(dataNasc);
-        usuario.setEmail(email);
-        usuario.setSenha(senha);
+        usuario.setNome(usuario2.getNome());
+        usuario.setEmail(usuario2.getEmail());
+        usuario.setSenha(usuario2.getSenha());
         Log.i(TAG, COLECAO_USUARIOS +"-> alterando dados do usuário " +usuario);
 
-        usuarioRef.document(id).set(usuario).addOnSuccessListener(new OnSuccessListener<Void>() {
+        usuarioRef.document(usuario2.getId()).set(usuario).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Log.i(TAG, COLECAO_USUARIOS +"-> dados alterados com sucesso!");
