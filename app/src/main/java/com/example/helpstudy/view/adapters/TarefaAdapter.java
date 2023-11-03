@@ -53,10 +53,8 @@ public class TarefaAdapter extends BaseAdapter {
         View v = LayoutInflater.from(context).inflate(R.layout.item_tarefa, parent, false);
 
         TextView textView_nome = v.findViewById(R.id.tituloTarefa);
-        TextView textView_desc = v.findViewById(R.id.descricaoTarefa);
         Tarefa tarefa = list.get(position);
         textView_nome.setText(tarefa.getNome());
-        textView_desc.setText(tarefa.getDescricao());
         Button bt = v.findViewById(R.id.menu_kebad);
 
         bt.setOnClickListener(new View.OnClickListener() {
