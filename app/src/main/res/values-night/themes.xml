@@ -17,10 +17,16 @@
         <item name="android:actionMenuTextColor">@color/black</item>
     </style>
 
+    <style name="customfontstyle" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+    </style>
+
 
     <style name= "DialogAnimation">
 
         <item name="android:windowEnterAnimation">@anim/slide_in</item>
         <item name="android:windowExitAnimation">@anim/slide_out</item>
     </style>
+
+
 </resources>

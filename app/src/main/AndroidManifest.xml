@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <application
         android:allowBackup="true"
@@ -13,7 +14,7 @@
         android:theme="@style/Theme.HelpStudy"
         tools:targetApi="34">
         <activity
-            android:name=".view.TelaLogin"
+            android:name=".view.activitys.TelaLogin"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +26,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.TelaCadastro"
+            android:name=".view.activitys.TelaCadastro"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -53,7 +54,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.activitys.MainActivity"
             android:exported="false">
 
             <meta-data

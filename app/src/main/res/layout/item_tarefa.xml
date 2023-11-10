@@ -37,21 +37,6 @@
                 tools:text="Titulo" />
 
 
-            <TextView
-                android:id="@+id/descricaoTarefa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="56dp"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/menu_kebad"
-                app:layout_constraintHorizontal_bias="0.195"
-                app:layout_constraintStart_toEndOf="@+id/tituloTarefa"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.485"
-                tools:text="Descrição" />
-
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/menu_kebad"
                 android:layout_width="25dp"

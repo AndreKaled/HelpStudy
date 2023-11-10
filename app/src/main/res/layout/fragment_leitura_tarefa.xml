@@ -3,7 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.LeituraTarefa">
+    tools:context=".view.fragments.LeituraTarefa">
+
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/voltarBt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/baseline_keyboard_return_24" />
 
         <TextView
             android:id="@+id/tituloTarefa"
@@ -20,7 +32,7 @@
             android:id="@+id/descricaoTarefa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="50dp"
             android:textColor="@color/black"
             android:text="Descrição"
             android:layout_below="@id/tituloTarefa"
@@ -52,7 +64,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <EditText
             android:id="@+id/data"
             android:layout_width= "wrap_content"
             android:layout_height="wrap_content"
@@ -60,8 +72,8 @@
             android:layout_marginLeft="40dp"
             android:ems="10"
             android:textSize="18sp"
-            style="?android:spinnerStyle"
             android:hint="dd/mm/nnnn"
-            android:inputType="date"/>
+            android:inputType="date"
+            android:enabled="false" />
 
 </RelativeLayout>

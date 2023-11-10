@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.controller.ControllerListas;
@@ -91,7 +92,7 @@ public class Repository {
         SQLiteDatabase db = data.getWritableDatabase();
         String[] args = {String.valueOf(idTarefa), String.valueOf(idLista)};
         int i = db.delete(data.TABELA_TAREFAS, data.ID_TAREFA +" = ? AND "
-                +data.ID_LISTA +" = ? ", args);
+                +data.CHAVE_ESTRANGEIRA_TAREFA +" = ? ", args);
         if(i != 0)
             return true;
         return false;
@@ -138,8 +139,8 @@ public class Repository {
         values.put(data.DATA_ENTREGA_TAREFA, tarefa.getDataEntrega());
         values.put(data.CONCLUIDA_TAREFA, tarefa.isConcluida() ? 1 : 0);
 
-        return db.update(data.TABELA_TAREFAS, values," WHERE " +data.ID_TAREFA +" = ? AND "
-                +data.ID_LISTA +" = ?", new String[]{String.valueOf(tarefa.getId()), String.valueOf(idLista)}) != -1 ? true : false;
+        return db.update(data.TABELA_TAREFAS, values,data.ID_TAREFA +" = ? AND "
+                +data.CHAVE_ESTRANGEIRA_TAREFA +" = ?", new String[]{String.valueOf(tarefa.getId()), String.valueOf(idLista)}) != -1 ? true : false;
     }
 
     public boolean atualizarLista(Listas lista){
@@ -148,7 +149,7 @@ public class Repository {
 
         values.put(data.TITULO_LISTA, lista.getTitulo());
 
-        return db.update(data.TABELA_LISTAS, values," WHERE " +data.ID_LISTA +" = ?", new String[]{String.valueOf(lista.getId())}) != -1 ? true : false;
+        return db.update(data.TABELA_LISTAS, values,data.ID_LISTA +" = ?", new String[]{String.valueOf(lista.getId())}) != -1 ? true : false;
     }
 
     public boolean atualizarFlashcard(FlashCard flashcard){
@@ -158,7 +159,17 @@ public class Repository {
         values.put(data.TITULO_FLASHCARD, flashcard.getTitulo());
         values.put(data.DESCRICAO_FLASHCARD, flashcard.getDescricao());
 
-        return db.update(data.TABELA_TAREFAS, values," WHERE " +data.ID_FLASHCARD +" = ? ",
+        return db.update(data.TABELA_FLASHCARDS, values,data.ID_FLASHCARD +" = ? ",
                 new String[]{String.valueOf(flashcard.getCodigo())}) != -1 ? true : false;
+    }
+
+    public void limparBancodeDados(){
+        SQLiteDatabase db = data.getWritableDatabase();
+        String sql = " DELETE FROM " +data.TABELA_FLASHCARDS +";";
+        db.execSQL(sql);
+        sql = " DELETE FROM " +data.TABELA_TAREFAS;
+        db.execSQL(sql);
+        sql = " DELETE FROM " +data.TABELA_LISTAS;
+        db.execSQL(sql);
     }
 }

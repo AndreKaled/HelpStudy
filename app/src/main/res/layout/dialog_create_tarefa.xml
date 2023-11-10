@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blackDialog"
+        android:orientation="vertical"
+        android:padding="40dp">
+
+        <TextView
+            android:id="@+id/textoDialogTarefa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adicionar Tarefa"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/addTextTituloTarefa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:hint="Nome"
+        android:inputType="text"
+
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#03A9F4"
+        android:textColorHint="@color/white"
+        android:textColorLink="@color/confirmarAzul" />
+
+        <EditText
+            android:id="@+id/addTextRespostaTarefa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:hint="Resposta"
+            android:inputType="text"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#03A9F4"
+            android:textColorHint="@color/white"
+            android:textColorLink="@color/confirmarAzul"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_criar_tarefas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/botao_verde"
+            android:hint="Confirmar"
+            android:textColorHint="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+</LinearLayout>

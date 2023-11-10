@@ -74,14 +74,13 @@ public class DataSource {
         });
     }
 
-    public List<Usuario> consultaUsuarios() throws Exception {
+    public List<Usuario> consultaUsuarios(){
         List<Usuario> usuarios = new ArrayList<>();
         usuarioRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                     Usuario usuario = documentSnapshot.toObject(Usuario.class);
-                    usuario.setId(documentSnapshot.getId());
                     usuarios.add(usuario);
                 }
                 Log.i(TAG, COLECAO_USUARIOS +"-> Query realizada com sucesso!");
@@ -112,16 +111,16 @@ public class DataSource {
         return false;
     }
 
-    private void alterarUsuario(String id, String nome, String email, String dataNasc, String senha){
+    public void alterarUsuario(Usuario usuario2){
+
         Usuario usuario = new Usuario();
-        usuario.setId(id);
-        usuario.setNome(nome);
-        usuario.setDataNasc(dataNasc);
-        usuario.setEmail(email);
-        usuario.setSenha(senha);
+        usuario.setNome(usuario2.getNome());
+        usuario.setEmail(usuario2.getEmail());
+        usuario.setSenha(usuario2.getSenha());
+        usuario.setId(usuario2.getId());
         Log.i(TAG, COLECAO_USUARIOS +"-> alterando dados do usuário " +usuario);
 
-        usuarioRef.document(id).set(usuario).addOnSuccessListener(new OnSuccessListener<Void>() {
+        usuarioRef.document(ControllerUsuario.getIdUsuario()).set(usuario).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Log.i(TAG, COLECAO_USUARIOS +"-> dados alterados com sucesso!");
@@ -135,7 +134,7 @@ public class DataSource {
         });
     }
 
-    public void fazerBackup(){
+    public void fazerBackup() throws RuntimeException{
         class FazBackupLista extends AsyncTask<Listas, Void, Void> {
 
             @Override
@@ -157,7 +156,7 @@ public class DataSource {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Log.w(TAG, COLECAO_LISTAS + "-> NÃO SALVO!");
-                            e.printStackTrace();
+                            throw new RuntimeException(e);
                         }
                     });
                 }
@@ -194,7 +193,7 @@ public class DataSource {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Log.e(TAG, COLECAO_TAREFAS + "-> NÃO SALVO!");
-                            e.printStackTrace();
+                            throw new RuntimeException(e);
                         }
                     });
                 }
@@ -208,7 +207,8 @@ public class DataSource {
         }
 
         //salvando todas as tarefas das listas
-        for(Listas lista: new ControllerListas(context).buscarTodos()) {
+        List<Listas> lis =new ControllerListas(context).buscarTodos();
+        for(Listas lista: lis) {
             List<Tarefa> listTaref = new ControllerTarefas(context).buscarTodos();
             ControllerTarefas.setListaSelecionada(lista.getId());
             new FazBackupTarefas().execute(listTaref.toArray(new Tarefa[listTaref.size()]));
@@ -234,7 +234,7 @@ public class DataSource {
                         @Override
                         public void onFailure(@NonNull Exception e)  {
                             Log.w(TAG, COLECAO_FLASHCARDS + "-> NÃO SALVO!");
-                            e.printStackTrace();
+                            throw new RuntimeException(e);
                         }
                     });
                 }
@@ -253,7 +253,7 @@ public class DataSource {
         new FazBackupFlashcard().execute(listFlash.toArray(new FlashCard[listFlash.size()]));
     }
 
-    public void resgatarBackup(){
+    public void resgatarBackup() throws RuntimeException{
 
         class ResgataBackupListas extends AsyncTask<Void, Void, Void>{
             @Override
@@ -278,7 +278,7 @@ public class DataSource {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e(TAG, COLECAO_LISTAS + "-> Erro ao executar Query!");
-                        e.printStackTrace();
+                        throw new RuntimeException(e);
                     }
                 });
                 return null;
@@ -314,7 +314,7 @@ public class DataSource {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e(TAG, COLECAO_TAREFAS +"-> Erro ao executar Query!");
-                        e.printStackTrace();
+                        throw new RuntimeException(e);
                     }
                 });
                 return null;
@@ -352,7 +352,7 @@ public class DataSource {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e(TAG, COLECAO_FLASHCARDS + "-> Erro ao executar Query!");
-                        e.printStackTrace();
+                        throw new RuntimeException(e);
                     }
                 });
                 return null;
