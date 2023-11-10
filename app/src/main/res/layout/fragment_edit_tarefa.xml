@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/textColorLight"
-    android:paddingHorizontal="50dp"
-    android:paddingVertical="40dp"
-    tools:context=".LeituraTarefa">
+    android:background="@color/blackDialog"
+    android:paddingHorizontal="40dp"
+    android:paddingVertical="40dp">
 
 
     <TextView

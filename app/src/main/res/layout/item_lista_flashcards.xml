@@ -45,15 +45,16 @@
                 android:id="@+id/menu_kebad"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginEnd="4dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/kebad_menu"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:background="@drawable/kebad_menu"
                 android:gravity="center_vertical"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.031" />
+                app:layout_constraintVertical_bias="0.468" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

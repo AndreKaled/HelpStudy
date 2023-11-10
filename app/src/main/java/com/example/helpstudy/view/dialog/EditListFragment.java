@@ -32,7 +32,7 @@ public class EditListFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_create_list, container, false);
+        View view = inflater.inflate(R.layout.edit_list_fragment, container, false);
 
         return view;
     }

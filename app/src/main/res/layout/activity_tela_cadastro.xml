@@ -53,7 +53,7 @@
             android:textColor="@color/textColorLight"
             android:textColorHighlight="@color/textColorLight"
             android:textColorHint="@color/textColorLight"
-            android:textColorLink="@color/textColorLight" />
+            android:textColorLink="#00FFFFFF" />
 
         <EditText
             android:id="@+id/cadastro_email"
@@ -63,7 +63,8 @@
             android:hint="E-mail:"
             android:inputType="text"
             android:textColor="@color/textColorLight"
-            android:textColorHint="@color/textColorLight" />
+            android:textColorHint="@color/textColorLight"
+            android:textColorLink="#00FFFFFF" />
 
         <EditText
             android:id="@+id/cadastro_senha"
@@ -73,7 +74,8 @@
             android:hint="Senha:"
             android:inputType="numberPassword"
             android:textColor="@color/textColorLight"
-            android:textColorHint="@color/textColorLight" />
+            android:textColorHint="@color/textColorLight"
+            android:textColorLink="#00FFFFFF" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton

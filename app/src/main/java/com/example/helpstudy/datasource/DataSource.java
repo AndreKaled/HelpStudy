@@ -45,7 +45,6 @@ public class DataSource {
         repository = new Repository(context);
     }
 
-
     public void excluirLista(String id){
         Log.i(TAG,COLECAO_LISTAS +"-> excluindo lista " +id);
         listasRef.document(id).delete();
@@ -88,7 +87,7 @@ public class DataSource {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.i(TAG, "desgraçaaaaaaaaaaaaaaaaaaaaaaa");
+                Log.i(TAG, "erro");
                 Log.e(TAG, COLECAO_USUARIOS +"-> Erro ao executar Query no Banco");
                 e.printStackTrace();
             }
