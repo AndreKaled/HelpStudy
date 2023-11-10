@@ -1,12 +1,7 @@
 package com.example.helpstudy.view.fragments;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +9,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.helpstudy.R;
 import com.example.helpstudy.controller.ControllerUsuario;
 import com.example.helpstudy.datasource.DataSource;
-import com.example.helpstudy.model.FlashCard;
+import com.example.helpstudy.datasource.Repository;
 import com.example.helpstudy.model.Usuario;
 import com.example.helpstudy.utils.Notificacao;
 import com.example.helpstudy.utils.Preferencias;
@@ -67,7 +64,8 @@ public class PerfilFragments extends Fragment {
                     new DataSource(getContext()).fazerBackup();
                     new Notificacao(getContext()).notificar("Backup", "Seu backup foi realizado com sucesso!", 1);
                 }catch (Exception e){
-                    new Notificacao(getContext()).notificar("Backup", "Seu backup deu pau! se fodeu", 1);
+                    new Notificacao(getContext()).notificar("Backup", "Houve algum problema no envio de seu backup!" +
+                            " Tente novamente mais tarde.", 1);
                 }
             }
         });
@@ -77,6 +75,7 @@ public class PerfilFragments extends Fragment {
             public void onClick(View view) {
 
                 new Preferencias(getContext()).limparPreferencias();
+                new Repository(getContext()).limparBancodeDados();
                 intent = new Intent();
                 intent.setClass(getActivity(), TelaLogin.class);
                 getActivity().startActivity(intent);
@@ -86,8 +85,6 @@ public class PerfilFragments extends Fragment {
         btEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 changeVisibilityText();
             }
 
@@ -97,7 +94,7 @@ public class PerfilFragments extends Fragment {
 
                     ControllerUsuario control = new ControllerUsuario(getActivity());
                     Usuario usuario = new Usuario();
-                    usuario.setId(pref.getIdUsuario());
+                    usuario.setId(ControllerUsuario.getIdUsuario());
                     usuario.setNome(editTextNome.getText().toString());
                     usuario.setEmail(editTextEmail.getText().toString());
                     usuario.setSenha(editTextSenha.getText().toString());
@@ -107,13 +104,9 @@ public class PerfilFragments extends Fragment {
                     pref.editEmailUsuario(editTextEmail.getText().toString());
                     pref.editSenhaUsuario(editTextSenha.getText().toString());
 
-
                     setDados();
 
-
-
                     //MEXENDO COM A VISILIDADE DOS TEXTOS
-
 
                     textNome.setVisibility(View.VISIBLE);
                     textEmail.setVisibility(View.VISIBLE);
@@ -125,8 +118,6 @@ public class PerfilFragments extends Fragment {
                     apertado = false;
 
                 }else{
-
-
                     //quando habilita a edição
 
                     textNome.setVisibility(View.INVISIBLE);
@@ -145,7 +136,6 @@ public class PerfilFragments extends Fragment {
         // Inflate the layout for this fragment
         return rootView;
     }
-
     private void setDados() {
         textNome.setText(pref.getNomeUsuario());
         textEmail.setText(pref.getEmailUsuario());
@@ -154,21 +144,12 @@ public class PerfilFragments extends Fragment {
         editTextEmail.setText(pref.getEmailUsuario());
         editTextSenha.setText(pref.getSenhaUsuario());
     }
-
-
     private String convertMask(String string){
-
         String formatado = "";
-
             for(int i = 0; i < string.length(); i++){
-
-
                 formatado += "*";
             }
-
-
         return formatado;
-
     }
 
 

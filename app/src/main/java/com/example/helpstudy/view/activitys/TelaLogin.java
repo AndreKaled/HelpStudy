@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +26,7 @@ public class TelaLogin extends AppCompatActivity {
         setContentView(R.layout.activity_tela_login);
 
         pref = new Preferencias(getApplicationContext());
-        if(pref.getEmailUsuario() != null){
+        if(pref.getEmailUsuario() != null && pref.getIdUsuario() != null){
             ControllerUsuario.setIdUsuario(pref.getIdUsuario());
 
             Intent intent = new Intent(TelaLogin.this, MainActivity.class);
@@ -82,6 +83,8 @@ public class TelaLogin extends AppCompatActivity {
             pref.editSenhaUsuario(textSenha.getText().toString());
             pref.editIdUsuario(usuario.getId());
             pref.editNomeUsuario(usuario.getNome());
+            ControllerUsuario.setIdUsuario(usuario.getId());
+            Log.i("AAA", usuario.toString());
 
             Intent intent = new Intent(TelaLogin.this, MainActivity.class);
             startActivity(intent);

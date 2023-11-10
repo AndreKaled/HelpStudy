@@ -39,7 +39,6 @@ public class ControllerUsuario {
     }
 
     public void atualizar(Usuario usuario) {
-
         db.alterarUsuario(usuario);
     }
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.helpstudy.controller.ControllerFlashCard;
 import com.example.helpstudy.controller.ControllerListas;
@@ -160,5 +161,15 @@ public class Repository {
 
         return db.update(data.TABELA_FLASHCARDS, values,data.ID_FLASHCARD +" = ? ",
                 new String[]{String.valueOf(flashcard.getCodigo())}) != -1 ? true : false;
+    }
+
+    public void limparBancodeDados(){
+        SQLiteDatabase db = data.getWritableDatabase();
+        String sql = " DELETE FROM " +data.TABELA_FLASHCARDS +";";
+        db.execSQL(sql);
+        sql = " DELETE FROM " +data.TABELA_TAREFAS;
+        db.execSQL(sql);
+        sql = " DELETE FROM " +data.TABELA_LISTAS;
+        db.execSQL(sql);
     }
 }

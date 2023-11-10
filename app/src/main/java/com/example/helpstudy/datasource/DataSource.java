@@ -117,9 +117,10 @@ public class DataSource {
         usuario.setNome(usuario2.getNome());
         usuario.setEmail(usuario2.getEmail());
         usuario.setSenha(usuario2.getSenha());
+        usuario.setId(usuario2.getId());
         Log.i(TAG, COLECAO_USUARIOS +"-> alterando dados do usuário " +usuario);
 
-        usuarioRef.document(usuario2.getId()).set(usuario).addOnSuccessListener(new OnSuccessListener<Void>() {
+        usuarioRef.document(ControllerUsuario.getIdUsuario()).set(usuario).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Log.i(TAG, COLECAO_USUARIOS +"-> dados alterados com sucesso!");
