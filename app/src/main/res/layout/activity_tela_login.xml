@@ -50,8 +50,8 @@
             android:backgroundTint="@color/textColorLight"
             android:hint="E-mail:"
             android:inputType="text"
-            android:textColor="@color/textColorLight"
-            android:textColorHint="@color/textColorLight" />
+            android:textColorHint="@color/textColorLight"
+            android:textColorLink="#00FFFFFF" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/login_senha"
@@ -61,7 +61,8 @@
             android:hint="Senha:"
             android:inputType="numberPassword"
             android:textColor="@color/textColorLight"
-            android:textColorHint="@color/textColorLight" />
+            android:textColorHint="@color/textColorLight"
+            android:textColorLink="#00FFFFFF" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton

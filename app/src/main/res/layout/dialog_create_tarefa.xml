@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
-            android:hint="Resposta"
+            android:hint="Descrição"
             android:inputType="text"
             android:textColor="#FFFFFF"
             android:textColorHighlight="#03A9F4"
