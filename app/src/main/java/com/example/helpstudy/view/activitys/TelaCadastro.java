@@ -12,13 +12,14 @@ import android.widget.Toast;
 
 import com.example.helpstudy.controller.ControllerUsuario;
 import com.example.helpstudy.R;
+import com.example.helpstudy.utils.Preferencias;
 
 public class TelaCadastro extends AppCompatActivity {
 
     EditText textNome, textEmail, textSenha;
     String nome, email, dataNasc, senha;
     TextView text;
-
+    Preferencias pref;
     Button btCadastrar;
 
     private ControllerUsuario controllerUsuario;
@@ -26,7 +27,7 @@ public class TelaCadastro extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        pref = new Preferencias(getApplicationContext());
         controllerUsuario = ControllerUsuario.getInstancia(getApplicationContext());
         setContentView(R.layout.activity_tela_cadastro);
 
@@ -121,6 +122,11 @@ public class TelaCadastro extends AppCompatActivity {
             Toast.makeText(TelaCadastro.this, "Já encontramos seu cadastro aqui, faça o login para entrar!", Toast.LENGTH_LONG).show();
         else{
             controllerUsuario.cadastrar(nome, email, dataNasc, senha);
+            pref.editEmailUsuario(textEmail.getText().toString());
+            pref.editSenhaUsuario(textSenha.getText().toString());
+            pref.editIdUsuario(nome+"-"+email);
+            pref.editNomeUsuario(nome);
+            ControllerUsuario.setIdUsuario(nome+"-"+email);
             Toast.makeText(TelaCadastro.this, "Cadastro realizado com sucesso!",Toast.LENGTH_LONG).show();
         }
     }
