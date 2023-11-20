@@ -2,7 +2,8 @@
 
 ## Status ⏰
 
-🚧 Em desenvolvimento 🚧
+Versão 1.23 
+Teste - versão sujeita a ajustes de bugs
 
 ## Autores 🤓
 
@@ -10,16 +11,6 @@ André Kaled Duarte
 
 Manfred Lima Veiga
 
-## Técnicas e tecnologias 🔬
+## Como testar?
 
--- Paradigma Orientada a Objetos 
-
--- Metodología Ágil Scrum e Kanban
-
--- Linguagem de programação Java
-
--- Ambiente de desenvolvimento: Android Studio 
-
--- Base de dados: Firebase
-
--- Hospedagem de código: Github 
+clique [aqui](https://github.com/AndreKaled/HelpStudy/releases/download/V1.23/app-release.apk) para instalar o aplicativo e aproveite a experiência 😁
