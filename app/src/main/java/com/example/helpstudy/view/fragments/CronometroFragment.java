@@ -2,6 +2,8 @@ package com.example.helpstudy.view.fragments;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import static com.google.android.material.internal.ContextUtils.getActivity;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -52,7 +54,7 @@ public class CronometroFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_cronometro, container, false);
-        atencao = new Atencao(getContext());
+        atencao = new Atencao(getContext(), getActivity().getSupportFragmentManager());
         ativado = false;
         update_timer = view.findViewById(R.id.update_timer);
         context = getContext();
